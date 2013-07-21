@@ -6,8 +6,8 @@
   DTS:CreatorComputerName="SPARROW-HANK"
   DTS:CreationDate="7/18/2013 12:11:14 PM"
   DTS:PackageType="5"
-  DTS:VersionBuild="191"
-  DTS:VersionGUID="{15ED351C-E8BD-431E-ACE6-A5FDE43D3107}"
+  DTS:VersionBuild="195"
+  DTS:VersionGUID="{8531849E-5A43-43C3-8D5C-443F62C562FD}"
   DTS:LastModifiedProductVersion="11.0.2100.60"
   DTS:LocaleID="1046"
   DTS:ObjectName="Step1_Importa"
@@ -139,13 +139,13 @@
                               name="Expression"
                               dataType="System.String"
                               description="Expressão de Coluna Derivada"
-                              containsID="true">#{Package\Importa Arquivos\Importa Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[DataOcorrencia]}</property>
+                              containsID="true">(DT_DBDATE)#{Package\Importa Arquivos\Importa Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[DataOcorrencia]}</property>
                             <property
                               name="FriendlyExpression"
                               dataType="System.String"
                               description="Expressão Amigável de Coluna Derivada"
                               containsID="true"
-                              expressionType="Notify">DataOcorrencia</property>
+                              expressionType="Notify">(DT_DBDATE)DataOcorrencia</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -163,13 +163,13 @@
                               name="Expression"
                               dataType="System.String"
                               description="Expressão de Coluna Derivada"
-                              containsID="true">#{Package\Importa Arquivos\Importa Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Descricao]}</property>
+                              containsID="true">(DT_STR,50,1252)#{Package\Importa Arquivos\Importa Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Descricao]}</property>
                             <property
                               name="FriendlyExpression"
                               dataType="System.String"
                               description="Expressão Amigável de Coluna Derivada"
                               containsID="true"
-                              expressionType="Notify">Descricao</property>
+                              expressionType="Notify">(DT_STR,50,1252)Descricao</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -186,13 +186,13 @@
                               name="Expression"
                               dataType="System.String"
                               description="Expressão de Coluna Derivada"
-                              containsID="true">#{Package\Importa Arquivos\Importa Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Valor]}</property>
+                              containsID="true">(DT_NUMERIC,7,2)#{Package\Importa Arquivos\Importa Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Valor]}</property>
                             <property
                               name="FriendlyExpression"
                               dataType="System.String"
                               description="Expressão Amigável de Coluna Derivada"
                               containsID="true"
-                              expressionType="Notify">Valor</property>
+                              expressionType="Notify">(DT_NUMERIC,7,2)Valor</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -210,13 +210,13 @@
                               name="Expression"
                               dataType="System.String"
                               description="Expressão de Coluna Derivada"
-                              containsID="true">#{Package\Importa Arquivos\Importa Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Categoria]}</property>
+                              containsID="true">(DT_STR,50,1252)#{Package\Importa Arquivos\Importa Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Categoria]}</property>
                             <property
                               name="FriendlyExpression"
                               dataType="System.String"
                               description="Expressão Amigável de Coluna Derivada"
                               containsID="true"
-                              expressionType="Notify">Categoria</property>
+                              expressionType="Notify">(DT_STR,50,1252)Categoria</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -234,13 +234,13 @@
                               name="Expression"
                               dataType="System.String"
                               description="Expressão de Coluna Derivada"
-                              containsID="true">#{Package\Importa Arquivos\Importa Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Conta]}</property>
+                              containsID="true">(DT_STR,50,1252)#{Package\Importa Arquivos\Importa Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Conta]}</property>
                             <property
                               name="FriendlyExpression"
                               dataType="System.String"
                               description="Expressão Amigável de Coluna Derivada"
                               containsID="true"
-                              expressionType="Notify">Conta</property>
+                              expressionType="Notify">(DT_STR,50,1252)Conta</property>
                           </properties>
                         </inputColumn>
                       </inputColumns>
@@ -259,8 +259,9 @@
                           refId="Package\Importa Arquivos\Importa Excel\Insere Variáveis.Outputs[Saída de Coluna Derivada].Columns[ArquivoPath]"
                           name="ArquivoPath"
                           lineageId="Package\Importa Arquivos\Importa Excel\Insere Variáveis.Outputs[Saída de Coluna Derivada].Columns[ArquivoPath]"
-                          length="92"
-                          dataType="wstr"
+                          length="255"
+                          dataType="str"
+                          codePage="1252"
                           errorOrTruncationOperation="Computação"
                           errorRowDisposition="FailComponent"
                           truncationRowDisposition="FailComponent">
@@ -269,13 +270,13 @@
                               name="Expression"
                               dataType="System.String"
                               description="Expressão de Coluna Derivada"
-                              containsID="true">@[User::ArquivoPath]</property>
+                              containsID="true">(DT_STR,255,1252)@[User::ArquivoPath]</property>
                             <property
                               name="FriendlyExpression"
                               dataType="System.String"
                               description="Expressão Amigável de Coluna Derivada"
                               containsID="true"
-                              expressionType="Notify">@[User::ArquivoPath]</property>
+                              expressionType="Notify">(DT_STR,255,1252)@[User::ArquivoPath]</property>
                           </properties>
                         </outputColumn>
                         <outputColumn
@@ -283,7 +284,8 @@
                           name="ArquivoNome"
                           lineageId="Package\Importa Arquivos\Importa Excel\Insere Variáveis.Outputs[Saída de Coluna Derivada].Columns[ArquivoNome]"
                           length="50"
-                          dataType="wstr"
+                          dataType="str"
+                          codePage="1252"
                           errorOrTruncationOperation="Computação"
                           errorRowDisposition="FailComponent"
                           truncationRowDisposition="FailComponent">
@@ -292,13 +294,13 @@
                               name="Expression"
                               dataType="System.String"
                               description="Expressão de Coluna Derivada"
-                              containsID="true">@[User::ArquivoNome]</property>
+                              containsID="true">(DT_STR,50,1252)@[User::ArquivoNome]</property>
                             <property
                               name="FriendlyExpression"
                               dataType="System.String"
                               description="Expressão Amigável de Coluna Derivada"
                               containsID="true"
-                              expressionType="Notify">@[User::ArquivoNome]</property>
+                              expressionType="Notify">(DT_STR,50,1252)@[User::ArquivoNome]</property>
                           </properties>
                         </outputColumn>
                         <outputColumn
@@ -328,7 +330,8 @@
                           name="ArquivoExtensao"
                           lineageId="Package\Importa Arquivos\Importa Excel\Insere Variáveis.Outputs[Saída de Coluna Derivada].Columns[ArquivoExtensao]"
                           length="5"
-                          dataType="wstr"
+                          dataType="str"
+                          codePage="1252"
                           errorOrTruncationOperation="Computação"
                           errorRowDisposition="FailComponent"
                           truncationRowDisposition="FailComponent">
@@ -337,20 +340,20 @@
                               name="Expression"
                               dataType="System.String"
                               description="Expressão de Coluna Derivada"
-                              containsID="true">@[User::ArquivoExtensao]</property>
+                              containsID="true">(DT_STR,5,1252)@[User::ArquivoExtensao]</property>
                             <property
                               name="FriendlyExpression"
                               dataType="System.String"
                               description="Expressão Amigável de Coluna Derivada"
                               containsID="true"
-                              expressionType="Notify">@[User::ArquivoExtensao]</property>
+                              expressionType="Notify">(DT_STR,5,1252)@[User::ArquivoExtensao]</property>
                           </properties>
                         </outputColumn>
                         <outputColumn
                           refId="Package\Importa Arquivos\Importa Excel\Insere Variáveis.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCarga]"
                           name="ArquivoDataCarga"
                           lineageId="Package\Importa Arquivos\Importa Excel\Insere Variáveis.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCarga]"
-                          dataType="date"
+                          dataType="dbTimeStamp"
                           errorOrTruncationOperation="Computação"
                           errorRowDisposition="FailComponent"
                           truncationRowDisposition="FailComponent">
@@ -359,13 +362,13 @@
                               name="Expression"
                               dataType="System.String"
                               description="Expressão de Coluna Derivada"
-                              containsID="true">@[System::StartTime]</property>
+                              containsID="true">(DT_DBTIMESTAMP)@[System::StartTime]</property>
                             <property
                               name="FriendlyExpression"
                               dataType="System.String"
                               description="Expressão Amigável de Coluna Derivada"
                               containsID="true"
-                              expressionType="Notify">@[System::StartTime]</property>
+                              expressionType="Notify">(DT_DBTIMESTAMP)@[System::StartTime]</property>
                           </properties>
                         </outputColumn>
                       </outputColumns>
@@ -688,15 +691,17 @@
                           lineageId="Package\Importa Arquivos\Importa Excel\Insere Variáveis.Outputs[Saída de Coluna Derivada].Columns[ArquivoPath]"
                           externalMetadataColumnId="Package\Importa Arquivos\Importa Excel\TB Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOPATH]"
                           cachedName="ArquivoPath"
-                          cachedDataType="wstr"
-                          cachedLength="92" />
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedCodepage="1252" />
                         <inputColumn
                           refId="Package\Importa Arquivos\Importa Excel\TB Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoNome]"
                           lineageId="Package\Importa Arquivos\Importa Excel\Insere Variáveis.Outputs[Saída de Coluna Derivada].Columns[ArquivoNome]"
                           externalMetadataColumnId="Package\Importa Arquivos\Importa Excel\TB Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVONOME]"
                           cachedName="ArquivoNome"
-                          cachedDataType="wstr"
-                          cachedLength="50" />
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedCodepage="1252" />
                         <inputColumn
                           refId="Package\Importa Arquivos\Importa Excel\TB Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoDataCriacao]"
                           lineageId="Package\Importa Arquivos\Importa Excel\Insere Variáveis.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCriacao]"
@@ -708,14 +713,15 @@
                           lineageId="Package\Importa Arquivos\Importa Excel\Insere Variáveis.Outputs[Saída de Coluna Derivada].Columns[ArquivoExtensao]"
                           externalMetadataColumnId="Package\Importa Arquivos\Importa Excel\TB Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOEXTENSAO]"
                           cachedName="ArquivoExtensao"
-                          cachedDataType="wstr"
-                          cachedLength="5" />
+                          cachedDataType="str"
+                          cachedLength="5"
+                          cachedCodepage="1252" />
                         <inputColumn
                           refId="Package\Importa Arquivos\Importa Excel\TB Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoDataCarga]"
                           lineageId="Package\Importa Arquivos\Importa Excel\Insere Variáveis.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCarga]"
                           externalMetadataColumnId="Package\Importa Arquivos\Importa Excel\TB Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACARGA]"
                           cachedName="ArquivoDataCarga"
-                          cachedDataType="date" />
+                          cachedDataType="dbTimeStamp" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -1590,6 +1596,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="131,42"
+          Id="Package\Importa Arquivos\Importa Excel\TB Importa"
+          TopLeft="379,150" />
+        <NodeLayout
           Size="164,42"
           Id="Package\Importa Arquivos\Importa Excel\Minhas Economias"
           TopLeft="112,138" />
@@ -1597,44 +1607,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           Size="153,42"
           Id="Package\Importa Arquivos\Importa Excel\Insere Variáveis"
           TopLeft="219,249" />
-        <EdgeLayout
-          Id="Package\Importa Arquivos\Importa Excel.Paths[Saída de Origem do Excel]"
-          TopLeft="194,180">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="77.3333333333333,69"
-              Start="0,0"
-              End="77.3333333333333,61.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,36.9715394566624" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,36.9715394566624"
-                    Point2="0,40.9715394566624"
-                    Point3="4,40.9715394566624" />
-                  <mssgle:LineSegment
-                    End="73.3333333333333,40.9715394566624" />
-                  <mssgle:CubicBezierSegment
-                    Point1="73.3333333333333,40.9715394566624"
-                    Point2="77.3333333333333,40.9715394566624"
-                    Point3="77.3333333333333,44.9715394566624" />
-                  <mssgle:LineSegment
-                    End="77.3333333333333,61.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="131,42"
-          Id="Package\Importa Arquivos\Importa Excel\TB Importa"
-          TopLeft="379,150" />
         <EdgeLayout
           Id="Package\Importa Arquivos\Importa Excel.Paths[Saída de Coluna Derivada]"
           TopLeft="319.666666666667,249">
@@ -1661,6 +1633,40 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                     Point3="124.833333333333,-27.1539456662355" />
                   <mssgle:LineSegment
                     End="124.833333333333,-49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importa Arquivos\Importa Excel.Paths[Saída de Origem do Excel]"
+          TopLeft="194,180">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77.3333333333333,69"
+              Start="0,0"
+              End="77.3333333333333,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.9715394566624" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.9715394566624"
+                    Point2="0,40.9715394566624"
+                    Point3="4,40.9715394566624" />
+                  <mssgle:LineSegment
+                    End="73.3333333333333,40.9715394566624" />
+                  <mssgle:CubicBezierSegment
+                    Point1="73.3333333333333,40.9715394566624"
+                    Point2="77.3333333333333,40.9715394566624"
+                    Point3="77.3333333333333,44.9715394566624" />
+                  <mssgle:LineSegment
+                    End="77.3333333333333,61.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
