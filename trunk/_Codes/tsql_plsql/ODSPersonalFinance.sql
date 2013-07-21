@@ -1,37 +1,34 @@
 /*==============================================================*/
 /* Database name:  ODS_PERSONAL_FINANCE                         */
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     20/07/2013 18:34:04                          */
+/* Created on:     21/07/2013 00:24:46                          */
 /*==============================================================*/
 
-
-DROP DATABASE ODS_PERSONAL_FINANCE
-go
-
-/*==============================================================*/
-/* Database: ODS_PERSONAL_FINANCE                               */
-/*==============================================================*/
-CREATE DATABASE ODS_PERSONAL_FINANCE
-COLLATE SQL_LATIN1_GENERAL_CP1_CI_AI
-go
 
 USE ODS_PERSONAL_FINANCE
 go
 
+IF EXISTS (SELECT 1
+            FROM  SYSOBJECTS
+           WHERE  ID = OBJECT_ID('TB_IMPORTA')
+            AND   TYPE = 'U')
+   DROP TABLE TB_IMPORTA
+go
+
 /*==============================================================*/
-/* Table: TBIMPORTA                                             */
+/* Table: TB_IMPORTA                                            */
 /*==============================================================*/
-CREATE TABLE TBIMPORTA (
-   LINHA                INT                  IDENTITY(1,1),
-   ARQUIVONOME          VARCHAR(100)         NOT NULL,
-   ARQUIVOEXTENSAO      VARCHAR(5)           NOT NULL,
-   ARQUIVODATACRIACAO   DATETIME             NOT NULL,
-   ARQUIVODATACARGA     DATETIME             NOT NULL,
-   DATAOCORRENCIA       VARCHAR(10)          NOT NULL,
-   DESCRICAO            VARCHAR(50)          NOT NULL,
-   VALOR                DECIMAL(7,3)         NOT NULL,
-   CATEGORIA            VARCHAR(50)          NOT NULL,
-   CONTA                VARCHAR(50)          NOT NULL
+CREATE TABLE TB_IMPORTA (
+   ARQUIVOPATH          VARCHAR(255)         NULL,
+   ARQUIVONOME          VARCHAR(50)          NULL,
+   ARQUIVOEXTENSAO      VARCHAR(5)           NULL,
+   ARQUIVODATACRIACAO   DATETIME             NULL,
+   ARQUIVODATACARGA     DATETIME             NULL,
+   DATAOCORRENCIA       DATETIME             NULL,
+   DESCRICAO            VARCHAR(255)         NULL,
+   VALOR                DECIMAL(7,2)         NULL,
+   CATEGORIA            VARCHAR(255)         NULL,
+   CONTA                VARCHAR(255)         NULL
 )
 go
 
