@@ -4,8 +4,8 @@
 
 <Workspace>
 	<Local Expanded="Yes" Name="PersonalFinance" Selected="Yes">
-		<Model Expanded="Yes" ID="{C54A23FA-A0AC-452D-A6A5-0E3BD9737547}" Name="PersonalFinanceODS" RmgBranchID="1" RmgModelID="386" RmgModelVrsn="6" RmgRepID="{4B428C05-FC2E-44FA-95CD-DBF9FD19C0BE}" RmgUpdateDate="1374377329" RmgUpdateEnd="1374377329" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="PersonalFinanceOds.pdm"/>
-		<Model Expanded="Yes" ID="{DB55D48B-57A5-475F-973D-ED700F2188F6}" Loaded="No" Name="PersonalFinanceDataMart" RmgBranchID="1" RmgModelID="100" RmgModelVrsn="11" RmgRepID="{4B428C05-FC2E-44FA-95CD-DBF9FD19C0BE}" RmgUpdateDate="1374377333" RmgUpdateEnd="1374377333" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="PersonalFinanceDataMart.pdm"/>
+		<Model ID="{C54A23FA-A0AC-452D-A6A5-0E3BD9737547}" Name="PersonalFinanceODS" RmgBranchID="1" RmgModelID="386" RmgModelVrsn="7" RmgRepID="{4B428C05-FC2E-44FA-95CD-DBF9FD19C0BE}" RmgUpdateDate="1374431092" RmgUpdateEnd="1374431092" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="PersonalFinanceOds.pdm"/>
+		<Model ID="{DB55D48B-57A5-475F-973D-ED700F2188F6}" Name="PersonalFinanceDataMart" RmgBranchID="1" RmgModelID="100" RmgModelVrsn="12" RmgRepID="{4B428C05-FC2E-44FA-95CD-DBF9FD19C0BE}" RmgUpdateDate="1374431096" RmgUpdateEnd="1374431096" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="PersonalFinanceDataMart.pdm"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>
