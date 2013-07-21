@@ -1,0 +1,1688 @@
+<?xml version="1.0"?>
+<DTS:Executable
+  DTS:refId="Package" xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:CreatorName="SPARROW-HANK\Leonardo"
+  DTS:CreatorComputerName="SPARROW-HANK"
+  DTS:CreationDate="7/21/2013 10:25:26 AM"
+  DTS:PackageType="5"
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{15DDD20C-19C3-47BB-A2F6-3F98A6197576}"
+  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Step1_import"
+  DTS:DTSID="{88DF90CF-EEE6-4BD8-BD0F-8592F3899564}"
+  DTS:CreationName="SSIS.Package.3">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Minhas Economias]"
+      DTS:ObjectName="Minhas Economias"
+      DTS:DTSID="{79B192D0-B201-40C6-A433-2C3FB68BB967}"
+      DTS:CreationName="EXCEL">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">"Provider=Microsoft.Jet.OLEDB.4.0;Data Source="+ @[User::PathFileSource] +";Extended Properties=\"Excel 8.0;HDR=YES\""</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=E:\Repository\project\my-personal-finance\_Loads\Step1_Pendent\Extrato_20121101_20130731.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:Namespace="User"
+      DTS:IncludeInDebugDump="6789"
+      DTS:ObjectName="FileDateCreation"
+      DTS:DTSID="{43B9DD1E-933E-4808-944E-97DDBDF56429}"
+      DTS:CreationName="">
+      <DTS:VariableValue
+        DTS:DataType="7">7/21/2013 10:31:12 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:Namespace="User"
+      DTS:IncludeInDebugDump="2345"
+      DTS:ObjectName="FileExtension"
+      DTS:DTSID="{30BC4F64-4C6C-4539-9E16-AF318FC99C56}"
+      DTS:CreationName="">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:Namespace="User"
+      DTS:IncludeInDebugDump="2345"
+      DTS:ObjectName="FileName"
+      DTS:DTSID="{53838840-7FD9-4DC7-BEC8-A40F976D72D3}"
+      DTS:CreationName="">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:Namespace="User"
+      DTS:IncludeInDebugDump="2345"
+      DTS:ObjectName="PathFileSource"
+      DTS:DTSID="{C4184395-FDBA-4350-86FD-279F96249AEA}"
+      DTS:CreationName="">
+      <DTS:VariableValue
+        DTS:DataType="8">E:\Repository\project\my-personal-finance\_Loads\Step1_Pendent\Extrato_20121101_20130731.xls</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Busca Arquivos no Diretório"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Busca Arquivos no Diretório"
+      DTS:DTSID="{89837C8E-9F94-4C92-BEDC-7678A2ADBFAC}"
+      DTS:Description="Contêiner do Loop Foreach"
+      DTS:CreationName="STOCK:FOREACHLOOP">
+      <DTS:ForEachEnumerator
+        DTS:ObjectName="{873B34A3-D91F-4157-862D-1D5118ADE96F}"
+        DTS:DTSID="{873B34A3-D91F-4157-862D-1D5118ADE96F}"
+        DTS:CreationName="DTS.ForEachFileEnumerator.3">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="E:\Repository\project\my-personal-finance\_Loads\Step1_Pendent" />
+            <FEFEProperty
+              FileSpec="Extrat*.xls" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Busca Arquivos no Diretório\Busca Metadados"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:ThreadHint="0"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Busca Metadados"
+          DTS:DTSID="{8C6712EA-D382-448C-A9E6-92BEF1A68613}"
+          DTS:Description="Tarefa Script"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_ccd92e74e19041d584a40f738850a7cc"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp"
+              ReadOnlyVariables="User::PathFileSource"
+              ReadWriteVariables="User::FileDateCreation,User::FileExtension,User::FileName">
+              <ProjectItem
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_ccd92e74e19041d584a40f738850a7cc")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_ccd92e74e19041d584a40f738850a7cc")]
+[assembly: AssemblyCopyright("Copyright @  2013")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+              <ProjectItem
+                Name="ST_ccd92e74e19041d584a40f738850a7cc.csproj"
+                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{812D764A-1C00-46F3-9887-4FFE2D6D6A7D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_ccd92e74e19041d584a40f738850a7cc</RootNamespace>
+    <AssemblyName>ST_ccd92e74e19041d584a40f738850a7cc</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="devenv.exe" DebugInfoCommandLine="/vstaHostDebugUri:&quot;vstadebug74b59cc0-366e-49a3-ba78-a6ed49637bbb/aeba9fd4-6867-4bff-8468-6cdee4889f54&quot;" />
+        <Host Name="ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST110</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Resources.resx"
+                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+              <ProjectItem
+                Name="ScriptMain.cs"
+                Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+/* The Script Task allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services control flow. 
+ * 
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script task. */
+#endregion
+
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Runtime;
+using System.Windows.Forms;
+#endregion
+
+namespace ST_ccd92e74e19041d584a40f738850a7cc
+{
+    [Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+	public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+	{
+        #region Help:  Using Integration Services variables and parameters in a script
+        /* To use a variable in this script, first ensure that the variable has been added to 
+         * either the list contained in the ReadOnlyVariables property or the list contained in 
+         * the ReadWriteVariables property of this script task, according to whether or not your
+         * code needs to write to the variable.  To add the variable, save this script, close this instance of
+         * Visual Studio, and update the ReadOnlyVariables and 
+         * ReadWriteVariables properties in the Script Transformation Editor window.
+         * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+         * 
+         * Example of reading from a variable:
+         *  DateTime startTime = (DateTime) Dts.Variables["System::StartTime"].Value;
+         * 
+         * Example of writing to a variable:
+         *  Dts.Variables["User::myStringVariable"].Value = "new value";
+         * 
+         * Example of reading from a package parameter:
+         *  int batchId = (int) Dts.Variables["$Package::batchId"].Value;
+         *  
+         * Example of reading from a project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].Value;
+         * 
+         * Example of reading from a sensitive project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].GetSensitiveValue();
+         * */
+
+        #endregion
+
+        #region Help:  Firing Integration Services events from a script
+        /* This script task can fire events for logging purposes.
+         * 
+         * Example of firing an error event:
+         *  Dts.Events.FireError(18, "Process Values", "Bad value", "", 0);
+         * 
+         * Example of firing an information event:
+         *  Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, ref fireAgain)
+         * 
+         * Example of firing a warning event:
+         *  Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0);
+         * */
+        #endregion
+
+        #region Help:  Using Integration Services connection managers in a script
+        /* Some types of connection managers can be used in this script task.  See the topic 
+         * "Working with Connection Managers Programatically" for details.
+         * 
+         * Example of using an ADO.Net connection manager:
+         *  object rawConnection = Dts.Connections["Sales DB"].AcquireConnection(Dts.Transaction);
+         *  SqlConnection myADONETConnection = (SqlConnection)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Sales DB"].ReleaseConnection(rawConnection);
+         *
+         * Example of using a File connection manager
+         *  object rawConnection = Dts.Connections["Prices.zip"].AcquireConnection(Dts.Transaction);
+         *  string filePath = (string)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Prices.zip"].ReleaseConnection(rawConnection);
+         * */
+        #endregion
+
+
+		public void Main()
+		{
+
+            String Path, FileNome, FileExtensao;
+            DateTime FileDataCriacao;
+
+            Path = Dts.Variables["PathFileSource"].Value.ToString();
+
+            FileNome = System.IO.Path.GetFileName(Path);
+            FileExtensao = System.IO.Path.GetExtension(Path);
+            FileDataCriacao = System.IO.File.GetCreationTime(Path);
+
+            Dts.Variables["User::FileName"].Value = FileNome.ToString();
+            Dts.Variables["User::FileExtension"].Value = FileExtensao.ToString();
+            Dts.Variables["User::FileDateCreation"].Value = FileDataCriacao;
+
+            Dts.TaskResult = (int)ScriptResults.Success;
+       
+        }
+
+        #region ScriptResults declaration
+        /// <summary>
+        /// This enum provides a convenient shorthand within the scope of this class for setting the
+        /// result of the script.
+        /// 
+        /// This code was generated automatically.
+        /// </summary>
+        enum ScriptResults
+        {
+            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+        };
+        #endregion
+
+	}
+}]]></ProjectItem>
+              <ProjectItem
+                Name="Project"
+                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:CodeName>ST_ccd92e74e19041d584a40f738850a7cc</msb:CodeName>
+		<msb:DisplayName>ST_ccd92e74e19041d584a40f738850a7cc</msb:DisplayName>
+		<msb:ProjectId>{C4C39F85-1A4D-4359-A71A-3D294AAA2D8E}</msb:ProjectId>
+		<msb:Language>msBuild</msb:Language>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_ccd92e74e19041d584a40f738850a7cc.csproj"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="ScriptMain.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_ccd92e74e19041d584a40f738850a7cc.Properties.Settings.get_Default():ST_ccd92e74e19041d584a40f738850a7cc.Properties.Sett" +
+    "ings")]
+
+namespace ST_ccd92e74e19041d584a40f738850a7cc.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Resources.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_ccd92e74e19041d584a40f738850a7cc.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_ccd92e74e19041d584a40f738850a7cc.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_ccd92e74e19041d584a40f738850a7cc.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_ccd92e74e19041d584a40f738850a7cc.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_ccd92e74e19041d584a40f738850a7cc.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <BinaryItem
+                Name="ST_ccd92e74e19041d584a40f738850a7cc.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDANfl61EAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAAXi8A
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAABAvAABLAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAZA8AAAAgAAAAEAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAASAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAGAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAABA
+LwAAAAAAAEgAAAACAAUAMCIAAOAMAAABAAAAAAAAAHghAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKA4AAAoqEzACAC0AAAABAAARfgEAAAQtIHIBAABw0AIA
+AAIoDwAACm8QAAAKcxEAAAoKBoABAAAEfgEAAAQqGn4CAAAEKh4CgAIAAAQqGn4DAAAEKi5zBgAA
+BoADAAAEKh4CKBQAAAoqABMwAgCiAAAAAgAAEQIoFgAACm8XAAAKcnMAAHBvGAAACm8ZAAAKbxoA
+AAoKBigbAAAKCwYoHAAACgwGKB0AAAoNAigWAAAKbxcAAApykQAAcG8YAAAKB28aAAAKbx4AAAoC
+KBYAAApvFwAACnKvAABwbxgAAAoIbxoAAApvHgAACgIoFgAACm8XAAAKctcAAHBvGAAACgmMIAAA
+AW8eAAAKAigWAAAKFm8fAAAKKh4CKCAAAAoqAAAAAAAAtAAAAM7K774BAAAAkQAAAGxTeXN0ZW0u
+UmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwgVmVyc2lvbj00LjAuMC4wLCBDdWx0
+dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkjU3lzdGVtLlJlc291
+cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQQURQQURQtAAAAEJTSkIBAAEAAAAA
+AAwAAAB2NC4wLjMwMzE5AAAAAAUAbAAAAOgDAAAjfgAAVAQAAPwFAAAjU3RyaW5ncwAAAABQCgAA
+CAEAACNVUwBYCwAAEAAAACNHVUlEAAAAaAsAAHgBAAAjQmxvYgAAAAAAAAACAAABVx2iAQkDAAAA
++iUzABYAAAEAAAAgAAAABQAAAAYAAAAJAAAAAQAAACAAAAACAAAADwAAAAIAAAACAAAAAwAAAAQA
+AAABAAAABAAAAAEAAAABAAAAAAAKAAEAAAAAAAYAwQC6AAoA3QDIAA4APQEUAQYAWQG6AAYAbwFe
+AQYAoAGLAQYAVwI9AgYAggJwAgYAmQJwAgYAtgJwAgYA1QJwAgYA7gJwAgYABwNwAgYAIgNwAgYA
+PQNwAgYAVgNwAgYAjwNvAwYArwNvAwYA4APNAwYA/QO6AAYAAgS6AAYAJgRwAgoAUgQ8BAoAawQ8
+BAYAgARvAw4AogQUAQ4AxAQUARIAHQX9BBIANQX9BAYAZAVaBQYAggVaBQYAhwW6AAAAAAABAAAA
+AAABAAEAAAAQADIAPAAFAAEAAQAAARAAawA8AAkAAwAFAAEAEAB0AH8ADQAEAAgAAwEAAKMAAAAR
+AAQACgARAH8BEwARAKwBFwARAPYBOQAGBh8CRwBWgCcCSgBWgC8CSgBQIAAAAACDGLwBGwABAFgg
+AAAAAJMIwgEfAAEAkSAAAAAAkwjWASQAAQCYIAAAAACTCOIBKQABAKAgAAAAAJYIBgI9AAIAsyAA
+AAAAhhi8ARsAAgCnIAAAAACRGJsEiQACALwgAAAAAIYAGgIbAAIAaiEAAAAAhhi8ARsAAgAAAAEA
+NwI5ALwBWABBALwBWABJALwBWABRALwBWABZALwBWABhALwBWABpALwBWABxALwBWAB5ALwBWACB
+ALwBWACJALwBXQCRALwBGwCZALwBGwAJALwBGwChABQEYgChAC8EaQApALwBbgC5ALwBegDJALwB
+GwARALwBGwDRALwBGwAZANYEjQDZACcFkgDhAD4FlwDpAEcFnQAJAFEFoQDxAGkFpQDxAHUFpQD5
+AJAFqgDpAKAFsQDZAKoFXQAZALwBGwAIABQATgAIABgAUwApAJMAgAAuABsAMAEuACMAMAEuAGMA
+VgEuAAsAvwAuABMABwEuADMABwEuACsAMAEuADsANgEuAEMAMAEuAFsATQFDAGsAUwBJAJMAgABh
+AJsAUwCDAKsAUwB1ALYAAgABAAMAAwAAAG8BLwAAAO4BNAAAABICQgACAAIAAwACAAMABQABAAQA
+BQACAAUABwAEgAAAAQAAAFYTm1IAAAAAAAB/AAAABAAAAAAAAAAAAAAAAQCxAAAAAAAEAAAAAAAA
+AAAAAAABALoAAAAAAAsAAAAAAAAAAAAAAAoA9QAAAAAACwAAAAAAAAAAAAAACgDeBAAAAAAAAAAA
+AQAAALkFAAAFAAQAAAAAPE1vZHVsZT4AU1RfY2NkOTJlNzRlMTkwNDFkNTg0YTQwZjczODg1MGE3
+Y2MuZGxsAFJlc291cmNlcwBTVF9jY2Q5MmU3NGUxOTA0MWQ1ODRhNDBmNzM4ODUwYTdjYy5Qcm9w
+ZXJ0aWVzAFNldHRpbmdzAFNjcmlwdE1haW4AU1RfY2NkOTJlNzRlMTkwNDFkNTg0YTQwZjczODg1
+MGE3Y2MAU2NyaXB0UmVzdWx0cwBtc2NvcmxpYgBTeXN0ZW0AT2JqZWN0AFN5c3RlbS5Db25maWd1
+cmF0aW9uAEFwcGxpY2F0aW9uU2V0dGluZ3NCYXNlAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuU2NyaXB0
+VGFzawBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5UYXNrcy5TY3JpcHRUYXNrAFZTVEFSVFNjcmlw
+dE9iamVjdE1vZGVsQmFzZQBFbnVtAFN5c3RlbS5SZXNvdXJjZXMAUmVzb3VyY2VNYW5hZ2VyAHJl
+c291cmNlTWFuAFN5c3RlbS5HbG9iYWxpemF0aW9uAEN1bHR1cmVJbmZvAHJlc291cmNlQ3VsdHVy
+ZQAuY3RvcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAGdldF9DdWx0dXJlAHNldF9DdWx0dXJlAEN1bHR1
+cmUAZGVmYXVsdEluc3RhbmNlAGdldF9EZWZhdWx0AERlZmF1bHQATWFpbgB2YWx1ZV9fAFN1Y2Nl
+c3MARmFpbHVyZQB2YWx1ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAFRhcmdldEZyYW1ld29y
+a0F0dHJpYnV0ZQBTeXN0ZW0uUmVmbGVjdGlvbgBBc3NlbWJseVRpdGxlQXR0cmlidXRlAEFzc2Vt
+Ymx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFz
+c2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlD
+b3B5cmlnaHRBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAQXNzZW1ibHlDdWx0
+dXJlQXR0cmlidXRlAEFzc2VtYmx5VmVyc2lvbkF0dHJpYnV0ZQBTeXN0ZW0uUnVudGltZS5Db21w
+aWxlclNlcnZpY2VzAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAUnVudGltZUNvbXBh
+dGliaWxpdHlBdHRyaWJ1dGUAU3lzdGVtLkRpYWdub3N0aWNzAERlYnVnZ2VyTm9uVXNlckNvZGVB
+dHRyaWJ1dGUAVHlwZQBSdW50aW1lVHlwZUhhbmRsZQBHZXRUeXBlRnJvbUhhbmRsZQBBc3NlbWJs
+eQBnZXRfQXNzZW1ibHkAU3lzdGVtLkNvbXBvbmVudE1vZGVsAEVkaXRvckJyb3dzYWJsZUF0dHJp
+YnV0ZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBDb21waWxlckdlbmVyYXRlZEF0dHJpYnV0ZQAuY2N0
+b3IAU1NJU1NjcmlwdFRhc2tFbnRyeVBvaW50QXR0cmlidXRlAFNjcmlwdE9iamVjdE1vZGVsAGdl
+dF9EdHMATWljcm9zb2Z0LlNxbFNlcnZlci5NYW5hZ2VkRFRTAE1pY3Jvc29mdC5TcWxTZXJ2ZXIu
+RHRzLlJ1bnRpbWUAVmFyaWFibGVzAGdldF9WYXJpYWJsZXMAVmFyaWFibGUAZ2V0X0l0ZW0AZ2V0
+X1ZhbHVlAFRvU3RyaW5nAFN5c3RlbS5JTwBQYXRoAEdldEZpbGVOYW1lAEdldEV4dGVuc2lvbgBG
+aWxlAERhdGVUaW1lAEdldENyZWF0aW9uVGltZQBzZXRfVmFsdWUAc2V0X1Rhc2tSZXN1bHQAU1Rf
+Y2NkOTJlNzRlMTkwNDFkNTg0YTQwZjczODg1MGE3Y2MuUHJvcGVydGllcy5SZXNvdXJjZXMucmVz
+b3VyY2VzAABxUwBUAF8AYwBjAGQAOQAyAGUANwA0AGUAMQA5ADAANAAxAGQANQA4ADQAYQA0ADAA
+ZgA3ADMAOAA4ADUAMABhADcAYwBjAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQBy
+AGMAZQBzAAAdUABhAHQAaABGAGkAbABlAFMAbwB1AHIAYwBlAAAdVQBzAGUAcgA6ADoARgBpAGwA
+ZQBOAGEAbQBlAAAnVQBzAGUAcgA6ADoARgBpAGwAZQBFAHgAdABlAG4AcwBpAG8AbgAALVUAcwBl
+AHIAOgA6AEYAaQBsAGUARABhAHQAZQBDAHIAZQBhAHQAaQBvAG4AAAAAAAfHpn6wDxlJjtcgu5+4
+kKEACLd6XFYZNOCJCImEXc2AgMyRAwYSFQMGEhkDIAABBAAAEhUEAAASGQUAAQESGQQIABIVBAgA
+EhkDBhIMBAAAEgwECAASDAIGCAMGERQEAAAAAAQBAAAABCABAQ4EIAEBCAYAARJREVUEIAASWQYg
+AgEOElkEBwESFQUgAQERYQgBAAIAAAAAAAMAAAEEIAASbQQgABJxBSABEnUcAyAAHAMgAA4EAAEO
+DgYAARGAgQ4EIAEBHAgHBA4ODhGAgUcBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuMAEAVA4U
+RnJhbWV3b3JrRGlzcGxheU5hbWUQLk5FVCBGcmFtZXdvcmsgNCgBACNTVF9jY2Q5MmU3NGUxOTA0
+MWQ1ODRhNDBmNzM4ODUwYTdjYwAABQEAAAAAFgEAEUNvcHlyaWdodCBAICAyMDEzAAAIAQAIAAAA
+AAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MBAAAAOC8AAAAAAAAAAAAATi8AAAAgAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAEAvAAAAAAAAAABfQ29yRGxsTWFpbgBtc2NvcmVlLmRsbAAAAAAA
+/yUAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
+AABIAAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
+AAAAAAC9BO/+AAABAAAAAQCbUlYTAAABAJtSVhM/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
+AG4AAAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAA
+MAAwADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBU
+AF8AYwBjAGQAOQAyAGUANwA0AGUAMQA5ADAANAAxAGQANQA4ADQAYQA0ADAAZgA3ADMAOAA4ADUA
+MABhADcAYwBjAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADQAOQA1
+ADAALgAyADEAMQA0ADcAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
+YwBjAGQAOQAyAGUANwA0AGUAMQA5ADAANAAxAGQANQA4ADQAYQA0ADAAZgA3ADMAOAA4ADUAMABh
+ADcAYwBjAC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8A
+cAB5AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADMAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBp
+AGwAZQBuAGEAbQBlAAAAUwBUAF8AYwBjAGQAOQAyAGUANwA0AGUAMQA5ADAANAAxAGQANQA4ADQA
+YQA0ADAAZgA3ADMAOAA4ADUAMABhADcAYwBjAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0
+AE4AYQBtAGUAAAAAAFMAVABfAGMAYwBkADkAMgBlADcANABlADEAOQAwADQAMQBkADUAOAA0AGEA
+NAAwAGYANwAzADgAOAA1ADAAYQA3AGMAYwAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBp
+AG8AbgAAADEALgAwAC4ANAA5ADUAMAAuADIAMQAxADQANwAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
+bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANAA5ADUAMAAuADIAMQAxADQANwAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAwAAABgPwAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
+            </ScriptProject>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Busca Arquivos no Diretório\Carrega Excel"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Carrega Excel"
+          DTS:DTSID="{A18AC211-C470-4C36-9F20-EE12CEA90DF4}"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:CreationName="SSIS.Pipeline.3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas"
+                  name="Mapeia Colunas"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+                  usesDispositions="true"
+                  contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0">
+                  <inputs>
+                    <input
+                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada]"
+                      name="Entrada de Coluna Derivada"
+                      description="Entrada para a Transformação Coluna Derivada">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[DataOcorrencia]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[DataOcorrencia]"
+                          cachedName="DataOcorrencia"
+                          cachedDataType="date" />
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[Descricao]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Descricao]"
+                          cachedName="Descricao"
+                          cachedDataType="wstr"
+                          cachedLength="255" />
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[Valor]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Valor]"
+                          cachedName="Valor"
+                          cachedDataType="r8" />
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[Categoria]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Categoria]"
+                          cachedName="Categoria"
+                          cachedDataType="wstr"
+                          cachedLength="255" />
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[Conta]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Conta]"
+                          cachedName="Conta"
+                          cachedDataType="wstr"
+                          cachedLength="255" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada]"
+                      name="Saída de Coluna Derivada"
+                      description="Saída Padrão da Transformação Coluna Derivada"
+                      exclusionGroup="1"
+                      synchronousInputId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoPath]"
+                          name="ArquivoPath"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoPath]"
+                          length="255"
+                          dataType="str"
+                          codePage="1252"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              name="Expression"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              containsID="true">(DT_STR,255,1252)@[User::PathFileSource]</property>
+                            <property
+                              name="FriendlyExpression"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              containsID="true"
+                              expressionType="Notify">(DT_STR,255,1252)@[User::PathFileSource]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoNome]"
+                          name="ArquivoNome"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoNome]"
+                          length="100"
+                          dataType="str"
+                          codePage="1252"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              name="Expression"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              containsID="true">(DT_STR,100,1252)@[User::FileName]</property>
+                            <property
+                              name="FriendlyExpression"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              containsID="true"
+                              expressionType="Notify">(DT_STR,100,1252)@[User::FileName]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoExtensao]"
+                          name="ArquivoExtensao"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoExtensao]"
+                          length="5"
+                          dataType="str"
+                          codePage="1252"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              name="Expression"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              containsID="true">(DT_STR,5,1252)@[User::FileExtension]</property>
+                            <property
+                              name="FriendlyExpression"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              containsID="true"
+                              expressionType="Notify">(DT_STR,5,1252)@[User::FileExtension]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCriacao]"
+                          name="ArquivoDataCriacao"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCriacao]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              name="Expression"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              containsID="true">(DT_DBTIMESTAMP)@[User::FileDateCreation]</property>
+                            <property
+                              name="FriendlyExpression"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              containsID="true"
+                              expressionType="Notify">(DT_DBTIMESTAMP)@[User::FileDateCreation]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCarga]"
+                          name="ArquivoDataCarga"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCarga]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              name="Expression"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              containsID="true">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                            <property
+                              name="FriendlyExpression"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              containsID="true"
+                              expressionType="Notify">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDataOcorrencia]"
+                          name="TransfDataOcorrencia"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDataOcorrencia]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              name="Expression"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              containsID="true">(DT_DBTIMESTAMP)#{Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[DataOcorrencia]}</property>
+                            <property
+                              name="FriendlyExpression"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              containsID="true"
+                              expressionType="Notify">(DT_DBTIMESTAMP)DataOcorrencia</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfConta]"
+                          name="TransfConta"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfConta]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              name="Expression"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              containsID="true">(DT_STR,50,1252)#{Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Conta]}</property>
+                            <property
+                              name="FriendlyExpression"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              containsID="true"
+                              expressionType="Notify">(DT_STR,50,1252)Conta</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfCategoria]"
+                          name="TransfCategoria"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfCategoria]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              name="Expression"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              containsID="true">(DT_STR,50,1252)#{Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Categoria]}</property>
+                            <property
+                              name="FriendlyExpression"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              containsID="true"
+                              expressionType="Notify">(DT_STR,50,1252)Categoria</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDescricao]"
+                          name="TransfDescricao"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDescricao]"
+                          length="100"
+                          dataType="str"
+                          codePage="1252"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              name="Expression"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              containsID="true">(DT_STR,100,1252)#{Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Descricao]}</property>
+                            <property
+                              name="FriendlyExpression"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              containsID="true"
+                              expressionType="Notify">(DT_STR,100,1252)Descricao</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfValor]"
+                          name="TransfValor"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfValor]"
+                          precision="7"
+                          scale="2"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              name="Expression"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              containsID="true">(DT_NUMERIC,7,2)#{Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Valor]}</property>
+                            <property
+                              name="FriendlyExpression"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              containsID="true"
+                              expressionType="Notify">(DT_NUMERIC,7,2)Valor</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada]"
+                      name="Saída de Erro de Coluna Derivada"
+                      description="Saída de Erro da Transformação Coluna Derivada"
+                      exclusionGroup="1"
+                      synchronousInputId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada]"
+                      isErrorOut="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                          dataType="i4"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                          dataType="i4"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias"
+                  name="Minhas Economias"
+                  componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+                  description="Origem do Excel"
+                  usesDispositions="true"
+                  version="1"
+                  contactInfo="Origem do Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1">
+                  <properties>
+                    <property
+                      name="CommandTimeout"
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita.">0</property>
+                    <property
+                      name="OpenRowset"
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas.">Transações$</property>
+                    <property
+                      name="OpenRowsetVariable"
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."></property>
+                    <property
+                      name="SqlCommand"
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      name="SqlCommandVariable"
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."></property>
+                    <property
+                      name="AccessMode"
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      name="ParameterMapping"
+                      dataType="System.String"
+                      description="O mapeamento de parâmetros no comando SQL para variáveis."></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Connections[OleDbConnection]"
+                      name="OleDbConnection"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      connectionManagerID="Package.ConnectionManagers[Minhas Economias]"
+                      connectionManagerRefId="Package.ConnectionManagers[Minhas Economias]" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel]"
+                      name="Saída de Origem do Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[DataOcorrencia]"
+                          name="DataOcorrencia"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[DataOcorrencia]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Data Ocorrência]" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Descricao]"
+                          name="Descricao"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Descricao]"
+                          length="255"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Descrição]" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Valor]"
+                          name="Valor"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Valor]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Valor]" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Categoria]"
+                          name="Categoria"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Categoria]"
+                          length="255"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Categoria]" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Conta]"
+                          name="Conta"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Conta]"
+                          length="255"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Conta]" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Data Ocorrência]"
+                          name="Data Ocorrência"
+                          dataType="date" />
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Descrição]"
+                          name="Descrição"
+                          dataType="wstr"
+                          length="255" />
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Valor]"
+                          name="Valor"
+                          dataType="r8" />
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Categoria]"
+                          name="Categoria"
+                          dataType="wstr"
+                          length="255" />
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Conta]"
+                          name="Conta"
+                          dataType="wstr"
+                          length="255" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel]"
+                      name="Saída de Erro de Origem do Excel"
+                      isErrorOut="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Data Ocorrência]"
+                          name="Data Ocorrência"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Data Ocorrência]"
+                          dataType="date" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Descrição]"
+                          name="Descrição"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Descrição]"
+                          length="255"
+                          dataType="wstr" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Valor]"
+                          name="Valor"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Valor]"
+                          dataType="r8" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Categoria]"
+                          name="Categoria"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Categoria]"
+                          length="255"
+                          dataType="wstr" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Conta]"
+                          name="Conta"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Conta]"
+                          length="255"
+                          dataType="wstr" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                          dataType="i4"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                          dataType="i4"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa"
+                  name="Tb Importa"
+                  componentClassID="{074B8736-CD73-40A5-822E-888215AF57DA}"
+                  description="Destino ODBC"
+                  usesDispositions="true"
+                  version="1"
+                  contactInfo="ODBC Destination;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;1">
+                  <properties>
+                    <property
+                      name="InsertMethod"
+                      dataType="System.Int32"
+                      description="Método usado para inserção de dados. Os valores possíveis são 'Lote' ou 'Linha por linha'."
+                      typeConverter="InsertMethod"
+                      expressionType="Notify">1</property>
+                    <property
+                      name="BindCharColumnsAs"
+                      dataType="System.Int32"
+                      description="Determina como o componente associará colunas de tipos string de um ou vários bytes (por exemplo, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). As opções são: Unicode (SQL_C_WCHAR) e ANSI (SQL_C_CHAR)."
+                      typeConverter="BindCharColumnsAs"
+                      expressionType="Notify">0</property>
+                    <property
+                      name="BindNumericAs"
+                      dataType="System.Int32"
+                      description="O tipo de dados ODBC C para associação de dados numéricos."
+                      typeConverter="BindNumericAs"
+                      expressionType="Notify">0</property>
+                    <property
+                      name="TableName"
+                      dataType="System.String"
+                      description="Tabela de destino"
+                      expressionType="Notify">"dbo"."TB_IMPORTA"</property>
+                    <property
+                      name="BatchSize"
+                      dataType="System.Int32"
+                      description="Especifica o número de linhas inseridas por lote."
+                      expressionType="Notify">1000</property>
+                    <property
+                      name="TransactionSize"
+                      dataType="System.Int32"
+                      description="Número de linhas inseridas na mesma transação."
+                      expressionType="Notify">0</property>
+                    <property
+                      name="LobChunkSize"
+                      dataType="System.Int32"
+                      description="Determina a alocação do tamanho da parte para colunas LOB"
+                      expressionType="Notify">32768</property>
+                    <property
+                      name="StatementTimeout"
+                      dataType="System.Int32"
+                      description="Número de segundos de espera para que uma instrução SQL seja executada antes de retornar ao aplicativo."
+                      expressionType="Notify">0</property>
+                    <property
+                      name="DefaultCodePage"
+                      dataType="System.Int32"
+                      description="Página de código a ser usada quando as informações da página de código não estão disponíveis na fonte de dados."
+                      expressionType="Notify">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Connections[ODBCConnection]"
+                      name="ODBCConnection"
+                      description="A conexão de tempo de execução ODBC"
+                      connectionManagerID="{D4CB948F-405E-4BD5-B08E-9FD804F78238}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ODS]" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC]"
+                      name="Entrada de Destino ODBC"
+                      hasSideEffects="true"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoPath]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoPath]"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOPATH]"
+                          cachedName="ArquivoPath"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedCodepage="1252" />
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoNome]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoNome]"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVONOME]"
+                          cachedName="ArquivoNome"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedCodepage="1252" />
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoExtensao]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoExtensao]"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOEXTENSAO]"
+                          cachedName="ArquivoExtensao"
+                          cachedDataType="str"
+                          cachedLength="5"
+                          cachedCodepage="1252" />
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoDataCriacao]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCriacao]"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACRIACAO]"
+                          cachedName="ArquivoDataCriacao"
+                          cachedDataType="dbTimeStamp" />
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoDataCarga]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCarga]"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACARGA]"
+                          cachedName="ArquivoDataCarga"
+                          cachedDataType="dbTimeStamp" />
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfDataOcorrencia]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDataOcorrencia]"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DATAOCORRENCIA]"
+                          cachedName="TransfDataOcorrencia"
+                          cachedDataType="dbTimeStamp" />
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfConta]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfConta]"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA]"
+                          cachedName="TransfConta"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedCodepage="1252" />
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfCategoria]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfCategoria]"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA]"
+                          cachedName="TransfCategoria"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedCodepage="1252" />
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfDescricao]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDescricao]"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DESCRICAO]"
+                          cachedName="TransfDescricao"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedCodepage="1252" />
+                        <inputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfValor]"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfValor]"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[VALOR]"
+                          cachedName="TransfValor"
+                          cachedDataType="numeric"
+                          cachedPrecision="7"
+                          cachedScale="2" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOPATH]"
+                          name="ARQUIVOPATH"
+                          dataType="str"
+                          length="255"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVONOME]"
+                          name="ARQUIVONOME"
+                          dataType="str"
+                          length="100"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOEXTENSAO]"
+                          name="ARQUIVOEXTENSAO"
+                          dataType="str"
+                          length="5"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACRIACAO]"
+                          name="ARQUIVODATACRIACAO"
+                          dataType="dbTimeStamp" />
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACARGA]"
+                          name="ARQUIVODATACARGA"
+                          dataType="dbTimeStamp" />
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DATAOCORRENCIA]"
+                          name="DATAOCORRENCIA"
+                          dataType="dbTimeStamp" />
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA]"
+                          name="CONTA"
+                          dataType="str"
+                          length="50"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA]"
+                          name="CATEGORIA"
+                          dataType="str"
+                          length="50"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DESCRICAO]"
+                          name="DESCRICAO"
+                          dataType="str"
+                          length="100"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[VALOR]"
+                          name="VALOR"
+                          dataType="numeric"
+                          precision="7"
+                          scale="2" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC]"
+                      name="Saída de Erro de Destino ODBC"
+                      isErrorOut="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVOPATH]"
+                          name="ARQUIVOPATH"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVOPATH]"
+                          length="255"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOPATH]" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVONOME]"
+                          name="ARQUIVONOME"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVONOME]"
+                          length="100"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVONOME]" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVOEXTENSAO]"
+                          name="ARQUIVOEXTENSAO"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVOEXTENSAO]"
+                          length="5"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOEXTENSAO]" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVODATACRIACAO]"
+                          name="ARQUIVODATACRIACAO"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVODATACRIACAO]"
+                          dataType="dbTimeStamp"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACRIACAO]" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVODATACARGA]"
+                          name="ARQUIVODATACARGA"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVODATACARGA]"
+                          dataType="dbTimeStamp"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACARGA]" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[DATAOCORRENCIA]"
+                          name="DATAOCORRENCIA"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[DATAOCORRENCIA]"
+                          dataType="dbTimeStamp"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DATAOCORRENCIA]" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA]"
+                          name="CONTA"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA]" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA]"
+                          name="CATEGORIA"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA]" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[DESCRICAO]"
+                          name="DESCRICAO"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[DESCRICAO]"
+                          length="100"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DESCRICAO]" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[VALOR]"
+                          name="VALOR"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[VALOR]"
+                          precision="7"
+                          scale="2"
+                          dataType="numeric"
+                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[VALOR]" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
+                          dataType="i4"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
+                          dataType="i4"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Busca Arquivos no Diretório\Carrega Excel.Paths[Saída de Coluna Derivada]"
+                  name="Saída de Coluna Derivada"
+                  startId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada]"
+                  endId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC]" />
+                <path
+                  refId="Package\Busca Arquivos no Diretório\Carrega Excel.Paths[Saída de Origem do Excel]"
+                  name="Saída de Origem do Excel"
+                  startId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel]"
+                  endId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:VariableName="User::PathFileSource"
+          DTS:ValueIndex="0"
+          DTS:ObjectName="{505F99DC-1ECF-4AE4-8F28-678F7CDF25F2}"
+          DTS:DTSID="{505F99DC-1ECF-4AE4-8F28-678F7CDF25F2}"
+          DTS:CreationName="" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="sql11">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Busca Arquivos no Diretório\Busca Metadados"
+          TopLeft="22,12" />
+        <NodeLayout
+          Size="142,42"
+          Id="Package\Busca Arquivos no Diretório\Carrega Excel"
+          TopLeft="233,13" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="444,274"
+          Size="444,317"
+          Id="Package\Busca Arquivos no Diretório"
+          TopLeft="57,6" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Busca Arquivos no Diretório\Carrega Excel">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias"
+          TopLeft="5.50000000000001,5.5" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas"
+          TopLeft="10.5,83.5" />
+        <EdgeLayout
+          Id="Package\Busca Arquivos no Diretório\Carrega Excel.Paths[Saída de Origem do Excel]"
+          TopLeft="87,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="131,42"
+          Id="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa"
+          TopLeft="98,193" />
+        <EdgeLayout
+          Id="Package\Busca Arquivos no Diretório\Carrega Excel.Paths[Saída de Coluna Derivada]"
+          TopLeft="86.5,125.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77,67.5"
+              Start="0,0"
+              End="77,60">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.75"
+                    Point2="0,33.75"
+                    Point3="4,33.75" />
+                  <mssgle:LineSegment
+                    End="73,33.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="73,33.75"
+                    Point2="77,33.75"
+                    Point3="77,37.75" />
+                  <mssgle:LineSegment
+                    End="77,60" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
