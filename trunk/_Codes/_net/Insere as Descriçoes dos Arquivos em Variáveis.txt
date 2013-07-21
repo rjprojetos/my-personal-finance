@@ -1,0 +1,13 @@
+	String Path, FileNome, FileExtensao,FileDataCriacao;
+
+        Path = Dts.Variables["ArquivoPath"].Value.ToString();
+
+        FileNome = System.IO.Path.GetFileName(Path);
+        FileExtensao = System.IO.Path.GetExtension(Path);
+        FileDataCriacao = System.IO.File.GetCreationTime(Path).ToString();
+
+        Dts.Variables["User::ArquivoNome"].Value = FileNome.ToString();
+        Dts.Variables["User::ArquivoExtensao"].Value = FileExtensao.ToString();
+        Dts.Variables["User::ArquivoDataCriacao"].Value = FileDataCriacao;
+
+	Dts.TaskResult = (int)ScriptResults.Success;
