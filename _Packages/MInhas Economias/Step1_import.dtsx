@@ -6,8 +6,8 @@
   DTS:CreatorComputerName="SPARROW-HANK"
   DTS:CreationDate="7/21/2013 10:25:26 AM"
   DTS:PackageType="5"
-  DTS:VersionBuild="77"
-  DTS:VersionGUID="{ADD84168-AFE9-433C-919B-294E30D212B6}"
+  DTS:VersionBuild="81"
+  DTS:VersionGUID="{5180016C-633F-41C8-900D-AB79EB250D41}"
   DTS:LastModifiedProductVersion="11.0.2100.60"
   DTS:LocaleID="1046"
   DTS:ObjectName="Step1_import"
@@ -68,7 +68,7 @@
       DTS:DTSID="{BEC5AB08-DD8C-422B-8AD3-5D5B617FEF3B}"
       DTS:CreationName="">
       <DTS:VariableValue
-        DTS:DataType="8">\_process_20130721_132326</DTS:VariableValue>
+        DTS:DataType="8">\_process_20130721_135725</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:Namespace="User"
@@ -111,10 +111,21 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Busca Arquivos no Diretório"
+      DTS:refId="Package\Contêiner da Sequência"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Contêiner da Sequência"
+      DTS:DTSID="{C3725C32-AE45-4C59-BD8F-AA108EC1234E}"
+      DTS:Description="Contêiner da Sequência"
+      DTS:CreationName="STOCK:SEQUENCE">
+      <DTS:Variables />
+      <DTS:Executables />
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Importa Arquivos da Pasta de Cargas"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Busca Arquivos no Diretório"
+      DTS:ObjectName="Importa Arquivos da Pasta de Cargas"
       DTS:DTSID="{89837C8E-9F94-4C92-BEDC-7678A2ADBFAC}"
       DTS:Description="Contêiner do Loop Foreach"
       DTS:CreationName="STOCK:FOREACHLOOP">
@@ -138,7 +149,7 @@
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Busca Arquivos no Diretório\Busca Metadados"
+          DTS:refId="Package\Importa Arquivos da Pasta de Cargas\Busca Metadados"
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:ThreadHint="0"
           DTS:LocaleID="-1"
@@ -771,7 +782,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Busca Arquivos no Diretório\Carrega Excel"
+          DTS:refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel"
           DTS:ExecutableType="SSIS.Pipeline.3"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
           DTS:LocaleID="-1"
@@ -785,7 +796,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
               version="1">
               <components>
                 <component
-                  refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas"
+                  refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas"
                   name="Mapeia Colunas"
                   componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
                   description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
@@ -793,35 +804,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                   contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0">
                   <inputs>
                     <input
-                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada]"
+                      refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada]"
                       name="Entrada de Coluna Derivada"
                       description="Entrada para a Transformação Coluna Derivada">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[DataOcorrencia]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[DataOcorrencia]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[DataOcorrencia]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[DataOcorrencia]"
                           cachedName="DataOcorrencia"
                           cachedDataType="date" />
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[Descricao]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Descricao]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[Descricao]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Descricao]"
                           cachedName="Descricao"
                           cachedDataType="wstr"
                           cachedLength="255" />
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[Valor]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Valor]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[Valor]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Valor]"
                           cachedName="Valor"
                           cachedDataType="r8" />
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[Categoria]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Categoria]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[Categoria]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Categoria]"
                           cachedName="Categoria"
                           cachedDataType="wstr"
                           cachedLength="255" />
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[Conta]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Conta]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada].Columns[Conta]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Conta]"
                           cachedName="Conta"
                           cachedDataType="wstr"
                           cachedLength="255" />
@@ -831,16 +842,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada]"
+                      refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada]"
                       name="Saída de Coluna Derivada"
                       description="Saída Padrão da Transformação Coluna Derivada"
                       exclusionGroup="1"
-                      synchronousInputId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada]">
+                      synchronousInputId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoPath]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoPath]"
                           name="ArquivoPath"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoPath]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoPath]"
                           length="255"
                           dataType="str"
                           codePage="1252"
@@ -862,9 +873,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                           </properties>
                         </outputColumn>
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoNome]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoNome]"
                           name="ArquivoNome"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoNome]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoNome]"
                           length="100"
                           dataType="str"
                           codePage="1252"
@@ -886,9 +897,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                           </properties>
                         </outputColumn>
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoExtensao]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoExtensao]"
                           name="ArquivoExtensao"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoExtensao]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoExtensao]"
                           length="5"
                           dataType="str"
                           codePage="1252"
@@ -910,9 +921,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                           </properties>
                         </outputColumn>
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCriacao]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCriacao]"
                           name="ArquivoDataCriacao"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCriacao]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCriacao]"
                           dataType="dbTimeStamp"
                           errorOrTruncationOperation="Computação"
                           errorRowDisposition="FailComponent"
@@ -932,9 +943,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                           </properties>
                         </outputColumn>
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCarga]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCarga]"
                           name="ArquivoDataCarga"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCarga]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCarga]"
                           dataType="dbTimeStamp"
                           errorOrTruncationOperation="Computação"
                           errorRowDisposition="FailComponent"
@@ -954,9 +965,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                           </properties>
                         </outputColumn>
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDataOcorrencia]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDataOcorrencia]"
                           name="TransfDataOcorrencia"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDataOcorrencia]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDataOcorrencia]"
                           dataType="dbTimeStamp"
                           errorOrTruncationOperation="Computação"
                           errorRowDisposition="FailComponent"
@@ -966,7 +977,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                               name="Expression"
                               dataType="System.String"
                               description="Expressão de Coluna Derivada"
-                              containsID="true">(DT_DBTIMESTAMP)#{Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[DataOcorrencia]}</property>
+                              containsID="true">(DT_DBTIMESTAMP)#{Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[DataOcorrencia]}</property>
                             <property
                               name="FriendlyExpression"
                               dataType="System.String"
@@ -976,9 +987,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                           </properties>
                         </outputColumn>
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfConta]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfConta]"
                           name="TransfConta"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfConta]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfConta]"
                           length="50"
                           dataType="str"
                           codePage="1252"
@@ -990,7 +1001,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                               name="Expression"
                               dataType="System.String"
                               description="Expressão de Coluna Derivada"
-                              containsID="true">(DT_STR,50,1252)#{Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Conta]}</property>
+                              containsID="true">(DT_STR,50,1252)#{Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Conta]}</property>
                             <property
                               name="FriendlyExpression"
                               dataType="System.String"
@@ -1000,9 +1011,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                           </properties>
                         </outputColumn>
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfCategoria]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfCategoria]"
                           name="TransfCategoria"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfCategoria]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfCategoria]"
                           length="50"
                           dataType="str"
                           codePage="1252"
@@ -1014,7 +1025,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                               name="Expression"
                               dataType="System.String"
                               description="Expressão de Coluna Derivada"
-                              containsID="true">(DT_STR,50,1252)#{Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Categoria]}</property>
+                              containsID="true">(DT_STR,50,1252)#{Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Categoria]}</property>
                             <property
                               name="FriendlyExpression"
                               dataType="System.String"
@@ -1024,9 +1035,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                           </properties>
                         </outputColumn>
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDescricao]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDescricao]"
                           name="TransfDescricao"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDescricao]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDescricao]"
                           length="100"
                           dataType="str"
                           codePage="1252"
@@ -1038,7 +1049,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                               name="Expression"
                               dataType="System.String"
                               description="Expressão de Coluna Derivada"
-                              containsID="true">(DT_STR,100,1252)#{Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Descricao]}</property>
+                              containsID="true">(DT_STR,100,1252)#{Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Descricao]}</property>
                             <property
                               name="FriendlyExpression"
                               dataType="System.String"
@@ -1048,9 +1059,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                           </properties>
                         </outputColumn>
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfValor]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfValor]"
                           name="TransfValor"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfValor]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfValor]"
                           precision="7"
                           scale="2"
                           dataType="numeric"
@@ -1062,7 +1073,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                               name="Expression"
                               dataType="System.String"
                               description="Expressão de Coluna Derivada"
-                              containsID="true">(DT_NUMERIC,7,2)#{Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Valor]}</property>
+                              containsID="true">(DT_NUMERIC,7,2)#{Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Valor]}</property>
                             <property
                               name="FriendlyExpression"
                               dataType="System.String"
@@ -1075,23 +1086,23 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada]"
+                      refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada]"
                       name="Saída de Erro de Coluna Derivada"
                       description="Saída de Erro da Transformação Coluna Derivada"
                       exclusionGroup="1"
-                      synchronousInputId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada]"
+                      synchronousInputId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada]"
                       isErrorOut="true">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
                           name="ErrorCode"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
                           dataType="i4"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
                           name="ErrorColumn"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
                           dataType="i4"
                           specialFlags="2" />
                       </outputColumns>
@@ -1100,7 +1111,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias"
+                  refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias"
                   name="Minhas Economias"
                   componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
                   description="Origem do Excel"
@@ -1141,7 +1152,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Connections[OleDbConnection]"
+                      refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Connections[OleDbConnection]"
                       name="OleDbConnection"
                       description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
                       connectionManagerID="Package.ConnectionManagers[Minhas Economias]"
@@ -1149,128 +1160,128 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                   </connections>
                   <outputs>
                     <output
-                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel]"
+                      refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel]"
                       name="Saída de Origem do Excel">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[DataOcorrencia]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[DataOcorrencia]"
                           name="DataOcorrencia"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[DataOcorrencia]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[DataOcorrencia]"
                           dataType="date"
                           errorOrTruncationOperation="Conversão"
                           errorRowDisposition="FailComponent"
                           truncationRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Data Ocorrência]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Data Ocorrência]" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Descricao]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Descricao]"
                           name="Descricao"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Descricao]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Descricao]"
                           length="255"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversão"
                           errorRowDisposition="FailComponent"
                           truncationRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Descrição]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Descrição]" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Valor]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Valor]"
                           name="Valor"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Valor]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Valor]"
                           dataType="r8"
                           errorOrTruncationOperation="Conversão"
                           errorRowDisposition="FailComponent"
                           truncationRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Valor]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Valor]" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Categoria]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Categoria]"
                           name="Categoria"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Categoria]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Categoria]"
                           length="255"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversão"
                           errorRowDisposition="FailComponent"
                           truncationRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Categoria]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Categoria]" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Conta]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Conta]"
                           name="Conta"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Conta]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].Columns[Conta]"
                           length="255"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversão"
                           errorRowDisposition="FailComponent"
                           truncationRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Conta]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Conta]" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Data Ocorrência]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Data Ocorrência]"
                           name="Data Ocorrência"
                           dataType="date" />
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Descrição]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Descrição]"
                           name="Descrição"
                           dataType="wstr"
                           length="255" />
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Valor]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Valor]"
                           name="Valor"
                           dataType="r8" />
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Categoria]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Categoria]"
                           name="Categoria"
                           dataType="wstr"
                           length="255" />
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Conta]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel].ExternalColumns[Conta]"
                           name="Conta"
                           dataType="wstr"
                           length="255" />
                       </externalMetadataColumns>
                     </output>
                     <output
-                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel]"
+                      refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel]"
                       name="Saída de Erro de Origem do Excel"
                       isErrorOut="true">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Data Ocorrência]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Data Ocorrência]"
                           name="Data Ocorrência"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Data Ocorrência]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Data Ocorrência]"
                           dataType="date" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Descrição]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Descrição]"
                           name="Descrição"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Descrição]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Descrição]"
                           length="255"
                           dataType="wstr" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Valor]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Valor]"
                           name="Valor"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Valor]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Valor]"
                           dataType="r8" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Categoria]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Categoria]"
                           name="Categoria"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Categoria]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Categoria]"
                           length="255"
                           dataType="wstr" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Conta]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Conta]"
                           name="Conta"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Conta]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[Conta]"
                           length="255"
                           dataType="wstr" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
                           name="ErrorCode"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
                           dataType="i4"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
                           name="ErrorColumn"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
                           dataType="i4"
                           specialFlags="2" />
                       </outputColumns>
@@ -1279,7 +1290,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa"
+                  refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa"
                   name="Tb Importa"
                   componentClassID="{074B8736-CD73-40A5-822E-888215AF57DA}"
                   description="Destino ODBC"
@@ -1338,7 +1349,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Connections[ODBCConnection]"
+                      refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Connections[ODBCConnection]"
                       name="ODBCConnection"
                       description="A conexão de tempo de execução ODBC"
                       connectionManagerID="{D4CB948F-405E-4BD5-B08E-9FD804F78238}:external"
@@ -1346,7 +1357,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC]"
+                      refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC]"
                       name="Entrada de Destino ODBC"
                       hasSideEffects="true"
                       errorOrTruncationOperation="Insert"
@@ -1354,75 +1365,75 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                       truncationRowDisposition="FailComponent">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoPath]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoPath]"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOPATH]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoPath]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoPath]"
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOPATH]"
                           cachedName="ArquivoPath"
                           cachedDataType="str"
                           cachedLength="255"
                           cachedCodepage="1252" />
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoNome]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoNome]"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVONOME]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoNome]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoNome]"
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVONOME]"
                           cachedName="ArquivoNome"
                           cachedDataType="str"
                           cachedLength="100"
                           cachedCodepage="1252" />
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoExtensao]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoExtensao]"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOEXTENSAO]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoExtensao]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoExtensao]"
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOEXTENSAO]"
                           cachedName="ArquivoExtensao"
                           cachedDataType="str"
                           cachedLength="5"
                           cachedCodepage="1252" />
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoDataCriacao]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCriacao]"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACRIACAO]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoDataCriacao]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCriacao]"
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACRIACAO]"
                           cachedName="ArquivoDataCriacao"
                           cachedDataType="dbTimeStamp" />
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoDataCarga]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCarga]"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACARGA]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[ArquivoDataCarga]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[ArquivoDataCarga]"
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACARGA]"
                           cachedName="ArquivoDataCarga"
                           cachedDataType="dbTimeStamp" />
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfDataOcorrencia]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDataOcorrencia]"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DATAOCORRENCIA]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfDataOcorrencia]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDataOcorrencia]"
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DATAOCORRENCIA]"
                           cachedName="TransfDataOcorrencia"
                           cachedDataType="dbTimeStamp" />
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfConta]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfConta]"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfConta]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfConta]"
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA]"
                           cachedName="TransfConta"
                           cachedDataType="str"
                           cachedLength="50"
                           cachedCodepage="1252" />
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfCategoria]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfCategoria]"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfCategoria]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfCategoria]"
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA]"
                           cachedName="TransfCategoria"
                           cachedDataType="str"
                           cachedLength="50"
                           cachedCodepage="1252" />
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfDescricao]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDescricao]"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DESCRICAO]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfDescricao]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfDescricao]"
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DESCRICAO]"
                           cachedName="TransfDescricao"
                           cachedDataType="str"
                           cachedLength="100"
                           cachedCodepage="1252" />
                         <inputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfValor]"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfValor]"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[VALOR]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].Columns[TransfValor]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada].Columns[TransfValor]"
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[VALOR]"
                           cachedName="TransfValor"
                           cachedDataType="numeric"
                           cachedPrecision="7"
@@ -1431,55 +1442,55 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOPATH]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOPATH]"
                           name="ARQUIVOPATH"
                           dataType="str"
                           length="255"
                           codePage="1252" />
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVONOME]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVONOME]"
                           name="ARQUIVONOME"
                           dataType="str"
                           length="100"
                           codePage="1252" />
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOEXTENSAO]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOEXTENSAO]"
                           name="ARQUIVOEXTENSAO"
                           dataType="str"
                           length="5"
                           codePage="1252" />
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACRIACAO]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACRIACAO]"
                           name="ARQUIVODATACRIACAO"
                           dataType="dbTimeStamp" />
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACARGA]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACARGA]"
                           name="ARQUIVODATACARGA"
                           dataType="dbTimeStamp" />
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DATAOCORRENCIA]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DATAOCORRENCIA]"
                           name="DATAOCORRENCIA"
                           dataType="dbTimeStamp" />
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA]"
                           name="CONTA"
                           dataType="str"
                           length="50"
                           codePage="1252" />
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA]"
                           name="CATEGORIA"
                           dataType="str"
                           length="50"
                           codePage="1252" />
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DESCRICAO]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DESCRICAO]"
                           name="DESCRICAO"
                           dataType="str"
                           length="100"
                           codePage="1252" />
                         <externalMetadataColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[VALOR]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[VALOR]"
                           name="VALOR"
                           dataType="numeric"
                           precision="7"
@@ -1489,94 +1500,94 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC]"
+                      refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC]"
                       name="Saída de Erro de Destino ODBC"
                       isErrorOut="true">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVOPATH]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVOPATH]"
                           name="ARQUIVOPATH"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVOPATH]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVOPATH]"
                           length="255"
                           dataType="str"
                           codePage="1252"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOPATH]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOPATH]" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVONOME]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVONOME]"
                           name="ARQUIVONOME"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVONOME]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVONOME]"
                           length="100"
                           dataType="str"
                           codePage="1252"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVONOME]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVONOME]" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVOEXTENSAO]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVOEXTENSAO]"
                           name="ARQUIVOEXTENSAO"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVOEXTENSAO]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVOEXTENSAO]"
                           length="5"
                           dataType="str"
                           codePage="1252"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOEXTENSAO]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVOEXTENSAO]" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVODATACRIACAO]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVODATACRIACAO]"
                           name="ARQUIVODATACRIACAO"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVODATACRIACAO]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVODATACRIACAO]"
                           dataType="dbTimeStamp"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACRIACAO]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACRIACAO]" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVODATACARGA]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVODATACARGA]"
                           name="ARQUIVODATACARGA"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVODATACARGA]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ARQUIVODATACARGA]"
                           dataType="dbTimeStamp"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACARGA]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[ARQUIVODATACARGA]" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[DATAOCORRENCIA]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[DATAOCORRENCIA]"
                           name="DATAOCORRENCIA"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[DATAOCORRENCIA]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[DATAOCORRENCIA]"
                           dataType="dbTimeStamp"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DATAOCORRENCIA]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DATAOCORRENCIA]" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA]"
                           name="CONTA"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA]"
                           length="50"
                           dataType="str"
                           codePage="1252"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA]" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA]"
                           name="CATEGORIA"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA]"
                           length="50"
                           dataType="str"
                           codePage="1252"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA]" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[DESCRICAO]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[DESCRICAO]"
                           name="DESCRICAO"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[DESCRICAO]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[DESCRICAO]"
                           length="100"
                           dataType="str"
                           codePage="1252"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DESCRICAO]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[DESCRICAO]" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[VALOR]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[VALOR]"
                           name="VALOR"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[VALOR]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[VALOR]"
                           precision="7"
                           scale="2"
                           dataType="numeric"
-                          externalMetadataColumnId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[VALOR]" />
+                          externalMetadataColumnId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC].ExternalColumns[VALOR]" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
                           name="ErrorCode"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
                           dataType="i4"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
+                          refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
                           name="ErrorColumn"
-                          lineageId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
+                          lineageId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
                           dataType="i4"
                           specialFlags="2" />
                       </outputColumns>
@@ -1587,21 +1598,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
               </components>
               <paths>
                 <path
-                  refId="Package\Busca Arquivos no Diretório\Carrega Excel.Paths[Saída de Coluna Derivada]"
+                  refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel.Paths[Saída de Coluna Derivada]"
                   name="Saída de Coluna Derivada"
-                  startId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada]"
-                  endId="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC]" />
+                  startId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Outputs[Saída de Coluna Derivada]"
+                  endId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa.Inputs[Entrada de Destino ODBC]" />
                 <path
-                  refId="Package\Busca Arquivos no Diretório\Carrega Excel.Paths[Saída de Origem do Excel]"
+                  refId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel.Paths[Saída de Origem do Excel]"
                   name="Saída de Origem do Excel"
-                  startId="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel]"
-                  endId="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada]" />
+                  startId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias.Outputs[Saída de Origem do Excel]"
+                  endId="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas.Inputs[Entrada de Coluna Derivada]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Busca Arquivos no Diretório\Marcar como Processado"
+          DTS:refId="Package\Importa Arquivos da Pasta de Cargas\Marcar como Processado"
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:ThreadHint="0"
           DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -1622,7 +1633,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Busca Arquivos no Diretório\Mover para a pasta Processado"
+          DTS:refId="Package\Importa Arquivos da Pasta de Cargas\Mover para a pasta Processado"
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:ThreadHint="0"
           DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -1644,25 +1655,25 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       </DTS:Executables>
       <DTS:PrecedenceConstraints>
         <DTS:PrecedenceConstraint
-          DTS:refId="Package\Busca Arquivos no Diretório.PrecedenceConstraints[Restrição]"
-          DTS:From="Package\Busca Arquivos no Diretório\Busca Metadados"
-          DTS:To="Package\Busca Arquivos no Diretório\Carrega Excel"
+          DTS:refId="Package\Importa Arquivos da Pasta de Cargas.PrecedenceConstraints[Restrição]"
+          DTS:From="Package\Importa Arquivos da Pasta de Cargas\Busca Metadados"
+          DTS:To="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Restrição"
           DTS:DTSID="{8B869D1C-321B-482C-BF9E-CEB2023E3950}"
           DTS:CreationName="" />
         <DTS:PrecedenceConstraint
-          DTS:refId="Package\Busca Arquivos no Diretório.PrecedenceConstraints[Restrição 1]"
-          DTS:From="Package\Busca Arquivos no Diretório\Carrega Excel"
-          DTS:To="Package\Busca Arquivos no Diretório\Marcar como Processado"
+          DTS:refId="Package\Importa Arquivos da Pasta de Cargas.PrecedenceConstraints[Restrição 1]"
+          DTS:From="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel"
+          DTS:To="Package\Importa Arquivos da Pasta de Cargas\Marcar como Processado"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Restrição 1"
           DTS:DTSID="{332C798C-32E9-4FD6-89C3-6BDC1A9AADF7}"
           DTS:CreationName="" />
         <DTS:PrecedenceConstraint
-          DTS:refId="Package\Busca Arquivos no Diretório.PrecedenceConstraints[Restrição 2]"
-          DTS:From="Package\Busca Arquivos no Diretório\Marcar como Processado"
-          DTS:To="Package\Busca Arquivos no Diretório\Mover para a pasta Processado"
+          DTS:refId="Package\Importa Arquivos da Pasta de Cargas.PrecedenceConstraints[Restrição 2]"
+          DTS:From="Package\Importa Arquivos da Pasta de Cargas\Marcar como Processado"
+          DTS:To="Package\Importa Arquivos da Pasta de Cargas\Mover para a pasta Processado"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Restrição 2"
           DTS:DTSID="{7CC882FD-0DCC-41C8-B2F7-873AB4BB97C6}"
@@ -1678,6 +1689,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       </DTS:ForEachVariableMappings>
     </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:From="Package\Importa Arquivos da Pasta de Cargas"
+      DTS:To="Package\Contêiner da Sequência"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:DTSID="{5948338B-B427-44AE-8904-F352E732E6E0}"
+      DTS:CreationName="" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
 <!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
@@ -1689,25 +1710,25 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="160,42"
-          Id="Package\Busca Arquivos no Diretório\Busca Metadados"
+          Id="Package\Importa Arquivos da Pasta de Cargas\Busca Metadados"
           TopLeft="37,24.5" />
         <NodeLayout
           Size="142,42"
-          Id="Package\Busca Arquivos no Diretório\Carrega Excel"
+          Id="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel"
           TopLeft="299,24.5" />
         <NodeLayout
           Size="145,42"
-          Id="Package\Busca Arquivos no Diretório\Marcar como Processado"
+          Id="Package\Importa Arquivos da Pasta de Cargas\Marcar como Processado"
           TopLeft="296,105" />
         <NodeLayout
           Size="164,42"
-          Id="Package\Busca Arquivos no Diretório\Mover para a pasta Processado"
+          Id="Package\Importa Arquivos da Pasta de Cargas\Mover para a pasta Processado"
           TopLeft="37,105" />
         <EdgeLayout
-          Id="Package\Busca Arquivos no Diretório.PrecedenceConstraints[Restrição]"
+          Id="Package\Importa Arquivos da Pasta de Cargas.PrecedenceConstraints[Restrição]"
           TopLeft="197,45.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1729,7 +1750,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Busca Arquivos no Diretório.PrecedenceConstraints[Restrição 1]"
+          Id="Package\Importa Arquivos da Pasta de Cargas.PrecedenceConstraints[Restrição 1]"
           TopLeft="369.25,66.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1751,7 +1772,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Busca Arquivos no Diretório.PrecedenceConstraints[Restrição 2]"
+          Id="Package\Importa Arquivos da Pasta de Cargas.PrecedenceConstraints[Restrição 2]"
           TopLeft="296,126">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1777,30 +1798,59 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           IsExpanded="True"
           PanelSize="479,191"
           Size="479,234"
-          Id="Package\Busca Arquivos no Diretório"
-          TopLeft="170.5,45.5" />
+          Id="Package\Importa Arquivos da Pasta de Cargas"
+          TopLeft="31.5,36.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205,55"
+          Size="205,98"
+          Id="Package\Contêiner da Sequência"
+          TopLeft="562,108" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="510.5,155.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51.5,0"
+              Start="0,0"
+              End="44,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="44,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Busca Arquivos no Diretório\Carrega Excel">
+    design-time-name="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel">
     <LayoutInfo>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="131,42"
-          Id="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa"
+          Id="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa"
           TopLeft="22,209.5" />
         <NodeLayout
           Size="152,42"
-          Id="Package\Busca Arquivos no Diretório\Carrega Excel\Mapeia Colunas"
+          Id="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Mapeia Colunas"
           TopLeft="11.5,107.5" />
         <NodeLayout
           Size="164,42"
-          Id="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias"
+          Id="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias"
           TopLeft="5.50000000000001,5.5" />
         <EdgeLayout
-          Id="Package\Busca Arquivos no Diretório\Carrega Excel.Paths[Saída de Origem do Excel]"
+          Id="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel.Paths[Saída de Origem do Excel]"
           TopLeft="87.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1822,7 +1872,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Busca Arquivos no Diretório\Carrega Excel.Paths[Saída de Coluna Derivada]"
+          Id="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel.Paths[Saída de Coluna Derivada]"
           TopLeft="87.5,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1847,7 +1897,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Busca Arquivos no Diretório\Carrega Excel\Tb Importa">
+    design-time-name="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Tb Importa">
     <Properties>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -1857,7 +1907,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Busca Arquivos no Diretório\Carrega Excel\Minhas Economias">
+    design-time-name="Package\Importa Arquivos da Pasta de Cargas\Carrega Excel\Minhas Economias">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
