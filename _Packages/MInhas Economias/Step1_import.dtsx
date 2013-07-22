@@ -6,8 +6,8 @@
   DTS:CreatorComputerName="SPARROW-HANK"
   DTS:CreationDate="7/21/2013 10:25:26 AM"
   DTS:PackageType="5"
-  DTS:VersionBuild="81"
-  DTS:VersionGUID="{5180016C-633F-41C8-900D-AB79EB250D41}"
+  DTS:VersionBuild="144"
+  DTS:VersionGUID="{939D081E-56FC-417D-BA97-6F03E5D86AFF}"
   DTS:LastModifiedProductVersion="11.0.2100.60"
   DTS:LocaleID="1046"
   DTS:ObjectName="Step1_import"
@@ -68,7 +68,7 @@
       DTS:DTSID="{BEC5AB08-DD8C-422B-8AD3-5D5B617FEF3B}"
       DTS:CreationName="">
       <DTS:VariableValue
-        DTS:DataType="8">\_process_20130721_135725</DTS:VariableValue>
+        DTS:DataType="8">\_process_20130722_010017</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:Namespace="User"
@@ -111,15 +111,2124 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Contêiner da Sequência"
+      DTS:refId="Package\Aplica Transformações"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Contêiner da Sequência"
+      DTS:ObjectName="Aplica Transformações"
       DTS:DTSID="{C3725C32-AE45-4C59-BD8F-AA108EC1234E}"
       DTS:Description="Contêiner da Sequência"
       DTS:CreationName="STOCK:SEQUENCE">
       <DTS:Variables />
-      <DTS:Executables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Aplica Transformações\Carrega Tmp´s"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Carrega Tmp´s"
+          DTS:DTSID="{59DCFEDF-9A6F-43E2-8CA9-004F06458745}"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:CreationName="SSIS.Pipeline.3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria"
+                  name="Classifica Categoria"
+                  componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+                  description="Classifica os dados de entrada em ordem crescente ou decrescente quando eles não podem ser classificados em sua origem. Por exemplo, classifique dados de vendas por 'customer id' antes de eles serem gravados em um arquivo simples e entregues a outro departamento. Observação: essa transformação não é recomendável para fluxos de dados grandes."
+                  version="1"
+                  contactInfo="Classificar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1">
+                  <properties>
+                    <property
+                      name="EliminateDuplicates"
+                      dataType="System.Boolean"
+                      description="Indica se a transformação Classificação remove linhas com valores de classificação duplicados.">true</property>
+                    <property
+                      name="MaximumThreads"
+                      dataType="System.Int32"
+                      description="Especifica o número máximo de threads a usar para classificação."
+                      expressionType="Notify">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Inputs[Classificar Entrada]"
+                      name="Classificar Entrada">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Inputs[Classificar Entrada].Columns[CATEGORIA_COD]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[CATEGORIA_COD]"
+                          cachedName="CATEGORIA_COD"
+                          cachedDataType="i4">
+                          <properties>
+                            <property
+                              name="NewComparisonFlags"
+                              dataType="System.Int32"
+                              description="Especifica as opções de comparação para os dados de caractere.">0</property>
+                            <property
+                              name="NewSortKeyPosition"
+                              dataType="System.Int32"
+                              description="Especifica a ordem de classificação da coluna.">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Inputs[Classificar Entrada].Columns[CATEGORIA_DESC]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[CATEGORIA_DESC]"
+                          cachedName="CATEGORIA_DESC"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedCodepage="1252">
+                          <properties>
+                            <property
+                              name="NewComparisonFlags"
+                              dataType="System.Int32"
+                              description="Especifica as opções de comparação para os dados de caractere.">0</property>
+                            <property
+                              name="NewSortKeyPosition"
+                              dataType="System.Int32"
+                              description="Especifica a ordem de classificação da coluna.">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Inputs[Classificar Entrada].Columns[FLAG_ATIVO]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[FLAG_ATIVO]"
+                          cachedName="FLAG_ATIVO"
+                          cachedDataType="bool">
+                          <properties>
+                            <property
+                              name="NewComparisonFlags"
+                              dataType="System.Int32"
+                              description="Especifica as opções de comparação para os dados de caractere.">0</property>
+                            <property
+                              name="NewSortKeyPosition"
+                              dataType="System.Int32"
+                              description="Especifica a ordem de classificação da coluna.">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Inputs[Classificar Entrada].Columns[DATA_CARGA]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]"
+                          cachedName="DATA_CARGA"
+                          cachedDataType="dbTimeStamp">
+                          <properties>
+                            <property
+                              name="NewComparisonFlags"
+                              dataType="System.Int32"
+                              description="Especifica as opções de comparação para os dados de caractere.">0</property>
+                            <property
+                              name="NewSortKeyPosition"
+                              dataType="System.Int32"
+                              description="Especifica a ordem de classificação da coluna.">0</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Outputs[Classificar Saída]"
+                      name="Classificar Saída"
+                      isSorted="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Outputs[Classificar Saída].Columns[CATEGORIA_COD]"
+                          name="CATEGORIA_COD"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Outputs[Classificar Saída].Columns[CATEGORIA_COD]"
+                          dataType="i4">
+                          <properties>
+                            <property
+                              name="SortColumnId"
+                              dataType="System.Int32"
+                              description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                              containsID="true">#{Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[CATEGORIA_COD]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Outputs[Classificar Saída].Columns[CATEGORIA_DESC]"
+                          name="CATEGORIA_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Outputs[Classificar Saída].Columns[CATEGORIA_DESC]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              name="SortColumnId"
+                              dataType="System.Int32"
+                              description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                              containsID="true">#{Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[CATEGORIA_DESC]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Outputs[Classificar Saída].Columns[FLAG_ATIVO]"
+                          name="FLAG_ATIVO"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Outputs[Classificar Saída].Columns[FLAG_ATIVO]"
+                          dataType="bool">
+                          <properties>
+                            <property
+                              name="SortColumnId"
+                              dataType="System.Int32"
+                              description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                              containsID="true">#{Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[FLAG_ATIVO]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Outputs[Classificar Saída].Columns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Outputs[Classificar Saída].Columns[DATA_CARGA]"
+                          dataType="dbTimeStamp">
+                          <properties>
+                            <property
+                              name="SortColumnId"
+                              dataType="System.Int32"
+                              description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                              containsID="true">#{Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Contas"
+                  name="Classifica Contas"
+                  componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+                  description="Classifica os dados de entrada em ordem crescente ou decrescente quando eles não podem ser classificados em sua origem. Por exemplo, classifique dados de vendas por 'customer id' antes de eles serem gravados em um arquivo simples e entregues a outro departamento. Observação: essa transformação não é recomendável para fluxos de dados grandes."
+                  version="1"
+                  contactInfo="Classificar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1">
+                  <properties>
+                    <property
+                      name="EliminateDuplicates"
+                      dataType="System.Boolean"
+                      description="Indica se a transformação Classificação remove linhas com valores de classificação duplicados.">true</property>
+                    <property
+                      name="MaximumThreads"
+                      dataType="System.Int32"
+                      description="Especifica o número máximo de threads a usar para classificação."
+                      expressionType="Notify">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Contas.Inputs[Classificar Entrada]"
+                      name="Classificar Entrada">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Contas.Inputs[Classificar Entrada].Columns[CONTA_DESCRICAO]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Outputs[Saída de Coluna Derivada].Columns[CONTA_DESCRICAO]"
+                          cachedName="CONTA_DESCRICAO"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedCodepage="1252">
+                          <properties>
+                            <property
+                              name="NewComparisonFlags"
+                              dataType="System.Int32"
+                              description="Especifica as opções de comparação para os dados de caractere.">0</property>
+                            <property
+                              name="NewSortKeyPosition"
+                              dataType="System.Int32"
+                              description="Especifica a ordem de classificação da coluna.">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Contas.Inputs[Classificar Entrada].Columns[DATA_CARGA]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]"
+                          cachedName="DATA_CARGA"
+                          cachedDataType="dbTimeStamp">
+                          <properties>
+                            <property
+                              name="NewComparisonFlags"
+                              dataType="System.Int32"
+                              description="Especifica as opções de comparação para os dados de caractere.">0</property>
+                            <property
+                              name="NewSortKeyPosition"
+                              dataType="System.Int32"
+                              description="Especifica a ordem de classificação da coluna.">0</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Contas.Outputs[Classificar Saída]"
+                      name="Classificar Saída"
+                      isSorted="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Contas.Outputs[Classificar Saída].Columns[CONTA_DESCRICAO]"
+                          name="CONTA_DESCRICAO"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Contas.Outputs[Classificar Saída].Columns[CONTA_DESCRICAO]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              name="SortColumnId"
+                              dataType="System.Int32"
+                              description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                              containsID="true">#{Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Outputs[Saída de Coluna Derivada].Columns[CONTA_DESCRICAO]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Contas.Outputs[Classificar Saída].Columns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Contas.Outputs[Classificar Saída].Columns[DATA_CARGA]"
+                          dataType="dbTimeStamp">
+                          <properties>
+                            <property
+                              name="SortColumnId"
+                              dataType="System.Int32"
+                              description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                              containsID="true">#{Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria"
+                  name="Classifica SubCategoria"
+                  componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+                  description="Classifica os dados de entrada em ordem crescente ou decrescente quando eles não podem ser classificados em sua origem. Por exemplo, classifique dados de vendas por 'customer id' antes de eles serem gravados em um arquivo simples e entregues a outro departamento. Observação: essa transformação não é recomendável para fluxos de dados grandes."
+                  version="1"
+                  contactInfo="Classificar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1">
+                  <properties>
+                    <property
+                      name="EliminateDuplicates"
+                      dataType="System.Boolean"
+                      description="Indica se a transformação Classificação remove linhas com valores de classificação duplicados.">true</property>
+                    <property
+                      name="MaximumThreads"
+                      dataType="System.Int32"
+                      description="Especifica o número máximo de threads a usar para classificação."
+                      expressionType="Notify">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Inputs[Classificar Entrada]"
+                      name="Classificar Entrada">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Inputs[Classificar Entrada].Columns[SUB_CATEGORIA_COD]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[SUB_CATEGORIA_COD]"
+                          cachedName="SUB_CATEGORIA_COD"
+                          cachedDataType="i4">
+                          <properties>
+                            <property
+                              name="NewComparisonFlags"
+                              dataType="System.Int32"
+                              description="Especifica as opções de comparação para os dados de caractere.">0</property>
+                            <property
+                              name="NewSortKeyPosition"
+                              dataType="System.Int32"
+                              description="Especifica a ordem de classificação da coluna.">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Inputs[Classificar Entrada].Columns[SUB_CATEGORIA_DESC]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[SUB_CATEGORIA_DESC]"
+                          cachedName="SUB_CATEGORIA_DESC"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedCodepage="1252">
+                          <properties>
+                            <property
+                              name="NewComparisonFlags"
+                              dataType="System.Int32"
+                              description="Especifica as opções de comparação para os dados de caractere.">0</property>
+                            <property
+                              name="NewSortKeyPosition"
+                              dataType="System.Int32"
+                              description="Especifica a ordem de classificação da coluna.">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Inputs[Classificar Entrada].Columns[SUB_CATEGORIA_FLAG_ATIVO]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[SUB_CATEGORIA_FLAG_ATIVO]"
+                          cachedName="SUB_CATEGORIA_FLAG_ATIVO"
+                          cachedDataType="bool">
+                          <properties>
+                            <property
+                              name="NewComparisonFlags"
+                              dataType="System.Int32"
+                              description="Especifica as opções de comparação para os dados de caractere.">0</property>
+                            <property
+                              name="NewSortKeyPosition"
+                              dataType="System.Int32"
+                              description="Especifica a ordem de classificação da coluna.">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Inputs[Classificar Entrada].Columns[DATA_CARGA]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]"
+                          cachedName="DATA_CARGA"
+                          cachedDataType="dbTimeStamp">
+                          <properties>
+                            <property
+                              name="NewComparisonFlags"
+                              dataType="System.Int32"
+                              description="Especifica as opções de comparação para os dados de caractere.">0</property>
+                            <property
+                              name="NewSortKeyPosition"
+                              dataType="System.Int32"
+                              description="Especifica a ordem de classificação da coluna.">0</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Outputs[Classificar Saída]"
+                      name="Classificar Saída"
+                      isSorted="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Outputs[Classificar Saída].Columns[SUB_CATEGORIA_COD]"
+                          name="SUB_CATEGORIA_COD"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Outputs[Classificar Saída].Columns[SUB_CATEGORIA_COD]"
+                          dataType="i4">
+                          <properties>
+                            <property
+                              name="SortColumnId"
+                              dataType="System.Int32"
+                              description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                              containsID="true">#{Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[SUB_CATEGORIA_COD]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Outputs[Classificar Saída].Columns[SUB_CATEGORIA_DESC]"
+                          name="SUB_CATEGORIA_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Outputs[Classificar Saída].Columns[SUB_CATEGORIA_DESC]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              name="SortColumnId"
+                              dataType="System.Int32"
+                              description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                              containsID="true">#{Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[SUB_CATEGORIA_DESC]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Outputs[Classificar Saída].Columns[SUB_CATEGORIA_FLAG_ATIVO]"
+                          name="SUB_CATEGORIA_FLAG_ATIVO"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Outputs[Classificar Saída].Columns[SUB_CATEGORIA_FLAG_ATIVO]"
+                          dataType="bool">
+                          <properties>
+                            <property
+                              name="SortColumnId"
+                              dataType="System.Int32"
+                              description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                              containsID="true">#{Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[SUB_CATEGORIA_FLAG_ATIVO]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Outputs[Classificar Saída].Columns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Outputs[Classificar Saída].Columns[DATA_CARGA]"
+                          dataType="dbTimeStamp">
+                          <properties>
+                            <property
+                              name="SortColumnId"
+                              dataType="System.Int32"
+                              description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                              containsID="true">#{Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Transação"
+                  name="Classifica Transação"
+                  componentClassID="{5B1A3FF5-D366-4D75-AD1F-F19A36FCBEDB}"
+                  description="Classifica os dados de entrada em ordem crescente ou decrescente quando eles não podem ser classificados em sua origem. Por exemplo, classifique dados de vendas por 'customer id' antes de eles serem gravados em um arquivo simples e entregues a outro departamento. Observação: essa transformação não é recomendável para fluxos de dados grandes."
+                  version="1"
+                  contactInfo="Classificar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1">
+                  <properties>
+                    <property
+                      name="EliminateDuplicates"
+                      dataType="System.Boolean"
+                      description="Indica se a transformação Classificação remove linhas com valores de classificação duplicados.">true</property>
+                    <property
+                      name="MaximumThreads"
+                      dataType="System.Int32"
+                      description="Especifica o número máximo de threads a usar para classificação."
+                      expressionType="Notify">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Transação.Inputs[Classificar Entrada]"
+                      name="Classificar Entrada">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Transação.Inputs[Classificar Entrada].Columns[TransacaoDesc]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Outputs[Saída de Coluna Derivada].Columns[TransacaoDesc]"
+                          cachedName="TransacaoDesc"
+                          cachedDataType="wstr"
+                          cachedLength="13">
+                          <properties>
+                            <property
+                              name="NewComparisonFlags"
+                              dataType="System.Int32"
+                              description="Especifica as opções de comparação para os dados de caractere.">0</property>
+                            <property
+                              name="NewSortKeyPosition"
+                              dataType="System.Int32"
+                              description="Especifica a ordem de classificação da coluna.">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Transação.Inputs[Classificar Entrada].Columns[DATA_CARGA]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]"
+                          cachedName="DATA_CARGA"
+                          cachedDataType="dbTimeStamp">
+                          <properties>
+                            <property
+                              name="NewComparisonFlags"
+                              dataType="System.Int32"
+                              description="Especifica as opções de comparação para os dados de caractere.">0</property>
+                            <property
+                              name="NewSortKeyPosition"
+                              dataType="System.Int32"
+                              description="Especifica a ordem de classificação da coluna.">0</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Transação.Outputs[Classificar Saída]"
+                      name="Classificar Saída"
+                      isSorted="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Transação.Outputs[Classificar Saída].Columns[TransacaoDesc]"
+                          name="TransacaoDesc"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Transação.Outputs[Classificar Saída].Columns[TransacaoDesc]"
+                          length="13"
+                          dataType="wstr"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              name="SortColumnId"
+                              dataType="System.Int32"
+                              description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                              containsID="true">#{Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Outputs[Saída de Coluna Derivada].Columns[TransacaoDesc]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Transação.Outputs[Classificar Saída].Columns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Transação.Outputs[Classificar Saída].Columns[DATA_CARGA]"
+                          dataType="dbTimeStamp">
+                          <properties>
+                            <property
+                              name="SortColumnId"
+                              dataType="System.Int32"
+                              description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                              containsID="true">#{Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Aplica Transformações\Carrega Tmp´s\Denormaliza"
+                  name="Denormaliza"
+                  componentClassID="{EC139FBC-694E-490B-8EA7-35690FB0F445}"
+                  description="Distribui cada linha de entrada em cada linha em uma ou mais saídas. Por exemplo, ramifique seu fluxo de dados para criar uma cópia de dados de forma que alguns valores possam ser mascarados antes do compartilhamento com parceiros externos."
+                  contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0">
+                  <inputs>
+                    <input
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Denormaliza.Inputs[Multicast Entrada 1]"
+                      name="Multicast Entrada 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Denormaliza.Outputs[3 de Saída Multicast]"
+                      name="3 de Saída Multicast"
+                      synchronousInputId="Package\Aplica Transformações\Carrega Tmp´s\Denormaliza.Inputs[Multicast Entrada 1]"
+                      deleteOutputOnPathDetached="true">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Denormaliza.Outputs[1 de Saída Multicast]"
+                      name="1 de Saída Multicast"
+                      synchronousInputId="Package\Aplica Transformações\Carrega Tmp´s\Denormaliza.Inputs[Multicast Entrada 1]"
+                      deleteOutputOnPathDetached="true">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Denormaliza.Outputs[2 de Saída Multicast]"
+                      name="2 de Saída Multicast"
+                      synchronousInputId="Package\Aplica Transformações\Carrega Tmp´s\Denormaliza.Inputs[Multicast Entrada 1]"
+                      deleteOutputOnPathDetached="true"
+                      dangling="true">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria"
+                  name="Recupera Categoria"
+                  componentClassID="{A77F5655-A006-443A-9B7E-90B6BD55CB84}"
+                  description="Fonte ODBC"
+                  usesDispositions="true"
+                  version="1"
+                  contactInfo="ODBC Source;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;1">
+                  <properties>
+                    <property
+                      name="TableName"
+                      dataType="System.String"
+                      description="Nome da tabela a ser buscada."
+                      expressionType="Notify">"dbo"."CTR_MAPEIA_CATEGORIA"</property>
+                    <property
+                      name="SqlCommand"
+                      dataType="System.String"
+                      description="Comando SQL a ser executado."
+                      expressionType="Notify">SELECT CATEGORIA_COD, CATEGORIA_DESC, FLAG_ATIVO, DATA_CARGA
+	FROM	CTR_MAPEIA_CATEGORIA
+	WHERE	CATEGORIA_NIVEL = 1</property>
+                    <property
+                      name="BatchSize"
+                      dataType="System.Int32"
+                      description="Especifica o número de linhas buscadas por lote."
+                      expressionType="Notify">1000</property>
+                    <property
+                      name="LobChunkSize"
+                      dataType="System.Int32"
+                      description="Determina a alocação do tamanho da parte para colunas LOB"
+                      expressionType="Notify">32768</property>
+                    <property
+                      name="ExposeCharColumnsAsUnicode"
+                      dataType="System.Boolean"
+                      description="Determina como o componente exporá colunas CHAR. Se False, as colunas CHAR são expostas como strings de um ou vários bytes (DT_STR), se True, as colunas CHAR são expostas como wide strings (DT_WSTR)"
+                      expressionType="Notify">false</property>
+                    <property
+                      name="StatementTimeout"
+                      dataType="System.Int32"
+                      description="Número de segundos de espera para que uma instrução SQL seja executada antes de retornar ao aplicativo."
+                      expressionType="Notify">0</property>
+                    <property
+                      name="DefaultCodePage"
+                      dataType="System.Int32"
+                      description="Página de código a ser usada quando as informações da página de código não estão disponíveis na fonte de dados."
+                      expressionType="Notify">1252</property>
+                    <property
+                      name="AccessMode"
+                      dataType="System.Int32"
+                      description="Modo usado para acessar o banco de dados."
+                      typeConverter="AccessMode">1</property>
+                    <property
+                      name="FetchMethod"
+                      dataType="System.Int32"
+                      description="Método usado para buscar dados."
+                      typeConverter="FetchMethod"
+                      expressionType="Notify">1</property>
+                    <property
+                      name="BindNumericAs"
+                      dataType="System.Int32"
+                      description="O tipo de dados ODBC C para associação de dados numéricos."
+                      typeConverter="BindNumericAs"
+                      expressionType="Notify">0</property>
+                    <property
+                      name="BindCharColumnsAs"
+                      dataType="System.Int32"
+                      description="Determina como o componente associará colunas de tipos string de um ou vários bytes (por exemplo, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). As opções são: Unicode (SQL_C_WCHAR) e ANSI (SQL_C_CHAR)."
+                      typeConverter="BindCharColumnsAs"
+                      expressionType="Notify">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Connections[ODBCConnection]"
+                      name="ODBCConnection"
+                      description="A conexão de tempo de execução ODBC"
+                      connectionManagerID="{D4CB948F-405E-4BD5-B08E-9FD804F78238}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ODS]" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC]"
+                      name="Saída da Fonte ODBC"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[CATEGORIA_COD]"
+                          name="CATEGORIA_COD"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[CATEGORIA_COD]"
+                          dataType="i4"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_COD]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[CATEGORIA_DESC]"
+                          name="CATEGORIA_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[CATEGORIA_DESC]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_DESC]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[FLAG_ATIVO]"
+                          name="FLAG_ATIVO"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[FLAG_ATIVO]"
+                          dataType="bool"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].ExternalColumns[FLAG_ATIVO]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Insert"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].ExternalColumns[DATA_CARGA]" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_COD]"
+                          name="CATEGORIA_COD"
+                          dataType="i4" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_DESC]"
+                          name="CATEGORIA_DESC"
+                          dataType="str"
+                          length="50"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].ExternalColumns[FLAG_ATIVO]"
+                          name="FLAG_ATIVO"
+                          dataType="bool" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].ExternalColumns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          dataType="dbTimeStamp" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída de Erro da Fonte ODBC]"
+                      name="Saída de Erro da Fonte ODBC"
+                      isErrorOut="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída de Erro da Fonte ODBC].Columns[CATEGORIA_COD]"
+                          name="CATEGORIA_COD"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída de Erro da Fonte ODBC].Columns[CATEGORIA_COD]"
+                          dataType="i4"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_COD]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída de Erro da Fonte ODBC].Columns[CATEGORIA_DESC]"
+                          name="CATEGORIA_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída de Erro da Fonte ODBC].Columns[CATEGORIA_DESC]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_DESC]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída de Erro da Fonte ODBC].Columns[FLAG_ATIVO]"
+                          name="FLAG_ATIVO"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída de Erro da Fonte ODBC].Columns[FLAG_ATIVO]"
+                          dataType="bool"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].ExternalColumns[FLAG_ATIVO]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída de Erro da Fonte ODBC].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída de Erro da Fonte ODBC].Columns[ErrorCode]"
+                          dataType="i4"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída de Erro da Fonte ODBC].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída de Erro da Fonte ODBC].Columns[ErrorColumn]"
+                          dataType="i4"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída de Erro da Fonte ODBC].Columns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída de Erro da Fonte ODBC].Columns[DATA_CARGA]"
+                          dataType="dbTimeStamp"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC].ExternalColumns[DATA_CARGA]" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas"
+                  name="Recupera Contas"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+                  usesDispositions="true"
+                  contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0">
+                  <inputs>
+                    <input
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Inputs[Entrada de Coluna Derivada]"
+                      name="Entrada de Coluna Derivada"
+                      description="Entrada para a Transformação Coluna Derivada">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Inputs[Entrada de Coluna Derivada].Columns[CONTA_ORIGEM_DESC]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[CONTA_ORIGEM_DESC]"
+                          cachedName="CONTA_ORIGEM_DESC"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedCodepage="1252" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Outputs[Saída de Coluna Derivada]"
+                      name="Saída de Coluna Derivada"
+                      description="Saída Padrão da Transformação Coluna Derivada"
+                      exclusionGroup="1"
+                      synchronousInputId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Inputs[Entrada de Coluna Derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Outputs[Saída de Coluna Derivada].Columns[CONTA_DESCRICAO]"
+                          name="CONTA_DESCRICAO"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Outputs[Saída de Coluna Derivada].Columns[CONTA_DESCRICAO]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              name="Expression"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              containsID="true">(DT_STR,50,1252)#{Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[CONTA_ORIGEM_DESC]}</property>
+                            <property
+                              name="FriendlyExpression"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              containsID="true"
+                              expressionType="Notify">(DT_STR,50,1252)CONTA_ORIGEM_DESC</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Outputs[Saída de Erro de Coluna Derivada]"
+                      name="Saída de Erro de Coluna Derivada"
+                      description="Saída de Erro da Transformação Coluna Derivada"
+                      exclusionGroup="1"
+                      synchronousInputId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Inputs[Entrada de Coluna Derivada]"
+                      isErrorOut="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                          dataType="i4"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                          dataType="i4"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria"
+                  name="Recupera SubCategoria"
+                  componentClassID="{A77F5655-A006-443A-9B7E-90B6BD55CB84}"
+                  description="Fonte ODBC"
+                  usesDispositions="true"
+                  version="1"
+                  contactInfo="ODBC Source;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;1">
+                  <properties>
+                    <property
+                      name="TableName"
+                      dataType="System.String"
+                      description="Nome da tabela a ser buscada."
+                      expressionType="Notify"></property>
+                    <property
+                      name="SqlCommand"
+                      dataType="System.String"
+                      description="Comando SQL a ser executado."
+                      expressionType="Notify">SELECT CATEGORIA_COD, CATEGORIA_DESC, FLAG_ATIVO, DATA_CARGA
+	FROM	CTR_MAPEIA_CATEGORIA
+	WHERE	CATEGORIA_NIVEL = 1</property>
+                    <property
+                      name="BatchSize"
+                      dataType="System.Int32"
+                      description="Especifica o número de linhas buscadas por lote."
+                      expressionType="Notify">1000</property>
+                    <property
+                      name="LobChunkSize"
+                      dataType="System.Int32"
+                      description="Determina a alocação do tamanho da parte para colunas LOB"
+                      expressionType="Notify">32768</property>
+                    <property
+                      name="ExposeCharColumnsAsUnicode"
+                      dataType="System.Boolean"
+                      description="Determina como o componente exporá colunas CHAR. Se False, as colunas CHAR são expostas como strings de um ou vários bytes (DT_STR), se True, as colunas CHAR são expostas como wide strings (DT_WSTR)"
+                      expressionType="Notify">false</property>
+                    <property
+                      name="StatementTimeout"
+                      dataType="System.Int32"
+                      description="Número de segundos de espera para que uma instrução SQL seja executada antes de retornar ao aplicativo."
+                      expressionType="Notify">0</property>
+                    <property
+                      name="DefaultCodePage"
+                      dataType="System.Int32"
+                      description="Página de código a ser usada quando as informações da página de código não estão disponíveis na fonte de dados."
+                      expressionType="Notify">1252</property>
+                    <property
+                      name="AccessMode"
+                      dataType="System.Int32"
+                      description="Modo usado para acessar o banco de dados."
+                      typeConverter="AccessMode">1</property>
+                    <property
+                      name="FetchMethod"
+                      dataType="System.Int32"
+                      description="Método usado para buscar dados."
+                      typeConverter="FetchMethod"
+                      expressionType="Notify">1</property>
+                    <property
+                      name="BindNumericAs"
+                      dataType="System.Int32"
+                      description="O tipo de dados ODBC C para associação de dados numéricos."
+                      typeConverter="BindNumericAs"
+                      expressionType="Notify">0</property>
+                    <property
+                      name="BindCharColumnsAs"
+                      dataType="System.Int32"
+                      description="Determina como o componente associará colunas de tipos string de um ou vários bytes (por exemplo, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). As opções são: Unicode (SQL_C_WCHAR) e ANSI (SQL_C_CHAR)."
+                      typeConverter="BindCharColumnsAs"
+                      expressionType="Notify">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Connections[ODBCConnection]"
+                      name="ODBCConnection"
+                      description="A conexão de tempo de execução ODBC"
+                      connectionManagerID="{D4CB948F-405E-4BD5-B08E-9FD804F78238}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ODS]" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC]"
+                      name="Saída da Fonte ODBC"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[SUB_CATEGORIA_COD]"
+                          name="SUB_CATEGORIA_COD"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[SUB_CATEGORIA_COD]"
+                          dataType="i4"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_COD]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[SUB_CATEGORIA_DESC]"
+                          name="SUB_CATEGORIA_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[SUB_CATEGORIA_DESC]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_DESC]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[SUB_CATEGORIA_FLAG_ATIVO]"
+                          name="SUB_CATEGORIA_FLAG_ATIVO"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[SUB_CATEGORIA_FLAG_ATIVO]"
+                          dataType="bool"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].ExternalColumns[FLAG_ATIVO]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]"
+                          dataType="dbTimeStamp"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].ExternalColumns[DATA_CARGA]" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_COD]"
+                          name="CATEGORIA_COD"
+                          dataType="i4" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_DESC]"
+                          name="CATEGORIA_DESC"
+                          dataType="str"
+                          length="50"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].ExternalColumns[FLAG_ATIVO]"
+                          name="FLAG_ATIVO"
+                          dataType="bool" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].ExternalColumns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          dataType="dbTimeStamp" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída de Erro da Fonte ODBC]"
+                      name="Saída de Erro da Fonte ODBC"
+                      isErrorOut="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída de Erro da Fonte ODBC].Columns[CATEGORIA_COD]"
+                          name="CATEGORIA_COD"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída de Erro da Fonte ODBC].Columns[CATEGORIA_COD]"
+                          dataType="i4"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_COD]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída de Erro da Fonte ODBC].Columns[CATEGORIA_DESC]"
+                          name="CATEGORIA_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída de Erro da Fonte ODBC].Columns[CATEGORIA_DESC]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_DESC]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída de Erro da Fonte ODBC].Columns[FLAG_ATIVO]"
+                          name="FLAG_ATIVO"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída de Erro da Fonte ODBC].Columns[FLAG_ATIVO]"
+                          dataType="bool"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].ExternalColumns[FLAG_ATIVO]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída de Erro da Fonte ODBC].Columns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída de Erro da Fonte ODBC].Columns[DATA_CARGA]"
+                          dataType="dbTimeStamp"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC].ExternalColumns[DATA_CARGA]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída de Erro da Fonte ODBC].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída de Erro da Fonte ODBC].Columns[ErrorCode]"
+                          dataType="i4"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída de Erro da Fonte ODBC].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída de Erro da Fonte ODBC].Columns[ErrorColumn]"
+                          dataType="i4"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação"
+                  name="Recupera Transação"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+                  usesDispositions="true"
+                  contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0">
+                  <inputs>
+                    <input
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Inputs[Entrada de Coluna Derivada]"
+                      name="Entrada de Coluna Derivada"
+                      description="Entrada para a Transformação Coluna Derivada">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Inputs[Entrada de Coluna Derivada].Columns[CATEGORIA_DESC]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[CATEGORIA_DESC]"
+                          cachedName="CATEGORIA_DESC"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedCodepage="1252" />
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Inputs[Entrada de Coluna Derivada].Columns[VALOR_PARCELA]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[VALOR_PARCELA]"
+                          cachedName="VALOR_PARCELA"
+                          cachedDataType="numeric"
+                          cachedPrecision="15"
+                          cachedScale="3" />
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Inputs[Entrada de Coluna Derivada].Columns[DATA_CARGA]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]"
+                          usageType="readWrite"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent"
+                          cachedName="DATA_CARGA"
+                          cachedDataType="dbTimeStamp">
+                          <properties>
+                            <property
+                              name="Expression"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              containsID="true">#{Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]}</property>
+                            <property
+                              name="FriendlyExpression"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              containsID="true"
+                              expressionType="Notify">DATA_CARGA</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Outputs[Saída de Coluna Derivada]"
+                      name="Saída de Coluna Derivada"
+                      description="Saída Padrão da Transformação Coluna Derivada"
+                      exclusionGroup="1"
+                      synchronousInputId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Inputs[Entrada de Coluna Derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Outputs[Saída de Coluna Derivada].Columns[TransacaoDesc]"
+                          name="TransacaoDesc"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Outputs[Saída de Coluna Derivada].Columns[TransacaoDesc]"
+                          length="13"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              name="Expression"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              containsID="true">#{Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[CATEGORIA_DESC]} == "TRANSFERENCIA" ? "TRANSFERENCIA" : (#{Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[VALOR_PARCELA]} &gt; 0 ? "RECEITA" : "DESPESA")</property>
+                            <property
+                              name="FriendlyExpression"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              containsID="true"
+                              expressionType="Notify">CATEGORIA_DESC == "TRANSFERENCIA" ? "TRANSFERENCIA" : (VALOR_PARCELA &gt; 0 ? "RECEITA" : "DESPESA")</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Outputs[Saída de Erro de Coluna Derivada]"
+                      name="Saída de Erro de Coluna Derivada"
+                      description="Saída de Erro da Transformação Coluna Derivada"
+                      exclusionGroup="1"
+                      synchronousInputId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Inputs[Entrada de Coluna Derivada]"
+                      isErrorOut="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                          dataType="i4"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                          dataType="i4"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa"
+                  name="Tb Importa"
+                  componentClassID="{A77F5655-A006-443A-9B7E-90B6BD55CB84}"
+                  description="Fonte ODBC"
+                  usesDispositions="true"
+                  version="1"
+                  contactInfo="ODBC Source;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;1">
+                  <properties>
+                    <property
+                      name="TableName"
+                      dataType="System.String"
+                      description="Nome da tabela a ser buscada."
+                      expressionType="Notify">"dbo"."TB_IMPORTA"</property>
+                    <property
+                      name="SqlCommand"
+                      dataType="System.String"
+                      description="Comando SQL a ser executado."
+                      expressionType="Notify">SELECT	CONVERT(DATE,DATAOCORRENCIA) AS DATA
+	,DB_PRINCIPAL.dbo.fnTrataDescricoes(CONTA) AS CONTA_ORIGEM_DESC
+	,DB_PRINCIPAL.dbo.fnTrataDescricoes(CATEGORIA) AS CATEGORIA_DESC
+	,DB_PRINCIPAL.dbo.fnTrataDescricoes(DESCRICAO) AS LANCAMENTO_DESC
+	,DB_PRINCIPAL.dbo.fnTrataValores(VALOR) AS VALOR_PARCELA
+	,ARQUIVODATACARGA AS DATA_CARGA
+
+FROM	dbo.TB_IMPORTA</property>
+                    <property
+                      name="BatchSize"
+                      dataType="System.Int32"
+                      description="Especifica o número de linhas buscadas por lote."
+                      expressionType="Notify">1000</property>
+                    <property
+                      name="LobChunkSize"
+                      dataType="System.Int32"
+                      description="Determina a alocação do tamanho da parte para colunas LOB"
+                      expressionType="Notify">32768</property>
+                    <property
+                      name="ExposeCharColumnsAsUnicode"
+                      dataType="System.Boolean"
+                      description="Determina como o componente exporá colunas CHAR. Se False, as colunas CHAR são expostas como strings de um ou vários bytes (DT_STR), se True, as colunas CHAR são expostas como wide strings (DT_WSTR)"
+                      expressionType="Notify">false</property>
+                    <property
+                      name="StatementTimeout"
+                      dataType="System.Int32"
+                      description="Número de segundos de espera para que uma instrução SQL seja executada antes de retornar ao aplicativo."
+                      expressionType="Notify">0</property>
+                    <property
+                      name="DefaultCodePage"
+                      dataType="System.Int32"
+                      description="Página de código a ser usada quando as informações da página de código não estão disponíveis na fonte de dados."
+                      expressionType="Notify">1252</property>
+                    <property
+                      name="AccessMode"
+                      dataType="System.Int32"
+                      description="Modo usado para acessar o banco de dados."
+                      typeConverter="AccessMode">1</property>
+                    <property
+                      name="FetchMethod"
+                      dataType="System.Int32"
+                      description="Método usado para buscar dados."
+                      typeConverter="FetchMethod"
+                      expressionType="Notify">1</property>
+                    <property
+                      name="BindNumericAs"
+                      dataType="System.Int32"
+                      description="O tipo de dados ODBC C para associação de dados numéricos."
+                      typeConverter="BindNumericAs"
+                      expressionType="Notify">0</property>
+                    <property
+                      name="BindCharColumnsAs"
+                      dataType="System.Int32"
+                      description="Determina como o componente associará colunas de tipos string de um ou vários bytes (por exemplo, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). As opções são: Unicode (SQL_C_WCHAR) e ANSI (SQL_C_CHAR)."
+                      typeConverter="BindCharColumnsAs"
+                      expressionType="Notify">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Connections[ODBCConnection]"
+                      name="ODBCConnection"
+                      description="A conexão de tempo de execução ODBC"
+                      connectionManagerID="{D4CB948F-405E-4BD5-B08E-9FD804F78238}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ODS]" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC]"
+                      name="Saída da Fonte ODBC"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[DATA]"
+                          name="DATA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[DATA]"
+                          length="10"
+                          dataType="wstr"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[DATA]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[CONTA_ORIGEM_DESC]"
+                          name="CONTA_ORIGEM_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[CONTA_ORIGEM_DESC]"
+                          length="255"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[CONTA_ORIGEM_DESC]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[CATEGORIA_DESC]"
+                          name="CATEGORIA_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[CATEGORIA_DESC]"
+                          length="255"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_DESC]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[LANCAMENTO_DESC]"
+                          name="LANCAMENTO_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[LANCAMENTO_DESC]"
+                          length="255"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[LANCAMENTO_DESC]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[VALOR_PARCELA]"
+                          name="VALOR_PARCELA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[VALOR_PARCELA]"
+                          precision="15"
+                          scale="3"
+                          dataType="numeric"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[VALOR_PARCELA]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].Columns[DATA_CARGA]"
+                          dataType="dbTimeStamp"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[DATA_CARGA]" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[DATA]"
+                          name="DATA"
+                          dataType="wstr"
+                          length="10" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[CONTA_ORIGEM_DESC]"
+                          name="CONTA_ORIGEM_DESC"
+                          dataType="str"
+                          length="255"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_DESC]"
+                          name="CATEGORIA_DESC"
+                          dataType="str"
+                          length="255"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[LANCAMENTO_DESC]"
+                          name="LANCAMENTO_DESC"
+                          dataType="str"
+                          length="255"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[VALOR_PARCELA]"
+                          name="VALOR_PARCELA"
+                          dataType="numeric"
+                          precision="15"
+                          scale="3" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          dataType="dbTimeStamp" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC]"
+                      name="Saída de Erro da Fonte ODBC"
+                      isErrorOut="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[DATA]"
+                          name="DATA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[DATA]"
+                          length="10"
+                          dataType="wstr"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[DATA]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[CONTA_ORIGEM_DESC]"
+                          name="CONTA_ORIGEM_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[CONTA_ORIGEM_DESC]"
+                          length="255"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[CONTA_ORIGEM_DESC]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[CATEGORIA_DESC]"
+                          name="CATEGORIA_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[CATEGORIA_DESC]"
+                          length="255"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[CATEGORIA_DESC]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[LANCAMENTO_DESC]"
+                          name="LANCAMENTO_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[LANCAMENTO_DESC]"
+                          length="255"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[LANCAMENTO_DESC]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[VALOR_PARCELA]"
+                          name="VALOR_PARCELA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[VALOR_PARCELA]"
+                          precision="15"
+                          scale="3"
+                          dataType="numeric"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[VALOR_PARCELA]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[DATA_CARGA]"
+                          dataType="dbTimeStamp"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC].ExternalColumns[DATA_CARGA]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[ErrorCode]"
+                          dataType="i4"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída de Erro da Fonte ODBC].Columns[ErrorColumn]"
+                          dataType="i4"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria"
+                  name="Tmp Categoria"
+                  componentClassID="{074B8736-CD73-40A5-822E-888215AF57DA}"
+                  description="Destino ODBC"
+                  usesDispositions="true"
+                  version="1"
+                  contactInfo="ODBC Destination;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;1">
+                  <properties>
+                    <property
+                      name="InsertMethod"
+                      dataType="System.Int32"
+                      description="Método usado para inserção de dados. Os valores possíveis são 'Lote' ou 'Linha por linha'."
+                      typeConverter="InsertMethod"
+                      expressionType="Notify">1</property>
+                    <property
+                      name="BindCharColumnsAs"
+                      dataType="System.Int32"
+                      description="Determina como o componente associará colunas de tipos string de um ou vários bytes (por exemplo, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). As opções são: Unicode (SQL_C_WCHAR) e ANSI (SQL_C_CHAR)."
+                      typeConverter="BindCharColumnsAs"
+                      expressionType="Notify">0</property>
+                    <property
+                      name="BindNumericAs"
+                      dataType="System.Int32"
+                      description="O tipo de dados ODBC C para associação de dados numéricos."
+                      typeConverter="BindNumericAs"
+                      expressionType="Notify">0</property>
+                    <property
+                      name="TableName"
+                      dataType="System.String"
+                      description="Tabela de destino"
+                      expressionType="Notify">"dbo"."TMP_CATEGORIA"</property>
+                    <property
+                      name="BatchSize"
+                      dataType="System.Int32"
+                      description="Especifica o número de linhas inseridas por lote."
+                      expressionType="Notify">1000</property>
+                    <property
+                      name="TransactionSize"
+                      dataType="System.Int32"
+                      description="Número de linhas inseridas na mesma transação."
+                      expressionType="Notify">0</property>
+                    <property
+                      name="LobChunkSize"
+                      dataType="System.Int32"
+                      description="Determina a alocação do tamanho da parte para colunas LOB"
+                      expressionType="Notify">32768</property>
+                    <property
+                      name="StatementTimeout"
+                      dataType="System.Int32"
+                      description="Número de segundos de espera para que uma instrução SQL seja executada antes de retornar ao aplicativo."
+                      expressionType="Notify">0</property>
+                    <property
+                      name="DefaultCodePage"
+                      dataType="System.Int32"
+                      description="Página de código a ser usada quando as informações da página de código não estão disponíveis na fonte de dados."
+                      expressionType="Notify">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Connections[ODBCConnection]"
+                      name="ODBCConnection"
+                      description="A conexão de tempo de execução ODBC"
+                      connectionManagerID="{D4CB948F-405E-4BD5-B08E-9FD804F78238}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ODS]" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC]"
+                      name="Entrada de Destino ODBC"
+                      hasSideEffects="true"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].Columns[CATEGORIA_COD]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Outputs[Classificar Saída].Columns[CATEGORIA_COD]"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_COD]"
+                          cachedName="CATEGORIA_COD"
+                          cachedDataType="i4" />
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].Columns[CATEGORIA_DESC]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Outputs[Classificar Saída].Columns[CATEGORIA_DESC]"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_DESC]"
+                          cachedName="CATEGORIA_DESC"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedCodepage="1252"
+                          cachedSortKeyPosition="1" />
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].Columns[DATA_CARGA]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Outputs[Classificar Saída].Columns[DATA_CARGA]"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]"
+                          cachedName="DATA_CARGA"
+                          cachedDataType="dbTimeStamp" />
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].Columns[FLAG_ATIVO]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Outputs[Classificar Saída].Columns[FLAG_ATIVO]"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_FLAG_ATIVO]"
+                          cachedName="FLAG_ATIVO"
+                          cachedDataType="bool" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_COD]"
+                          name="CATEGORIA_COD"
+                          dataType="i4" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_DESC]"
+                          name="CATEGORIA_DESC"
+                          dataType="str"
+                          length="50"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_FLAG_ATIVO]"
+                          name="CATEGORIA_FLAG_ATIVO"
+                          dataType="bool" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          dataType="dbTimeStamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Outputs[Saída de Erro de Destino ODBC]"
+                      name="Saída de Erro de Destino ODBC"
+                      isErrorOut="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA_COD]"
+                          name="CATEGORIA_COD"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA_COD]"
+                          dataType="i4"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_COD]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA_DESC]"
+                          name="CATEGORIA_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA_DESC]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_DESC]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA_FLAG_ATIVO]"
+                          name="CATEGORIA_FLAG_ATIVO"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA_FLAG_ATIVO]"
+                          dataType="bool"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_FLAG_ATIVO]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Outputs[Saída de Erro de Destino ODBC].Columns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Outputs[Saída de Erro de Destino ODBC].Columns[DATA_CARGA]"
+                          dataType="dbTimeStamp"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
+                          dataType="i4"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
+                          dataType="i4"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta"
+                  name="Tmp Conta"
+                  componentClassID="{074B8736-CD73-40A5-822E-888215AF57DA}"
+                  description="Destino ODBC"
+                  usesDispositions="true"
+                  version="1"
+                  contactInfo="ODBC Destination;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;1">
+                  <properties>
+                    <property
+                      name="InsertMethod"
+                      dataType="System.Int32"
+                      description="Método usado para inserção de dados. Os valores possíveis são 'Lote' ou 'Linha por linha'."
+                      typeConverter="InsertMethod"
+                      expressionType="Notify">1</property>
+                    <property
+                      name="BindCharColumnsAs"
+                      dataType="System.Int32"
+                      description="Determina como o componente associará colunas de tipos string de um ou vários bytes (por exemplo, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). As opções são: Unicode (SQL_C_WCHAR) e ANSI (SQL_C_CHAR)."
+                      typeConverter="BindCharColumnsAs"
+                      expressionType="Notify">0</property>
+                    <property
+                      name="BindNumericAs"
+                      dataType="System.Int32"
+                      description="O tipo de dados ODBC C para associação de dados numéricos."
+                      typeConverter="BindNumericAs"
+                      expressionType="Notify">0</property>
+                    <property
+                      name="TableName"
+                      dataType="System.String"
+                      description="Tabela de destino"
+                      expressionType="Notify">"dbo"."TMP_CONTA"</property>
+                    <property
+                      name="BatchSize"
+                      dataType="System.Int32"
+                      description="Especifica o número de linhas inseridas por lote."
+                      expressionType="Notify">1000</property>
+                    <property
+                      name="TransactionSize"
+                      dataType="System.Int32"
+                      description="Número de linhas inseridas na mesma transação."
+                      expressionType="Notify">0</property>
+                    <property
+                      name="LobChunkSize"
+                      dataType="System.Int32"
+                      description="Determina a alocação do tamanho da parte para colunas LOB"
+                      expressionType="Notify">32768</property>
+                    <property
+                      name="StatementTimeout"
+                      dataType="System.Int32"
+                      description="Número de segundos de espera para que uma instrução SQL seja executada antes de retornar ao aplicativo."
+                      expressionType="Notify">0</property>
+                    <property
+                      name="DefaultCodePage"
+                      dataType="System.Int32"
+                      description="Página de código a ser usada quando as informações da página de código não estão disponíveis na fonte de dados."
+                      expressionType="Notify">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Connections[ODBCConnection]"
+                      name="ODBCConnection"
+                      description="A conexão de tempo de execução ODBC"
+                      connectionManagerID="{D4CB948F-405E-4BD5-B08E-9FD804F78238}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ODS]" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Inputs[Entrada de Destino ODBC]"
+                      name="Entrada de Destino ODBC"
+                      hasSideEffects="true"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Inputs[Entrada de Destino ODBC].Columns[CONTA_DESCRICAO]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Contas.Outputs[Classificar Saída].Columns[CONTA_DESCRICAO]"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA_DESCRICAO]"
+                          cachedName="CONTA_DESCRICAO"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedCodepage="1252"
+                          cachedSortKeyPosition="1" />
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Inputs[Entrada de Destino ODBC].Columns[DATA_CARGA]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Contas.Outputs[Classificar Saída].Columns[DATA_CARGA]"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]"
+                          cachedName="DATA_CARGA"
+                          cachedDataType="dbTimeStamp" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA_COD]"
+                          name="CONTA_COD"
+                          dataType="i4" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA_DESCRICAO]"
+                          name="CONTA_DESCRICAO"
+                          dataType="str"
+                          length="50"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA_FLAG_ATIVO]"
+                          name="CONTA_FLAG_ATIVO"
+                          dataType="bool" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          dataType="dbTimeStamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Outputs[Saída de Erro de Destino ODBC]"
+                      name="Saída de Erro de Destino ODBC"
+                      isErrorOut="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA_COD]"
+                          name="CONTA_COD"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA_COD]"
+                          dataType="i4"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA_COD]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA_DESCRICAO]"
+                          name="CONTA_DESCRICAO"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA_DESCRICAO]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA_DESCRICAO]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA_FLAG_ATIVO]"
+                          name="CONTA_FLAG_ATIVO"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA_FLAG_ATIVO]"
+                          dataType="bool"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA_FLAG_ATIVO]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Outputs[Saída de Erro de Destino ODBC].Columns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Outputs[Saída de Erro de Destino ODBC].Columns[DATA_CARGA]"
+                          dataType="dbTimeStamp"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
+                          dataType="i4"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
+                          dataType="i4"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria"
+                  name="Tmp SubCategoria"
+                  componentClassID="{074B8736-CD73-40A5-822E-888215AF57DA}"
+                  description="Destino ODBC"
+                  usesDispositions="true"
+                  version="1"
+                  contactInfo="ODBC Destination;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;1">
+                  <properties>
+                    <property
+                      name="InsertMethod"
+                      dataType="System.Int32"
+                      description="Método usado para inserção de dados. Os valores possíveis são 'Lote' ou 'Linha por linha'."
+                      typeConverter="InsertMethod"
+                      expressionType="Notify">1</property>
+                    <property
+                      name="BindCharColumnsAs"
+                      dataType="System.Int32"
+                      description="Determina como o componente associará colunas de tipos string de um ou vários bytes (por exemplo, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). As opções são: Unicode (SQL_C_WCHAR) e ANSI (SQL_C_CHAR)."
+                      typeConverter="BindCharColumnsAs"
+                      expressionType="Notify">0</property>
+                    <property
+                      name="BindNumericAs"
+                      dataType="System.Int32"
+                      description="O tipo de dados ODBC C para associação de dados numéricos."
+                      typeConverter="BindNumericAs"
+                      expressionType="Notify">0</property>
+                    <property
+                      name="TableName"
+                      dataType="System.String"
+                      description="Tabela de destino"
+                      expressionType="Notify">"dbo"."TMP_SUB_CATEGORIA"</property>
+                    <property
+                      name="BatchSize"
+                      dataType="System.Int32"
+                      description="Especifica o número de linhas inseridas por lote."
+                      expressionType="Notify">1000</property>
+                    <property
+                      name="TransactionSize"
+                      dataType="System.Int32"
+                      description="Número de linhas inseridas na mesma transação."
+                      expressionType="Notify">0</property>
+                    <property
+                      name="LobChunkSize"
+                      dataType="System.Int32"
+                      description="Determina a alocação do tamanho da parte para colunas LOB"
+                      expressionType="Notify">32768</property>
+                    <property
+                      name="StatementTimeout"
+                      dataType="System.Int32"
+                      description="Número de segundos de espera para que uma instrução SQL seja executada antes de retornar ao aplicativo."
+                      expressionType="Notify">0</property>
+                    <property
+                      name="DefaultCodePage"
+                      dataType="System.Int32"
+                      description="Página de código a ser usada quando as informações da página de código não estão disponíveis na fonte de dados."
+                      expressionType="Notify">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Connections[ODBCConnection]"
+                      name="ODBCConnection"
+                      description="A conexão de tempo de execução ODBC"
+                      connectionManagerID="{D4CB948F-405E-4BD5-B08E-9FD804F78238}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ODS]" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC]"
+                      name="Entrada de Destino ODBC"
+                      hasSideEffects="true"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].Columns[SUB_CATEGORIA_COD]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Outputs[Classificar Saída].Columns[SUB_CATEGORIA_COD]"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].ExternalColumns[SUB_CATEGORIA_COD]"
+                          cachedName="SUB_CATEGORIA_COD"
+                          cachedDataType="i4" />
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].Columns[SUB_CATEGORIA_DESC]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Outputs[Classificar Saída].Columns[SUB_CATEGORIA_DESC]"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].ExternalColumns[SUB_CATEGORIA_DESC]"
+                          cachedName="SUB_CATEGORIA_DESC"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedCodepage="1252"
+                          cachedSortKeyPosition="1" />
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].Columns[SUB_CATEGORIA_FLAG_ATIVO]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Outputs[Classificar Saída].Columns[SUB_CATEGORIA_FLAG_ATIVO]"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].ExternalColumns[SUB_CATEGORIA_FLAG_ATIVO]"
+                          cachedName="SUB_CATEGORIA_FLAG_ATIVO"
+                          cachedDataType="bool" />
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].Columns[DATA_CARGA]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Outputs[Classificar Saída].Columns[DATA_CARGA]"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]"
+                          cachedName="DATA_CARGA"
+                          cachedDataType="dbTimeStamp" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].ExternalColumns[SUB_CATEGORIA_COD]"
+                          name="SUB_CATEGORIA_COD"
+                          dataType="i4" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].ExternalColumns[SUB_CATEGORIA_DESC]"
+                          name="SUB_CATEGORIA_DESC"
+                          dataType="str"
+                          length="50"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].ExternalColumns[SUB_CATEGORIA_FLAG_ATIVO]"
+                          name="SUB_CATEGORIA_FLAG_ATIVO"
+                          dataType="bool" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          dataType="dbTimeStamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Outputs[Saída de Erro de Destino ODBC]"
+                      name="Saída de Erro de Destino ODBC"
+                      isErrorOut="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Outputs[Saída de Erro de Destino ODBC].Columns[SUB_CATEGORIA_COD]"
+                          name="SUB_CATEGORIA_COD"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Outputs[Saída de Erro de Destino ODBC].Columns[SUB_CATEGORIA_COD]"
+                          dataType="i4"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].ExternalColumns[SUB_CATEGORIA_COD]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Outputs[Saída de Erro de Destino ODBC].Columns[SUB_CATEGORIA_DESC]"
+                          name="SUB_CATEGORIA_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Outputs[Saída de Erro de Destino ODBC].Columns[SUB_CATEGORIA_DESC]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].ExternalColumns[SUB_CATEGORIA_DESC]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Outputs[Saída de Erro de Destino ODBC].Columns[SUB_CATEGORIA_FLAG_ATIVO]"
+                          name="SUB_CATEGORIA_FLAG_ATIVO"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Outputs[Saída de Erro de Destino ODBC].Columns[SUB_CATEGORIA_FLAG_ATIVO]"
+                          dataType="bool"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].ExternalColumns[SUB_CATEGORIA_FLAG_ATIVO]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Outputs[Saída de Erro de Destino ODBC].Columns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Outputs[Saída de Erro de Destino ODBC].Columns[DATA_CARGA]"
+                          dataType="dbTimeStamp"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
+                          dataType="i4"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
+                          dataType="i4"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao"
+                  name="Tmp Transacao"
+                  componentClassID="{074B8736-CD73-40A5-822E-888215AF57DA}"
+                  description="Destino ODBC"
+                  usesDispositions="true"
+                  version="1"
+                  contactInfo="ODBC Destination;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;1">
+                  <properties>
+                    <property
+                      name="InsertMethod"
+                      dataType="System.Int32"
+                      description="Método usado para inserção de dados. Os valores possíveis são 'Lote' ou 'Linha por linha'."
+                      typeConverter="InsertMethod"
+                      expressionType="Notify">1</property>
+                    <property
+                      name="BindCharColumnsAs"
+                      dataType="System.Int32"
+                      description="Determina como o componente associará colunas de tipos string de um ou vários bytes (por exemplo, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). As opções são: Unicode (SQL_C_WCHAR) e ANSI (SQL_C_CHAR)."
+                      typeConverter="BindCharColumnsAs"
+                      expressionType="Notify">0</property>
+                    <property
+                      name="BindNumericAs"
+                      dataType="System.Int32"
+                      description="O tipo de dados ODBC C para associação de dados numéricos."
+                      typeConverter="BindNumericAs"
+                      expressionType="Notify">0</property>
+                    <property
+                      name="TableName"
+                      dataType="System.String"
+                      description="Tabela de destino"
+                      expressionType="Notify">"dbo"."TMP_TRANSACAO"</property>
+                    <property
+                      name="BatchSize"
+                      dataType="System.Int32"
+                      description="Especifica o número de linhas inseridas por lote."
+                      expressionType="Notify">1000</property>
+                    <property
+                      name="TransactionSize"
+                      dataType="System.Int32"
+                      description="Número de linhas inseridas na mesma transação."
+                      expressionType="Notify">0</property>
+                    <property
+                      name="LobChunkSize"
+                      dataType="System.Int32"
+                      description="Determina a alocação do tamanho da parte para colunas LOB"
+                      expressionType="Notify">32768</property>
+                    <property
+                      name="StatementTimeout"
+                      dataType="System.Int32"
+                      description="Número de segundos de espera para que uma instrução SQL seja executada antes de retornar ao aplicativo."
+                      expressionType="Notify">0</property>
+                    <property
+                      name="DefaultCodePage"
+                      dataType="System.Int32"
+                      description="Página de código a ser usada quando as informações da página de código não estão disponíveis na fonte de dados."
+                      expressionType="Notify">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Connections[ODBCConnection]"
+                      name="ODBCConnection"
+                      description="A conexão de tempo de execução ODBC"
+                      connectionManagerID="{D4CB948F-405E-4BD5-B08E-9FD804F78238}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ODS]" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Inputs[Entrada de Destino ODBC]"
+                      name="Entrada de Destino ODBC"
+                      hasSideEffects="true"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      truncationRowDisposition="FailComponent">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Inputs[Entrada de Destino ODBC].Columns[TransacaoDesc]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Transação.Outputs[Classificar Saída].Columns[TransacaoDesc]"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Inputs[Entrada de Destino ODBC].ExternalColumns[TRANSACAO_DESC]"
+                          cachedName="TransacaoDesc"
+                          cachedDataType="wstr"
+                          cachedLength="13"
+                          cachedSortKeyPosition="1" />
+                        <inputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Inputs[Entrada de Destino ODBC].Columns[DATA_CARGA]"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Transação.Outputs[Classificar Saída].Columns[DATA_CARGA]"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]"
+                          cachedName="DATA_CARGA"
+                          cachedDataType="dbTimeStamp" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Inputs[Entrada de Destino ODBC].ExternalColumns[TRANSACAO_COD]"
+                          name="TRANSACAO_COD"
+                          dataType="i4" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Inputs[Entrada de Destino ODBC].ExternalColumns[TRANSACAO_DESC]"
+                          name="TRANSACAO_DESC"
+                          dataType="str"
+                          length="50"
+                          codePage="1252" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Inputs[Entrada de Destino ODBC].ExternalColumns[TRANSACAO_FLAG_ATIVO]"
+                          name="TRANSACAO_FLAG_ATIVO"
+                          dataType="bool" />
+                        <externalMetadataColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          dataType="dbTimeStamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Outputs[Saída de Erro de Destino ODBC]"
+                      name="Saída de Erro de Destino ODBC"
+                      isErrorOut="true">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Outputs[Saída de Erro de Destino ODBC].Columns[TRANSACAO_COD]"
+                          name="TRANSACAO_COD"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Outputs[Saída de Erro de Destino ODBC].Columns[TRANSACAO_COD]"
+                          dataType="i4"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Inputs[Entrada de Destino ODBC].ExternalColumns[TRANSACAO_COD]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Outputs[Saída de Erro de Destino ODBC].Columns[TRANSACAO_DESC]"
+                          name="TRANSACAO_DESC"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Outputs[Saída de Erro de Destino ODBC].Columns[TRANSACAO_DESC]"
+                          length="50"
+                          dataType="str"
+                          codePage="1252"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Inputs[Entrada de Destino ODBC].ExternalColumns[TRANSACAO_DESC]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Outputs[Saída de Erro de Destino ODBC].Columns[TRANSACAO_FLAG_ATIVO]"
+                          name="TRANSACAO_FLAG_ATIVO"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Outputs[Saída de Erro de Destino ODBC].Columns[TRANSACAO_FLAG_ATIVO]"
+                          dataType="bool"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Inputs[Entrada de Destino ODBC].ExternalColumns[TRANSACAO_FLAG_ATIVO]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Outputs[Saída de Erro de Destino ODBC].Columns[DATA_CARGA]"
+                          name="DATA_CARGA"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Outputs[Saída de Erro de Destino ODBC].Columns[DATA_CARGA]"
+                          dataType="dbTimeStamp"
+                          externalMetadataColumnId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
+                          dataType="i4"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          lineageId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
+                          dataType="i4"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Aplica Transformações\Carrega Tmp´s.Paths[1 de Saída Multicast]"
+                  name="1 de Saída Multicast"
+                  startId="Package\Aplica Transformações\Carrega Tmp´s\Denormaliza.Outputs[1 de Saída Multicast]"
+                  endId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Inputs[Entrada de Coluna Derivada]" />
+                <path
+                  refId="Package\Aplica Transformações\Carrega Tmp´s.Paths[Classificar Saída1]"
+                  name="Classificar Saída"
+                  startId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Transação.Outputs[Classificar Saída]"
+                  endId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao.Inputs[Entrada de Destino ODBC]" />
+                <path
+                  refId="Package\Aplica Transformações\Carrega Tmp´s.Paths[Classificar Saída2]"
+                  name="Classificar Saída"
+                  startId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Outputs[Classificar Saída]"
+                  endId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria.Inputs[Entrada de Destino ODBC]" />
+                <path
+                  refId="Package\Aplica Transformações\Carrega Tmp´s.Paths[Classificar Saída]"
+                  name="Classificar Saída"
+                  startId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Contas.Outputs[Classificar Saída]"
+                  endId="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta.Inputs[Entrada de Destino ODBC]" />
+                <path
+                  refId="Package\Aplica Transformações\Carrega Tmp´s.Paths[Classificar Saída3]"
+                  name="Classificar Saída"
+                  startId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Outputs[Classificar Saída]"
+                  endId="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria.Inputs[Entrada de Destino ODBC]" />
+                <path
+                  refId="Package\Aplica Transformações\Carrega Tmp´s.Paths[Saída da Fonte ODBC2]"
+                  name="Saída da Fonte ODBC"
+                  startId="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria.Outputs[Saída da Fonte ODBC]"
+                  endId="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria.Inputs[Classificar Entrada]" />
+                <path
+                  refId="Package\Aplica Transformações\Carrega Tmp´s.Paths[Saída da Fonte ODBC]"
+                  name="Saída da Fonte ODBC"
+                  startId="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa.Outputs[Saída da Fonte ODBC]"
+                  endId="Package\Aplica Transformações\Carrega Tmp´s\Denormaliza.Inputs[Multicast Entrada 1]" />
+                <path
+                  refId="Package\Aplica Transformações\Carrega Tmp´s.Paths[Saída da Fonte ODBC1]"
+                  name="Saída da Fonte ODBC"
+                  startId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria.Outputs[Saída da Fonte ODBC]"
+                  endId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria.Inputs[Classificar Entrada]" />
+                <path
+                  refId="Package\Aplica Transformações\Carrega Tmp´s.Paths[Saída de Coluna Derivada1]"
+                  name="Saída de Coluna Derivada"
+                  startId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas.Outputs[Saída de Coluna Derivada]"
+                  endId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Contas.Inputs[Classificar Entrada]" />
+                <path
+                  refId="Package\Aplica Transformações\Carrega Tmp´s.Paths[Saída de Coluna Derivada]"
+                  name="Saída de Coluna Derivada"
+                  startId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Outputs[Saída de Coluna Derivada]"
+                  endId="Package\Aplica Transformações\Carrega Tmp´s\Classifica Transação.Inputs[Classificar Entrada]" />
+                <path
+                  refId="Package\Aplica Transformações\Carrega Tmp´s.Paths[Transacao]"
+                  name="Transacao"
+                  startId="Package\Aplica Transformações\Carrega Tmp´s\Denormaliza.Outputs[3 de Saída Multicast]"
+                  endId="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação.Inputs[Entrada de Coluna Derivada]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Importa Arquivos da Pasta de Cargas"
@@ -1693,7 +3802,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Restrição]"
       DTS:From="Package\Importa Arquivos da Pasta de Cargas"
-      DTS:To="Package\Contêiner da Sequência"
+      DTS:To="Package\Aplica Transformações"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restrição"
       DTS:DTSID="{5948338B-B427-44AE-8904-F352E732E6E0}"
@@ -1800,27 +3909,43 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Size="479,234"
           Id="Package\Importa Arquivos da Pasta de Cargas"
           TopLeft="31.5,36.5" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s"
+          TopLeft="26,13" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="205,55"
-          Size="205,98"
-          Id="Package\Contêiner da Sequência"
-          TopLeft="562,108" />
+          PanelSize="263,172"
+          Size="263,215"
+          Id="Package\Aplica Transformações"
+          TopLeft="530,42" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição]"
-          TopLeft="510.5,155.25">
+          TopLeft="271,270.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="51.5,0"
+              EndConnector="390.5,-13.5"
               Start="0,0"
-              End="44,0">
+              End="390.5,-6">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="44,0" />
+                    End="0,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5"
+                    Point2="0,22.5"
+                    Point3="4,22.5" />
+                  <mssgle:LineSegment
+                    End="386.5,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="386.5,22.5"
+                    Point2="390.5,22.5"
+                    Point3="390.5,18.5" />
+                  <mssgle:LineSegment
+                    End="390.5,-6" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1912,6 +4037,396 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Aplica Transformações\Carrega Tmp´s">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa"
+          TopLeft="197,5.49999999999989" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s\Denormaliza"
+          TopLeft="211.5,107.5" />
+        <EdgeLayout
+          Id="Package\Aplica Transformações\Carrega Tmp´s.Paths[Saída da Fonte ODBC]"
+          TopLeft="284,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s\Classifica Contas"
+          TopLeft="213.5,311.5" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta"
+          TopLeft="213.5,413.5" />
+        <EdgeLayout
+          Id="Package\Aplica Transformações\Carrega Tmp´s.Paths[Classificar Saída]"
+          TopLeft="284,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s\Recupera Transação"
+          TopLeft="5.5,209.5" />
+        <EdgeLayout
+          Id="Package\Aplica Transformações\Carrega Tmp´s.Paths[Transacao]"
+          TopLeft="261.166666666667,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-182.166666666667,60.0000000000001"
+              Start="0,0"
+              End="-182.166666666667,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3929058663029" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3929058663029"
+                    Point2="0,24.3929058663029"
+                    Point3="-4,24.3929058663029" />
+                  <mssgle:LineSegment
+                    End="-178.166666666667,24.3929058663029" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-178.166666666667,24.3929058663029"
+                    Point2="-182.166666666667,24.3929058663029"
+                    Point3="-182.166666666667,28.3929058663029" />
+                  <mssgle:LineSegment
+                    End="-182.166666666667,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s\Classifica Transação"
+          TopLeft="6,311.5" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao"
+          TopLeft="14,413.5" />
+        <EdgeLayout
+          Id="Package\Aplica Transformações\Carrega Tmp´s.Paths[Classificar Saída1]"
+          TopLeft="79,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Aplica Transformações\Carrega Tmp´s.Paths[Saída de Coluna Derivada]"
+          TopLeft="79,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria"
+          TopLeft="415,209.5" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s\Classifica Categoria"
+          TopLeft="415.5,311.5" />
+        <EdgeLayout
+          Id="Package\Aplica Transformações\Carrega Tmp´s.Paths[Saída da Fonte ODBC1]"
+          TopLeft="492,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria"
+          TopLeft="415.5,413.5" />
+        <EdgeLayout
+          Id="Package\Aplica Transformações\Carrega Tmp´s.Paths[Classificar Saída2]"
+          TopLeft="492,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s\Recupera SubCategoria"
+          TopLeft="629.5,209.5" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s\Classifica SubCategoria"
+          TopLeft="629.5,311.5" />
+        <EdgeLayout
+          Id="Package\Aplica Transformações\Carrega Tmp´s.Paths[Saída da Fonte ODBC2]"
+          TopLeft="705,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria"
+          TopLeft="629.5,413.5" />
+        <EdgeLayout
+          Id="Package\Aplica Transformações\Carrega Tmp´s.Paths[Classificar Saída3]"
+          TopLeft="705,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Aplica Transformações\Carrega Tmp´s\Recupera Contas"
+          TopLeft="213.5,209.5" />
+        <EdgeLayout
+          Id="Package\Aplica Transformações\Carrega Tmp´s.Paths[1 de Saída Multicast]"
+          TopLeft="306.833333333333,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-22.8333333333333,60"
+              Start="0,0"
+              End="-22.8333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3929058663029" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3929058663029"
+                    Point2="0,24.3929058663029"
+                    Point3="-4,24.3929058663029" />
+                  <mssgle:LineSegment
+                    End="-18.8333333333333,24.3929058663029" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.8333333333333,24.3929058663029"
+                    Point2="-22.8333333333333,24.3929058663029"
+                    Point3="-22.8333333333333,28.3929058663029" />
+                  <mssgle:LineSegment
+                    End="-22.8333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Aplica Transformações\Carrega Tmp´s.Paths[Saída de Coluna Derivada1]"
+          TopLeft="284,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Aplica Transformações\Carrega Tmp´s\Tb Importa">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Aplica Transformações\Carrega Tmp´s\Tmp Conta">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Aplica Transformações\Carrega Tmp´s\Tmp Transacao">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Aplica Transformações\Carrega Tmp´s\Recupera Categoria">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Aplica Transformações\Carrega Tmp´s\Tmp Categoria">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Aplica Transformações\Carrega Tmp´s\Tmp SubCategoria">
+    <Properties>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
