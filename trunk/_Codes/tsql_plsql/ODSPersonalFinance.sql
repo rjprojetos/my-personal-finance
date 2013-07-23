@@ -1,7 +1,7 @@
 /*==============================================================*/
 /* Database name:  ODS_PERSONAL_FINANCE                         */
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     22/07/2013 00:59:18                          */
+/* Created on:     22/07/2013 17:15:31                          */
 /*==============================================================*/
 
 
@@ -24,16 +24,23 @@ go
 
 IF EXISTS (SELECT 1
             FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('TMP_CATEGORIA')
+           WHERE  ID = OBJECT_ID('TB_CONTA')
             AND   TYPE = 'U')
-   DROP TABLE TMP_CATEGORIA
+   DROP TABLE TB_CONTA
 go
 
 IF EXISTS (SELECT 1
             FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('TMP_CONTA')
+           WHERE  ID = OBJECT_ID('TB_TRANSACAO')
             AND   TYPE = 'U')
-   DROP TABLE TMP_CONTA
+   DROP TABLE TB_TRANSACAO
+go
+
+IF EXISTS (SELECT 1
+            FROM  SYSOBJECTS
+           WHERE  ID = OBJECT_ID('TMP_CATEGORIA')
+            AND   TYPE = 'U')
+   DROP TABLE TMP_CATEGORIA
 go
 
 IF EXISTS (SELECT 1
@@ -50,11 +57,44 @@ IF EXISTS (SELECT 1
    DROP TABLE TMP_SUB_CATEGORIA
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('TMP_TRANSACAO')
-            AND   TYPE = 'U')
-   DROP TABLE TMP_TRANSACAO
+/*==============================================================*/
+/* Table: TB_CONTA                                              */
+/*==============================================================*/
+CREATE TABLE TB_CONTA (
+   CONTA_COD            INTEGER              IDENTITY(1,1),
+   CONTA_DESCRICAO      VARCHAR(50)          NOT NULL
+      CONSTRAINT CKC_CONTA_DESCRICAO_TB_CONTA CHECK (CONTA_DESCRICAO = UPPER(CONTA_DESCRICAO)),
+   CONTA_FLAG_ATIVO     BIT                  NOT NULL DEFAULT 1,
+   DATA_CARGA           DATETIME             NOT NULL DEFAULT GETDATE(),
+   CONSTRAINT PK_TB_CONTA PRIMARY KEY (CONTA_COD)
+)
+go
+
+DECLARE @CURRENTUSER SYSNAME
+SELECT @CURRENTUSER = USER_NAME()
+EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
+   'Se a Conta estiver ativa, preencher como 1; senao 0',
+   'user', @CURRENTUSER, 'table', 'TB_CONTA', 'column', 'CONTA_FLAG_ATIVO'
+go
+
+/*==============================================================*/
+/* Table: TB_TRANSACAO                                          */
+/*==============================================================*/
+CREATE TABLE TB_TRANSACAO (
+   TRANSACAO_COD        INTEGER              IDENTITY(1,1),
+   TRANSACAO_DESC       VARCHAR(50)          NOT NULL
+      CONSTRAINT CKC_TRANSACAO_DESC_TB_TRANS CHECK (TRANSACAO_DESC = UPPER(TRANSACAO_DESC)),
+   TRANSACAO_FLAG_ATIVO BIT                  NOT NULL DEFAULT 1,
+   DATA_CARGA           DATETIME             NOT NULL DEFAULT GETDATE(),
+   CONSTRAINT PK_TB_TRANSACAO PRIMARY KEY (TRANSACAO_COD)
+)
+go
+
+DECLARE @CURRENTUSER SYSNAME
+SELECT @CURRENTUSER = USER_NAME()
+EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
+   'Se a transacao estiver ativa, preencher como 1, senao 0',
+   'user', @CURRENTUSER, 'table', 'TB_TRANSACAO', 'column', 'TRANSACAO_FLAG_ATIVO'
 go
 
 /*==============================================================*/
@@ -75,26 +115,6 @@ SELECT @CURRENTUSER = USER_NAME()
 EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
    'Se a categoria estiver ativa, preencher como 1; senao 0',
    'user', @CURRENTUSER, 'table', 'TMP_CATEGORIA', 'column', 'CATEGORIA_FLAG_ATIVO'
-go
-
-/*==============================================================*/
-/* Table: TMP_CONTA                                             */
-/*==============================================================*/
-CREATE TABLE TMP_CONTA (
-   CONTA_COD            INTEGER              IDENTITY(1,1),
-   CONTA_DESCRICAO      VARCHAR(50)          NOT NULL
-      CONSTRAINT CKC_CONTA_DESCRICAO_TMP_CONT CHECK (CONTA_DESCRICAO = UPPER(CONTA_DESCRICAO)),
-   CONTA_FLAG_ATIVO     BIT                  NOT NULL DEFAULT 1,
-   DATA_CARGA           DATETIME             NOT NULL DEFAULT GETDATE(),
-   CONSTRAINT PK_TMP_CONTA PRIMARY KEY (CONTA_COD)
-)
-go
-
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a Conta estiver ativa, preencher como 1; senao 0',
-   'user', @CURRENTUSER, 'table', 'TMP_CONTA', 'column', 'CONTA_FLAG_ATIVO'
 go
 
 /*==============================================================*/
@@ -145,42 +165,32 @@ EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description',
 go
 
 /*==============================================================*/
-/* Table: TMP_TRANSACAO                                         */
-/*==============================================================*/
-CREATE TABLE TMP_TRANSACAO (
-   TRANSACAO_COD        INTEGER              IDENTITY(1,1),
-   TRANSACAO_DESC       VARCHAR(50)          NOT NULL
-      CONSTRAINT CKC_TRANSACAO_DESC_TMP_TRAN CHECK (TRANSACAO_DESC = UPPER(TRANSACAO_DESC)),
-   TRANSACAO_FLAG_ATIVO BIT                  NOT NULL DEFAULT 1,
-   DATA_CARGA           DATETIME             NOT NULL DEFAULT GETDATE(),
-   CONSTRAINT PK_TMP_TRANSACAO PRIMARY KEY (TRANSACAO_COD)
-)
-go
-
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a transacao estiver ativa, preencher como 1, senao 0',
-   'user', @CURRENTUSER, 'table', 'TMP_TRANSACAO', 'column', 'TRANSACAO_FLAG_ATIVO'
-go
-
-/*==============================================================*/
 /* View: TMP_CONTA_DESTINO                                      */
 /*==============================================================*/
 CREATE VIEW TMP_CONTA_DESTINO AS
-SELECT CONTA_COD AS CONTA_DESTINO_COD
-      ,CONTA_DESCRICAO
-      ,CONTA_FLAG_ATIVO
-      ,DATA_CARGA
-  FROM DBO.TMP_CONTA
+SELECT
+   CONTA_COD AS CONTA_DESTINO_COD,
+   CONTA_DESCRICAO,
+   CONTA_FLAG_ATIVO,
+   DATA_CARGA
+FROM
+   TB_CONTA
 go
 
 /*==============================================================*/
 /* View: VW_CATEG_NAO_MAPEADO                                   */
 /*==============================================================*/
 CREATE VIEW VW_CATEG_NAO_MAPEADO AS
-SELECT CATEGORIA_COD, CATEGORIA_DESC, CATEGORIA_NIVEL, CATEGORIA_PAI_COD, FLAG_ATIVO, DATA_CARGA
-	FROM CTR_MAPEIA_CATEGORIA
-	WHERE	CATEGORIA_NIVEL IS NULL
+SELECT
+   CATEGORIA_COD,
+   CATEGORIA_DESC,
+   CATEGORIA_NIVEL,
+   CATEGORIA_PAI_COD,
+   FLAG_ATIVO,
+   DATA_CARGA
+FROM
+   TB_CATEG_SUBCATEG
+WHERE
+   CATEGORIA_NIVEL IS NULL
 go
 
