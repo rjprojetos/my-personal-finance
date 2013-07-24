@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">SPARROW-HANK</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAaSSIiV1ZA0aC8dE+oD8sBgAAAAACAAAAAAAQZgAAAAEAACAAAADoTQaBxwkDoqd/LzyvMklk5P0/WXIfLhJbKh8DHfu09wAAAAAOgAAAAAIAACAAAABmBlx8yDztCwHQ+rWmya9PtQ2oOTIIheQFrVvyf6GXdZAAAABNioFooXhndo1COeleY/gOcr3KHXzUcfS52MCk39deZhpbVW1rN0nTQ9m8S95SQN/UJLguqj0gVi2CGeCdt+VJDJ8/FemK2oWYCcBHzrgFpLfMCaHfJVRoK5yxVmagJgQexv0yY7kc/oLjAExwYWeLr49tmw+bPWXYKyRqCCzTpI5svuWxuRJb9p02ZxUOxrVAAAAAOl4VrPhBuwAdVd3rlZO+wmGuuB9I8i1bEthimaJGMNPwn9BJHhJmDVCvtlgM+zPZTyLSRV73BTyaoybB0eeY8w==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAaSSIiV1ZA0aC8dE+oD8sBgAAAAACAAAAAAAQZgAAAAEAACAAAAA97Pm0dCCJhLUNzp0dG/x4A9bH2LKUk42ivwsFzUze5AAAAAAOgAAAAAIAACAAAACgphvlwzlk0cWfi+R/HOAj41FyKv8JIhohgYiQ/d3L0ZAAAABg6RI8da6cORJiLFAdEAMSulxu9qhEM5L3hMjEb9I73XhznV1Iq1v5IQWZURoKAiiA5rFBgHOuHUbn1bgkoIngHSqgzyh/VFSbeakOFQNzN2/v6Acnf9/S3S10r4yJdRr+c26qr2b4kqeSP7IMyANvJp+3FgLgj6cGrUa0G/0yxCnidVHohsovQqsk8fohJe5AAAAAYVDxs/qhvpzRnM61wa52MH3pHqhfSPuicJijy45+Y7axPRmEKhcUTioYzwPhBAoF3aLkyDSP0r3+AytRVMKT1A==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -131,16 +131,76 @@
                 <SSIS:Property SSIS:Name="Name">Step1_import</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">279</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">495</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{B9849163-A306-4671-99CA-638ED0A0A7C5}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D1CAD303-3F13-4D89-BC2B-D4B4D7B4691D}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="CM.E-mail.ConnectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">SmtpServer=pop3.live.com;UseWindowsAuthentication=True;EnableSsl=False;Timeout=1000;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.E-mail.EnableSsl">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.E-mail.SmtpServer">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">pop3.live.com</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.E-mail.UseWindowsAuthentication">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">true</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="CM.Minhas Economias.ExcelFilePath">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
