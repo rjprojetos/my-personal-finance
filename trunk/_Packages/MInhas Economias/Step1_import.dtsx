@@ -6,8 +6,8 @@
   DTS:CreatorComputerName="SPARROW-HANK"
   DTS:CreationDate="7/21/2013 10:25:26 AM"
   DTS:PackageType="5"
-  DTS:VersionBuild="608"
-  DTS:VersionGUID="{D16300A2-53A4-40B3-AE4E-38E57F0D74B6}"
+  DTS:VersionBuild="610"
+  DTS:VersionGUID="{7CED237D-E622-4026-8795-6405AAFEFE94}"
   DTS:LastModifiedProductVersion="11.0.2100.60"
   DTS:LocaleID="1046"
   DTS:ObjectName="Step1_import"
@@ -99,7 +99,7 @@
       DTS:DTSID="{BEC5AB08-DD8C-422B-8AD3-5D5B617FEF3B}"
       DTS:CreationName="">
       <DTS:VariableValue
-        DTS:DataType="8">\_process_20130724_233938</DTS:VariableValue>
+        DTS:DataType="8">\_process_20130724_234208</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:Namespace="User"
@@ -6218,55 +6218,6 @@ where [refTable].[CONTA_DESC] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Carrega Tmp FT\Coluna Derivada"
-              name="Coluna Derivada"
-              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
-              description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
-              usesDispositions="true"
-              contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation;  Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0">
-              <inputs>
-                <input
-                  refId="Package\Carrega Tmp FT\Coluna Derivada.Inputs[Entrada de Coluna Derivada]"
-                  name="Entrada de Coluna Derivada"
-                  description="Entrada para a Transformação Coluna Derivada">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Carrega Tmp FT\Coluna Derivada.Outputs[Saída de Coluna Derivada]"
-                  name="Saída de Coluna Derivada"
-                  description="Saída Padrão da Transformação Coluna Derivada"
-                  exclusionGroup="1"
-                  synchronousInputId="Package\Carrega Tmp FT\Coluna Derivada.Inputs[Entrada de Coluna Derivada]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Carrega Tmp FT\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada]"
-                  name="Saída de Erro de Coluna Derivada"
-                  description="Saída de Erro da Transformação Coluna Derivada"
-                  exclusionGroup="1"
-                  synchronousInputId="Package\Carrega Tmp FT\Coluna Derivada.Inputs[Entrada de Coluna Derivada]"
-                  isErrorOut="true">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Carrega Tmp FT\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      lineageId="Package\Carrega Tmp FT\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
-                      dataType="i4"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Carrega Tmp FT\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      lineageId="Package\Carrega Tmp FT\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
-                      dataType="i4"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\Carrega Tmp FT\Conta Destino"
               name="Conta Destino"
               componentClassID="{A77F5655-A006-443A-9B7E-90B6BD55CB84}"
@@ -9314,6 +9265,314 @@ FROM	FILE_IMPORTACAO</property>
               </outputs>
             </component>
             <component
+              refId="Package\Carrega Tmp FT\Tmp FT"
+              name="Tmp FT"
+              componentClassID="{074B8736-CD73-40A5-822E-888215AF57DA}"
+              description="Destino ODBC"
+              usesDispositions="true"
+              version="1"
+              contactInfo="ODBC Destination;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;1">
+              <properties>
+                <property
+                  name="InsertMethod"
+                  dataType="System.Int32"
+                  description="Método usado para inserção de dados. Os valores possíveis são 'Lote' ou 'Linha por linha'."
+                  typeConverter="InsertMethod"
+                  expressionType="Notify">1</property>
+                <property
+                  name="BindCharColumnsAs"
+                  dataType="System.Int32"
+                  description="Determina como o componente associará colunas de tipos string de um ou vários bytes (por exemplo, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). As opções são: Unicode (SQL_C_WCHAR) e ANSI (SQL_C_CHAR)."
+                  typeConverter="BindCharColumnsAs"
+                  expressionType="Notify">0</property>
+                <property
+                  name="BindNumericAs"
+                  dataType="System.Int32"
+                  description="O tipo de dados ODBC C para associação de dados numéricos."
+                  typeConverter="BindNumericAs"
+                  expressionType="Notify">0</property>
+                <property
+                  name="TableName"
+                  dataType="System.String"
+                  description="Tabela de destino"
+                  expressionType="Notify">"dbo"."TMP_FT_LANCAMENTOS"</property>
+                <property
+                  name="BatchSize"
+                  dataType="System.Int32"
+                  description="Especifica o número de linhas inseridas por lote."
+                  expressionType="Notify">1000</property>
+                <property
+                  name="TransactionSize"
+                  dataType="System.Int32"
+                  description="Número de linhas inseridas na mesma transação."
+                  expressionType="Notify">0</property>
+                <property
+                  name="LobChunkSize"
+                  dataType="System.Int32"
+                  description="Determina a alocação do tamanho da parte para colunas LOB"
+                  expressionType="Notify">32768</property>
+                <property
+                  name="StatementTimeout"
+                  dataType="System.Int32"
+                  description="Número de segundos de espera para que uma instrução SQL seja executada antes de retornar ao aplicativo."
+                  expressionType="Notify">0</property>
+                <property
+                  name="DefaultCodePage"
+                  dataType="System.Int32"
+                  description="Página de código a ser usada quando as informações da página de código não estão disponíveis na fonte de dados."
+                  expressionType="Notify">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carrega Tmp FT\Tmp FT.Connections[ODBCConnection]"
+                  name="ODBCConnection"
+                  description="A conexão de tempo de execução ODBC"
+                  connectionManagerID="Package.ConnectionManagers[ODS Personal Finance]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODS Personal Finance]" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC]"
+                  name="Entrada de Destino ODBC"
+                  hasSideEffects="true"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  truncationRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].Columns[PARCELA_TOTAL]"
+                      lineageId="Package\Carrega Tmp FT\Lançamentos + Categoria.Outputs[Saída da Junção de Mesclagem].Columns[PARCELA_TOTAL]"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[PARCELA_TOTAL]"
+                      cachedName="PARCELA_TOTAL"
+                      cachedDataType="i4" />
+                    <inputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].Columns[DATA_CARGA]"
+                      lineageId="Package\Carrega Tmp FT\Lançamentos + Categoria.Outputs[Saída da Junção de Mesclagem].Columns[DATA_CARGA]"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]"
+                      cachedName="DATA_CARGA"
+                      cachedDataType="dbTimeStamp" />
+                    <inputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].Columns[H-CONTA_ORIGEM_COD]"
+                      lineageId="Package\Carrega Tmp FT\Trata Colunas.Outputs[Saída de Coluna Derivada].Columns[H-CONTA_ORIGEM_COD]"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA_ORIGEM_COD]"
+                      cachedName="H-CONTA_ORIGEM_COD"
+                      cachedDataType="i4" />
+                    <inputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].Columns[H-CONTA_DESTINO_COD]"
+                      lineageId="Package\Carrega Tmp FT\Trata Colunas.Outputs[Saída de Coluna Derivada].Columns[H-CONTA_DESTINO_COD]"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA_DESTINO_COD]"
+                      cachedName="H-CONTA_DESTINO_COD"
+                      cachedDataType="i4" />
+                    <inputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].Columns[H-CATEGORIA_COD]"
+                      lineageId="Package\Carrega Tmp FT\Trata Colunas.Outputs[Saída de Coluna Derivada].Columns[H-CATEGORIA_COD]"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_COD]"
+                      cachedName="H-CATEGORIA_COD"
+                      cachedDataType="i4" />
+                    <inputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].Columns[H-SUB-CATEGORIA_COD]"
+                      lineageId="Package\Carrega Tmp FT\Trata Colunas.Outputs[Saída de Coluna Derivada].Columns[H-SUB-CATEGORIA_COD]"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[SUB_CATEGORIA_COD]"
+                      cachedName="H-SUB-CATEGORIA_COD"
+                      cachedDataType="i4" />
+                    <inputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].Columns[H-TRANSACAO_COD]"
+                      lineageId="Package\Carrega Tmp FT\Trata Colunas.Outputs[Saída de Coluna Derivada].Columns[H-TRANSACAO_COD]"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[TRANSACAO_COD]"
+                      cachedName="H-TRANSACAO_COD"
+                      cachedDataType="i4" />
+                    <inputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].Columns[H-DATA-OCORRENCIA]"
+                      lineageId="Package\Carrega Tmp FT\Trata Colunas.Outputs[Saída de Coluna Derivada].Columns[H-DATA-OCORRENCIA]"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_OCORRENCIA]"
+                      cachedName="H-DATA-OCORRENCIA"
+                      cachedDataType="dbTimeStamp" />
+                    <inputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].Columns[H-LANCAMENTO_DESC]"
+                      lineageId="Package\Carrega Tmp FT\Trata Colunas.Outputs[Saída de Coluna Derivada].Columns[H-LANCAMENTO_DESC]"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[LANCAMENTO_DESC]"
+                      cachedName="H-LANCAMENTO_DESC"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedCodepage="1252" />
+                    <inputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].Columns[PARCELA_ATUAL]"
+                      lineageId="Package\Carrega Tmp FT\Lançamentos + Categoria.Outputs[Saída da Junção de Mesclagem].Columns[PARCELA_ATUAL]"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[PARCELA_ATUAL]"
+                      cachedName="PARCELA_ATUAL"
+                      cachedDataType="i4" />
+                    <inputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].Columns[H-VALOR_PARCELA]"
+                      lineageId="Package\Carrega Tmp FT\Trata Colunas.Outputs[Saída de Coluna Derivada].Columns[H-VALOR_PARCELA]"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[VLR_PARCELA]"
+                      cachedName="H-VALOR_PARCELA"
+                      cachedDataType="numeric"
+                      cachedPrecision="7"
+                      cachedScale="2" />
+                    <inputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].Columns[H-CATEGORIA_NIVEL]"
+                      lineageId="Package\Carrega Tmp FT\Trata Colunas.Outputs[Saída de Coluna Derivada].Columns[H-CATEGORIA_NIVEL]"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_NIVEL]"
+                      cachedName="H-CATEGORIA_NIVEL"
+                      cachedDataType="i2" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA_ORIGEM_COD]"
+                      name="CONTA_ORIGEM_COD"
+                      dataType="i4" />
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA_DESTINO_COD]"
+                      name="CONTA_DESTINO_COD"
+                      dataType="i4" />
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_COD]"
+                      name="CATEGORIA_COD"
+                      dataType="i4" />
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[SUB_CATEGORIA_COD]"
+                      name="SUB_CATEGORIA_COD"
+                      dataType="i4" />
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[TRANSACAO_COD]"
+                      name="TRANSACAO_COD"
+                      dataType="i4" />
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_OCORRENCIA]"
+                      name="DATA_OCORRENCIA"
+                      dataType="dbTimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[LANCAMENTO_DESC]"
+                      name="LANCAMENTO_DESC"
+                      dataType="str"
+                      length="255"
+                      codePage="1252" />
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[PARCELA_ATUAL]"
+                      name="PARCELA_ATUAL"
+                      dataType="i2" />
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[PARCELA_TOTAL]"
+                      name="PARCELA_TOTAL"
+                      dataType="i2" />
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[VLR_PARCELA]"
+                      name="VLR_PARCELA"
+                      dataType="numeric"
+                      precision="7"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_NIVEL]"
+                      name="CATEGORIA_NIVEL"
+                      dataType="i2" />
+                    <externalMetadataColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]"
+                      name="DATA_CARGA"
+                      dataType="dbTimeStamp" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC]"
+                  name="Saída de Erro de Destino ODBC"
+                  isErrorOut="true">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA_ORIGEM_COD]"
+                      name="CONTA_ORIGEM_COD"
+                      lineageId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA_ORIGEM_COD]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA_ORIGEM_COD]" />
+                    <outputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA_DESTINO_COD]"
+                      name="CONTA_DESTINO_COD"
+                      lineageId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[CONTA_DESTINO_COD]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[CONTA_DESTINO_COD]" />
+                    <outputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA_COD]"
+                      name="CATEGORIA_COD"
+                      lineageId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA_COD]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_COD]" />
+                    <outputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[SUB_CATEGORIA_COD]"
+                      name="SUB_CATEGORIA_COD"
+                      lineageId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[SUB_CATEGORIA_COD]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[SUB_CATEGORIA_COD]" />
+                    <outputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[TRANSACAO_COD]"
+                      name="TRANSACAO_COD"
+                      lineageId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[TRANSACAO_COD]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[TRANSACAO_COD]" />
+                    <outputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[DATA_OCORRENCIA]"
+                      name="DATA_OCORRENCIA"
+                      lineageId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[DATA_OCORRENCIA]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_OCORRENCIA]" />
+                    <outputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[LANCAMENTO_DESC]"
+                      name="LANCAMENTO_DESC"
+                      lineageId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[LANCAMENTO_DESC]"
+                      length="255"
+                      dataType="str"
+                      codePage="1252"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[LANCAMENTO_DESC]" />
+                    <outputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[PARCELA_ATUAL]"
+                      name="PARCELA_ATUAL"
+                      lineageId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[PARCELA_ATUAL]"
+                      dataType="i2"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[PARCELA_ATUAL]" />
+                    <outputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[PARCELA_TOTAL]"
+                      name="PARCELA_TOTAL"
+                      lineageId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[PARCELA_TOTAL]"
+                      dataType="i2"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[PARCELA_TOTAL]" />
+                    <outputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[VLR_PARCELA]"
+                      name="VLR_PARCELA"
+                      lineageId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[VLR_PARCELA]"
+                      precision="7"
+                      scale="2"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[VLR_PARCELA]" />
+                    <outputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA_NIVEL]"
+                      name="CATEGORIA_NIVEL"
+                      lineageId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[CATEGORIA_NIVEL]"
+                      dataType="i2"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[CATEGORIA_NIVEL]" />
+                    <outputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[DATA_CARGA]"
+                      name="DATA_CARGA"
+                      lineageId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[DATA_CARGA]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC].ExternalColumns[DATA_CARGA]" />
+                    <outputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      lineageId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      lineageId="Package\Carrega Tmp FT\Tmp FT.Outputs[Saída de Erro de Destino ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Carrega Tmp FT\Transação"
               name="Transação"
               componentClassID="{A77F5655-A006-443A-9B7E-90B6BD55CB84}"
@@ -9892,13 +10151,13 @@ FROM	FILE_IMPORTACAO</property>
             <path
               refId="Package\Carrega Tmp FT.Paths[Saída de Coluna Derivada1]"
               name="Saída de Coluna Derivada"
-              startId="Package\Carrega Tmp FT\Ajusta Lançamentos.Outputs[Saída de Coluna Derivada]"
-              endId="Package\Carrega Tmp FT\Por Transação.Inputs[Classificar Entrada]" />
+              startId="Package\Carrega Tmp FT\Trata Colunas.Outputs[Saída de Coluna Derivada]"
+              endId="Package\Carrega Tmp FT\Tmp FT.Inputs[Entrada de Destino ODBC]" />
             <path
               refId="Package\Carrega Tmp FT.Paths[Saída de Coluna Derivada]"
               name="Saída de Coluna Derivada"
-              startId="Package\Carrega Tmp FT\Trata Colunas.Outputs[Saída de Coluna Derivada]"
-              endId="Package\Carrega Tmp FT\Coluna Derivada.Inputs[Entrada de Coluna Derivada]" />
+              startId="Package\Carrega Tmp FT\Ajusta Lançamentos.Outputs[Saída de Coluna Derivada]"
+              endId="Package\Carrega Tmp FT\Por Transação.Inputs[Classificar Entrada]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -12714,7 +12973,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     design-time-name="Package\Carrega Tmp FT">
     <LayoutInfo>
       <GraphLayout
-        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="145,42"
           Id="Package\Carrega Tmp FT\Classifica Conta Destino"
@@ -12727,10 +12986,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Size="143,42"
           Id="Package\Carrega Tmp FT\Classifica Categoria"
           TopLeft="14.5000000000001,840.5" />
-        <NodeLayout
-          Size="155,42"
-          Id="Package\Carrega Tmp FT\Coluna Derivada"
-          TopLeft="453,1065" />
         <NodeLayout
           Size="142,42"
           Id="Package\Carrega Tmp FT\Por Categoria"
@@ -13068,7 +13323,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Carrega Tmp FT.Paths[Saída de Coluna Derivada1]"
+          Id="Package\Carrega Tmp FT.Paths[Saída de Coluna Derivada]"
           TopLeft="311.5,146.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -13099,42 +13354,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Carrega Tmp FT.Paths[Saída de Coluna Derivada]"
-          TopLeft="361.5,1064.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="91.4999999999998,21.5"
-              Start="0,0"
-              End="83.9999999999998,21.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="41.7499999999999,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="41.7499999999999,0"
-                    Point2="45.7499999999999,0"
-                    Point3="45.7499999999999,4" />
-                  <mssgle:LineSegment
-                    End="45.7499999999999,17.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="45.7499999999999,17.5"
-                    Point2="45.7499999999999,21.5"
-                    Point3="49.7499999999999,21.5" />
-                  <mssgle:LineSegment
-                    End="83.9999999999998,21.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="37.7499999999999,-22,16,16"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -13347,6 +13566,32 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="114,42"
+          Id="Package\Carrega Tmp FT\Tmp FT"
+          TopLeft="471,1051" />
+        <EdgeLayout
+          Id="Package\Carrega Tmp FT.Paths[Saída de Coluna Derivada1]"
+          TopLeft="361.5,1068.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="109.5,0"
+              Start="0,0"
+              End="102,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="102,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -13464,6 +13709,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carrega Tmp FT\Tmp FT">
+    <Properties>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
