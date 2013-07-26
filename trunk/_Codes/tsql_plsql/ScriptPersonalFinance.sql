@@ -1,25 +1,11 @@
 /*==============================================================*/
 /* Database name:  DM_PERSONAL_FINANCE                          */
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     26/07/2013 13:33:24                          */
+/* Created on:     25/07/2013 11:28:05                          */
 /*==============================================================*/
 
 
 use DM_PERSONAL_FINANCE
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('DIM_CONTA_DESTINO')
-            and   type = 'V')
-   drop view DIM_CONTA_DESTINO
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('DIM_TEMPO')
-            and   type = 'V')
-   drop view DIM_TEMPO
 go
 
 if exists (select 1
@@ -70,8 +56,8 @@ go
 /* Table: DIM_CATEGORIA                                         */
 /*==============================================================*/
 create table DIM_CATEGORIA (
-   SK_CATEGORIA         int                  identity(1,1),
-   CATEGORIA_COD        int                  not null,
+   SK_CATEGORIA         integer              identity(1,1),
+   CATEGORIA_COD        varchar(15)          not null,
    CATEGORIA_DESC       varchar(100)         not null
       constraint CKC_CATEGORIA_DESC_DIM_CATE check (CATEGORIA_DESC = upper(CATEGORIA_DESC)),
    CATEGORIA_FLAG_ATIVO bit                  not null default 1,
@@ -105,8 +91,8 @@ go
 /* Table: DIM_SUB_CATEGORIA                                     */
 /*==============================================================*/
 create table DIM_SUB_CATEGORIA (
-   SK_SUB_CATEGORIA     int                  identity(1,1),
-   SUB_CATEGORIA_COD    int                  not null,
+   SK_SUB_CATEGORIA     integer              identity(1,1),
+   SUB_CATEGORIA_COD    varchar(15)          not null,
    SUB_CATEGORIA_DESC   varchar(100)         not null
       constraint CKC_SUB_CATEGORIA_DES_DIM_SUB_ check (SUB_CATEGORIA_DESC = upper(SUB_CATEGORIA_DESC)),
    SUB_CATEGORIA_FLAG_ATIVO bit                  not null default 1,
@@ -126,8 +112,8 @@ go
 /* Table: DIM_TRANSACAO                                         */
 /*==============================================================*/
 create table DIM_TRANSACAO (
-   SK_TRANSACAO         int                  identity(1,1),
-   TRANSACAO_COD        int                  not null,
+   SK_TRANSACAO         integer              identity(1,1),
+   TRANSACAO_COD        varchar(15)          not null,
    TRANSACAO_DESC       varchar(50)          not null
       constraint CKC_TRANSACAO_DESC_DIM_TRAN check (TRANSACAO_DESC = upper(TRANSACAO_DESC)),
    TRANSACAO_FLAG_ATIVO bit                  not null default 1,
@@ -182,80 +168,5 @@ SK_CATEGORIA ASC,
 SK_SUB_CATEGORIA ASC,
 SK_TRANSACAO ASC
 )
-go
-
-/*==============================================================*/
-/* View: DIM_CONTA_DESTINO                                      */
-/*==============================================================*/
-create view DIM_CONTA_DESTINO as
-
-SELECT		SK_CONTA_ORIGEM, CONTA_ORIGEM_COD, CONTA_ORIGEM_DESCRICAO, CONTA_ORIGEM_FLAG_ATIVO, DATA_CARGA
-	FROM	DIM_CONTA_ORIGEM
-go
-
-/*==============================================================*/
-/* View: DIM_TEMPO                                              */
-/*==============================================================*/
-create view DIM_TEMPO as
-SELECT Data
-      ,Data_Nome
-      ,Ano
-      ,Ano_Nome
-      ,Semestre
-      ,Semestre_Nome
-      ,Trimestre
-      ,Trimestre_Nome
-      ,Quadrimestre
-      ,Quadrimestre_Nome
-      ,Mes
-      ,Mes_Nome
-      ,Dez_Dias
-      ,Dez_Dias_Nome
-      ,Semana
-      ,Semana_Nome
-      ,Dia_do_Ano
-      ,Dia_do_Ano_Nome
-      ,Dia_do_Semestre
-      ,Dia_do_Semestre_Nome
-      ,Dia_do_Quadrimestre
-      ,Dia_do_Quadrimestre_Nome
-      ,Dia_do_Trimestre
-      ,Dia_do_Trimestre_Nome
-      ,Dia_do_Mes
-      ,Dia_do_Mes_Nome
-      ,Dia_De_Dez_Dias
-      ,Dia_De_Dez_Dias_Nome
-      ,Dia_Da_Semana
-      ,Dia_Da_Semana_Nome
-      ,Semana_do_Ano
-      ,Semana_do_Ano_Nome
-      ,Dez_Dias_do_Ano
-      ,Dez_Dias_do_Ano_Nome
-      ,Dez_Dias_do_Semestre
-      ,Dez_Dias_do_Semestre_Nome
-      ,Dez_Dias_do_Quadrimestre
-      ,Dez_Dias_do_Quadrimestre_Nome
-      ,Dez_Dias_do_Trimestre
-      ,Dez_Dias_do_Trimestre_Nome
-      ,Dez_Dias_do_Mes
-      ,Dez_Dias_do_Mes_Nome
-      ,Mes_do_Ano
-      ,Mes_do_Ano_Nome
-      ,Mes_do_Semestre
-      ,Mes_do_Semestre_Nome
-      ,Mes_do_Quadrimestre
-      ,Mes_do_Quadrimestre_Nome
-      ,Mes_do_Trimestre
-      ,Mes_do_Trimestre_Nome
-      ,Trimestre_do_Ano
-      ,Trimestre_do_Ano_Nome
-      ,Trimestre_do_Semestre
-      ,Trimestre_do_Semestre_Nome
-      ,Quadrimestre_do_Ano
-      ,Quadrimestre_do_Ano_Nome
-      ,Semestre_do_Ano
-      ,Semestre_do_Ano_Nome
-  
-  FROM db_principal.dbo.DIM_TEMPO
 go
 
