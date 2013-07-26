@@ -2,13 +2,13 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>MInhas Economias</Name>
-    <LastWriteTime>2013-07-24T04:07:59.299763Z</LastWriteTime>
+    <LastWriteTime>2013-07-26T15:19:06.4687654Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>Step1_import.dtsx</Name>
-      <LastWriteTime>2013-07-25T02:42:08.1226032Z</LastWriteTime>
+      <LastWriteTime>2013-07-26T18:37:53.8279508Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
