@@ -1,497 +1,417 @@
 /*==============================================================*/
-/* Database name:  ODS_PERSONAL_FINANCE                         */
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     26/07/2013 13:58:35                          */
+/* Created on:     20/08/2013 16:34:07                          */
 /*==============================================================*/
 
 
-USE ODS_PERSONAL_FINANCE
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.tb_cc_revenda') and o.name = 'FK_tb_cc_revenda_tb_cc')
+alter table dbo.tb_cc_revenda
+   drop constraint FK_tb_cc_revenda_tb_cc
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('VW_CATEG_NAO_MAPEADO')
-            AND   TYPE = 'V')
-   DROP VIEW VW_CATEG_NAO_MAPEADO
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.tb_cc_revenda') and o.name = 'FK_tb_cc_revenda_tb_revenda')
+alter table dbo.tb_cc_revenda
+   drop constraint FK_tb_cc_revenda_tb_revenda
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('FILE_IMPORTACAO')
-            AND   TYPE = 'U')
-   DROP TABLE FILE_IMPORTACAO
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.tb_cc_revenda') and o.name = 'FK_tb_cc_revenda_tb_vincSeguranca')
+alter table dbo.tb_cc_revenda
+   drop constraint FK_tb_cc_revenda_tb_vincSeguranca
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('LOG_CAT_SUBCAT_NO_MATCH')
-            AND   TYPE = 'U')
-   DROP TABLE LOG_CAT_SUBCAT_NO_MATCH
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.tb_projeto_revenda') and o.name = 'FK_tb_projeto_revenda_tb_projeto')
+alter table dbo.tb_projeto_revenda
+   drop constraint FK_tb_projeto_revenda_tb_projeto
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('LOG_CONTA_NO_MATCH')
-            AND   TYPE = 'U')
-   DROP TABLE LOG_CONTA_NO_MATCH
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.tb_projeto_revenda') and o.name = 'FK_tb_projeto_revenda_tb_revenda')
+alter table dbo.tb_projeto_revenda
+   drop constraint FK_tb_projeto_revenda_tb_revenda
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('LOG_TMP_CATEGORIA_NO_LOAD')
-            AND   TYPE = 'U')
-   DROP TABLE LOG_TMP_CATEGORIA_NO_LOAD
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.tb_projeto_revenda') and o.name = 'FK_tb_projeto_revenda_tb_vincSeguranca')
+alter table dbo.tb_projeto_revenda
+   drop constraint FK_tb_projeto_revenda_tb_vincSeguranca
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('LOG_TMP_CONTA_NO_LOAD')
-            AND   TYPE = 'U')
-   DROP TABLE LOG_TMP_CONTA_NO_LOAD
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.tb_subgrupo') and o.name = 'FK_tb_subgrupo_tb_cc')
+alter table dbo.tb_subgrupo
+   drop constraint FK_tb_subgrupo_tb_cc
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('LOG_TMP_SUB_CATEGORIA_NO_LOAD')
-            AND   TYPE = 'U')
-   DROP TABLE LOG_TMP_SUB_CATEGORIA_NO_LOAD
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.tb_subgrupo_revenda') and o.name = 'FK_tb_subgrupo_revenda_tb_revenda')
+alter table dbo.tb_subgrupo_revenda
+   drop constraint FK_tb_subgrupo_revenda_tb_revenda
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('LOG_TMP_TRANSACAO_NO_LOAD')
-            AND   TYPE = 'U')
-   DROP TABLE LOG_TMP_TRANSACAO_NO_LOAD
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.tb_subgrupo_revenda') and o.name = 'FK_tb_subgrupo_revenda_tb_subgrupo')
+alter table dbo.tb_subgrupo_revenda
+   drop constraint FK_tb_subgrupo_revenda_tb_subgrupo
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('LOG_TRANSACAO_NO_MATCH')
-            AND   TYPE = 'U')
-   DROP TABLE LOG_TRANSACAO_NO_MATCH
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.tb_cad_cli')
+            and   type = 'U')
+   drop table dbo.tb_cad_cli
 go
 
-ALTER TABLE TB_CATEG_SUBCATEG
-   DROP CONSTRAINT PK_TB_CATEG_SUBCATEG
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.tb_cc')
+            and   type = 'U')
+   drop table dbo.tb_cc
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('TB_CATEG_SUBCATEG')
-            AND   TYPE = 'U')
-   DROP TABLE TB_CATEG_SUBCATEG
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.tb_cc_revenda')
+            and   type = 'U')
+   drop table dbo.tb_cc_revenda
 go
 
-ALTER TABLE TB_CONTA
-   DROP CONSTRAINT PK_TB_CONTA
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.tb_projeto')
+            and   type = 'U')
+   drop table dbo.tb_projeto
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('TB_CONTA')
-            AND   TYPE = 'U')
-   DROP TABLE TB_CONTA
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.tb_projeto_revenda')
+            and   type = 'U')
+   drop table dbo.tb_projeto_revenda
 go
 
-ALTER TABLE TB_TRANSACAO
-   DROP CONSTRAINT PK_TB_TRANSACAO
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.tb_revenda')
+            and   type = 'U')
+   drop table dbo.tb_revenda
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('TB_TRANSACAO')
-            AND   TYPE = 'U')
-   DROP TABLE TB_TRANSACAO
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.tb_subgrupo')
+            and   type = 'U')
+   drop table dbo.tb_subgrupo
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('TMP_CATEGORIA')
-            AND   TYPE = 'U')
-   DROP TABLE TMP_CATEGORIA
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.tb_subgrupo_revenda')
+            and   type = 'U')
+   drop table dbo.tb_subgrupo_revenda
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('TMP_CONTA')
-            AND   TYPE = 'U')
-   DROP TABLE TMP_CONTA
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.tb_usr')
+            and   type = 'U')
+   drop table dbo.tb_usr
 go
 
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('TMP_FT_LANCAMENTOS')
-            AND   TYPE = 'U')
-   DROP TABLE TMP_FT_LANCAMENTOS
-go
-
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('TMP_SUB_CATEGORIA')
-            AND   TYPE = 'U')
-   DROP TABLE TMP_SUB_CATEGORIA
-go
-
-IF EXISTS (SELECT 1
-            FROM  SYSOBJECTS
-           WHERE  ID = OBJECT_ID('TMP_TRANSACAO')
-            AND   TYPE = 'U')
-   DROP TABLE TMP_TRANSACAO
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo.tb_vincSeguranca')
+            and   type = 'U')
+   drop table dbo.tb_vincSeguranca
 go
 
 /*==============================================================*/
-/* Table: FILE_IMPORTACAO                                       */
+/* Table: tb_cad_cli                                            */
 /*==============================================================*/
-CREATE TABLE FILE_IMPORTACAO (
-   ARQUIVOPATH          VARCHAR(255)         NULL,
-   ARQUIVONOME          VARCHAR(50)          NULL,
-   ARQUIVOEXTENSAO      VARCHAR(5)           NULL,
-   ARQUIVODATACRIACAO   DATETIME             NULL,
-   ARQUIVODATACARGA     DATETIME             NULL,
-   DATAOCORRENCIA       DATETIME             NULL,
-   DESCRICAO            VARCHAR(255)         NULL,
-   VALOR                DECIMAL(7,2)         NULL,
-   CATEGORIA            VARCHAR(255)         NULL,
-   CONTA                VARCHAR(255)         NULL
+create table dbo.tb_cad_cli (
+   cd_codigoExtendido   varchar(6)           collate Latin1_General_CI_AI null,
+   cd_bacCode           int                  null,
+   nu_cnpj              varchar(15)          collate Latin1_General_CI_AI null,
+   nu_ie                varchar(20)          collate Latin1_General_CI_AI null,
+   nm_razaoSocial       varchar(500)         collate Latin1_General_CI_AI null,
+   nm_nomeFantasia      varchar(500)         collate Latin1_General_CI_AI null,
+   nm_grupo             varchar(125)         collate Latin1_General_CI_AI null,
+   cd_canal             varchar(10)          collate Latin1_General_CI_AI null,
+   cd_matriz            varchar(6)           collate Latin1_General_CI_AI null,
+   nm_endereco          varchar(255)         collate Latin1_General_CI_AI null,
+   nm_bairro            varchar(255)         collate Latin1_General_CI_AI null,
+   nm_cidade            varchar(255)         collate Latin1_General_CI_AI null,
+   uf                   varchar(2)           collate Latin1_General_CI_AI null,
+   nu_cep               varchar(255)         collate Latin1_General_CI_AI null,
+   nu_fone              varchar(255)         collate Latin1_General_CI_AI null,
+   nu_fax               varchar(255)         collate Latin1_General_CI_AI null,
+   email                varchar(255)         collate Latin1_General_CI_AI null,
+   cd_municipio         int                  null,
+   nm_areaOperacional   varchar(255)         collate Latin1_General_CI_AI null,
+   cd_distrito          int                  null,
+   cd_regiao            int                  null,
+   nm_divisao           varchar(255)         collate Latin1_General_CI_AI null,
+   dt_nomeacao          datetime             null,
+   dt_cancelamento      datetime             null,
+   nm_operador          varchar(255)         collate Latin1_General_CI_AI null,
+   nu_foneOperador      varchar(255)         collate Latin1_General_CI_AI null,
+   emailOperador        varchar(255)         collate Latin1_General_CI_AI null,
+   status_sigaCertificada char(2)              collate Latin1_General_CI_AI null,
+   status_showRoomServico char(2)              collate Latin1_General_CI_AI null,
+   status_corporateDealer char(2)              collate Latin1_General_CI_AI null,
+   status_distribuidorDeBaterias char(2)              collate Latin1_General_CI_AI null,
+   status_unidadeDeServico varchar(255)         collate Latin1_General_CI_AI null,
+   nu_grupoDeServico    int                  null,
+   nu_grupoDeVendas     int                  null,
+   desc_Complemento     varchar(255)         collate Latin1_General_CI_AI null,
+   nu_foneAdicional     varchar(255)         collate Latin1_General_CI_AI null,
+   cd_tipoDescricaoDealer varchar(10)          collate Latin1_General_CI_AI null,
+   id_audit_usuario     int                  not null constraint DF_tb_revenda_id_audit_usuario default (0),
+   dt_audit_create      datetime             not null constraint DF__tb_revend__dt_au__37A5467C default getdate(),
+   dt_audit_alter       datetime             not null constraint DF_tb_revenda_dt_audit_alter default getdate(),
+   status_ativo         bit                  not null constraint DF__tb_revend__statu__398D8EEE default (0)
 )
+on "PRIMARY"
 go
 
 /*==============================================================*/
-/* Table: LOG_CAT_SUBCAT_NO_MATCH                               */
+/* Table: tb_cc                                                 */
 /*==============================================================*/
-CREATE TABLE LOG_CAT_SUBCAT_NO_MATCH (
-   NMC_CATEGORIA_DESC   VARCHAR(50)          NOT NULL,
-   NMC_CATEGORIA_NIVEL  SMALLINT             NOT NULL DEFAULT -1,
-   NMC_CATEGORIA_PAI_COD SMALLINT             NOT NULL DEFAULT -1,
-   NMC_FLAG_ATIVO       BIT                  NOT NULL DEFAULT 1,
-   NMC_DATA_CARGA       DATETIME             NOT NULL DEFAULT CURRENT_TIMESTAMP
+create table dbo.tb_cc (
+   id_cc                int                  identity(1, 1),
+   nm_cc                varchar(255)         collate Latin1_General_CI_AI not null,
+   id_revenda_matriz    int                  not null,
+   id_audit_usuario     int                  not null,
+   dt_audit_create      datetime             not null constraint DF__tb_cc__dt_audit___30F848ED default getdate(),
+   dt_audit_alter       datetime             not null,
+   constraint PK_tb_cc primary key (id_cc)
+         on "PRIMARY"
 )
-go
-
-ALTER TABLE LOG_CAT_SUBCAT_NO_MATCH
-   ADD CONSTRAINT CKC_NMC_CATEGORIA_DES_LOG_CAT_ CHECK (NMC_CATEGORIA_DESC = UPPER(NMC_CATEGORIA_DESC))
+on "PRIMARY"
 go
 
 /*==============================================================*/
-/* Table: LOG_CONTA_NO_MATCH                                    */
+/* Table: tb_cc_revenda                                         */
 /*==============================================================*/
-CREATE TABLE LOG_CONTA_NO_MATCH (
-   NMC_CONTA_DESC       VARCHAR(50)          NOT NULL,
-   NMC_CONTA_FLAG_ATIVO BIT                  NOT NULL DEFAULT 1,
-   NMC_DATA_CARGA       DATETIME             NOT NULL DEFAULT GETDATE()
+create table dbo.tb_cc_revenda (
+   id_cc_revenda        int                  not null,
+   id_cc                int                  not null,
+   id_revenda           int                  not null,
+   id_audit_usuario     int                  not null,
+   dt_audit_create      datetime             not null constraint DF__tb_cc_rev__dt_au__31EC6D26 default getdate(),
+   dt_audit_alter       datetime             not null,
+   status_ativo         bit                  not null constraint DF_tb_cc_revenda_status_ativo default (0),
+   constraint PK_tb_cc_revenda primary key (id_cc_revenda)
+         on "PRIMARY"
 )
-go
-
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a Conta estiver ativa, preencher como 1; senao 0',
-   'user', @CURRENTUSER, 'table', 'LOG_CONTA_NO_MATCH', 'column', 'NMC_CONTA_FLAG_ATIVO'
-go
-
-ALTER TABLE LOG_CONTA_NO_MATCH
-   ADD CONSTRAINT CKC_NMC_CONTA_DESC_LOG_CONT CHECK (NMC_CONTA_DESC = UPPER(NMC_CONTA_DESC))
+on "PRIMARY"
 go
 
 /*==============================================================*/
-/* Table: LOG_TMP_CATEGORIA_NO_LOAD                             */
+/* Table: tb_projeto                                            */
 /*==============================================================*/
-CREATE TABLE LOG_TMP_CATEGORIA_NO_LOAD (
-   CATEGORIA_COD        INTEGER              NOT NULL,
-   CATEGORIA_DESC       VARCHAR(50)          NOT NULL,
-   FLAG_ATIVO           BIT                  NOT NULL,
-   DATA_CARGA           DATETIME             NOT NULL
+create table dbo.tb_projeto (
+   id_projeto           int                  identity(1, 1),
+   desc_projeto         varchar(255)         collate Latin1_General_CI_AI not null,
+   cd_projeto954        varchar(50)          collate Latin1_General_CI_AI not null,
+   id_audit_usuario     int                  not null,
+   dt_audit_create      datetime             not null constraint DF__tb_projet__dt_au__33D4B598 default getdate(),
+   dt_audit_alter       datetime             not null,
+   constraint PK_tb_projeto primary key (id_projeto)
+         on "PRIMARY"
 )
-go
-
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a categoria estiver ativa, preencher como 1; senao 0',
-   'user', @CURRENTUSER, 'table', 'LOG_TMP_CATEGORIA_NO_LOAD', 'column', 'FLAG_ATIVO'
+on "PRIMARY"
 go
 
 /*==============================================================*/
-/* Table: LOG_TMP_CONTA_NO_LOAD                                 */
+/* Table: tb_projeto_revenda                                    */
 /*==============================================================*/
-CREATE TABLE LOG_TMP_CONTA_NO_LOAD (
-   CONTA_COD            INTEGER              NOT NULL,
-   CONTA_DESC           VARCHAR(50)          NOT NULL,
-   FLAG_ATIVO           BIT                  NOT NULL,
-   DATA_CARGA           DATETIME             NOT NULL
+create table dbo.tb_projeto_revenda (
+   id_projeto_revenda   int                  not null,
+   id_projeto           int                  not null,
+   id_revenda           int                  not null,
+   id_audit_usuario     int                  not null,
+   dt_audit_create      datetime             not null constraint DF__tb_projet__dt_au__34C8D9D1 default getdate(),
+   dt_audit_alter       datetime             not null,
+   status_ativo         bit                  not null constraint DF_tb_projeto_revenda_status_ativo default (0),
+   constraint PK_tb_projeto_revenda primary key (id_projeto_revenda)
+         on "PRIMARY"
 )
-go
-
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a Conta estiver ativa, preencher como 1; senao 0',
-   'user', @CURRENTUSER, 'table', 'LOG_TMP_CONTA_NO_LOAD', 'column', 'FLAG_ATIVO'
+on "PRIMARY"
 go
 
 /*==============================================================*/
-/* Table: LOG_TMP_SUB_CATEGORIA_NO_LOAD                         */
+/* Table: tb_revenda                                            */
 /*==============================================================*/
-CREATE TABLE LOG_TMP_SUB_CATEGORIA_NO_LOAD (
-   SUB_CATEGORIA_COD    INTEGER              NOT NULL,
-   SUB_CATEGORIA_DESC   VARCHAR(50)          NOT NULL,
-   FLAG_ATIVO           BIT                  NOT NULL DEFAULT 1,
-   DATA_CARGA           DATETIME             NOT NULL DEFAULT GETDATE()
+create table dbo.tb_revenda (
+   id_revenda           int                  identity(1, 1),
+   cd_codigoExtendido   varchar(6)           collate Latin1_General_CI_AI null,
+   cd_bacCode           int                  null,
+   nu_cnpj              varchar(15)          collate Latin1_General_CI_AI null,
+   nu_ie                varchar(20)          collate Latin1_General_CI_AI null,
+   nm_razaoSocial       varchar(500)         collate Latin1_General_CI_AI null,
+   nm_nomeFantasia      varchar(500)         collate Latin1_General_CI_AI null,
+   nm_grupo             varchar(125)         collate Latin1_General_CI_AI null,
+   cd_canal             varchar(10)          collate Latin1_General_CI_AI null,
+   cd_matriz            varchar(6)           collate Latin1_General_CI_AI null,
+   nm_endereco          varchar(255)         collate Latin1_General_CI_AI null,
+   nm_bairro            varchar(255)         collate Latin1_General_CI_AI null,
+   nm_cidade            varchar(255)         collate Latin1_General_CI_AI null,
+   uf                   varchar(2)           collate Latin1_General_CI_AI null,
+   nu_cep               varchar(255)         collate Latin1_General_CI_AI null,
+   nu_fone              varchar(255)         collate Latin1_General_CI_AI null,
+   nu_fax               varchar(255)         collate Latin1_General_CI_AI null,
+   email                varchar(255)         collate Latin1_General_CI_AI null,
+   cd_municipio         int                  null,
+   nm_areaOperacional   varchar(255)         collate Latin1_General_CI_AI null,
+   cd_distrito          int                  null,
+   cd_regiao            int                  null,
+   nm_divisao           varchar(255)         collate Latin1_General_CI_AI null,
+   dt_nomeacao          datetime             null,
+   dt_cancelamento      datetime             null,
+   nm_operador          varchar(255)         collate Latin1_General_CI_AI null,
+   nu_foneOperador      varchar(255)         collate Latin1_General_CI_AI null,
+   emailOperador        varchar(255)         collate Latin1_General_CI_AI null,
+   status_sigaCertificada char(2)              collate Latin1_General_CI_AI null,
+   status_showRoomServico char(2)              collate Latin1_General_CI_AI null,
+   status_corporateDealer char(2)              collate Latin1_General_CI_AI null,
+   status_distribuidorDeBaterias char(2)              collate Latin1_General_CI_AI null,
+   status_unidadeDeServico varchar(255)         collate Latin1_General_CI_AI null,
+   nu_grupoDeServico    int                  null,
+   nu_grupoDeVendas     int                  null,
+   desc_Complemento     varchar(255)         collate Latin1_General_CI_AI null,
+   nu_foneAdicional     varchar(255)         collate Latin1_General_CI_AI null,
+   cd_tipoDescricaoDealer varchar(10)          collate Latin1_General_CI_AI null,
+   id_audit_usuario     int                  not null constraint DF_tb_revenda_id_audit_usuario default (0),
+   dt_audit_create      datetime             not null constraint DF__tb_revend__dt_au__37A5467C default getdate(),
+   dt_audit_alter       datetime             not null constraint DF_tb_revenda_dt_audit_alter default getdate(),
+   status_ativo         bit                  not null constraint DF__tb_revend__statu__398D8EEE default (0),
+   constraint PK_tb_revenda primary key (id_revenda)
+         on "PRIMARY"
 )
-go
-
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a categoria estiver ativa, preencher como 1; senao 0',
-   'user', @CURRENTUSER, 'table', 'LOG_TMP_SUB_CATEGORIA_NO_LOAD', 'column', 'FLAG_ATIVO'
+on "PRIMARY"
 go
 
 /*==============================================================*/
-/* Table: LOG_TMP_TRANSACAO_NO_LOAD                             */
+/* Table: tb_subgrupo                                           */
 /*==============================================================*/
-CREATE TABLE LOG_TMP_TRANSACAO_NO_LOAD (
-   TRANSACAO_COD        INTEGER              NOT NULL,
-   TRANSACAO_DESC       VARCHAR(50)          NOT NULL,
-   FLAG_ATIVO           BIT                  NOT NULL,
-   DATA_CARGA           DATETIME             NOT NULL
+create table dbo.tb_subgrupo (
+   id_subgrupo          int                  not null,
+   id_cc                int                  not null,
+   desc_subgrupo        varchar(255)         collate Latin1_General_CI_AI not null,
+   id_audit_usuario     int                  not null,
+   dt_audit_create      datetime             not null constraint DF__tb_subgru__dt_au__3A81B327 default getdate(),
+   dt_audit_alter       datetime             not null,
+   constraint PK_tb_subgrupo primary key (id_subgrupo)
+         on "PRIMARY"
 )
-go
-
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a transacao estiver ativa, preencher como 1, senao 0',
-   'user', @CURRENTUSER, 'table', 'LOG_TMP_TRANSACAO_NO_LOAD', 'column', 'FLAG_ATIVO'
+on "PRIMARY"
 go
 
 /*==============================================================*/
-/* Table: LOG_TRANSACAO_NO_MATCH                                */
+/* Table: tb_subgrupo_revenda                                   */
 /*==============================================================*/
-CREATE TABLE LOG_TRANSACAO_NO_MATCH (
-   TRANSACAO_DESC       VARCHAR(50)          NOT NULL,
-   FLAG_ATIVO           BIT                  NOT NULL DEFAULT 1,
-   DATA_CARGA           DATETIME             NOT NULL DEFAULT GETDATE()
+create table dbo.tb_subgrupo_revenda (
+   id_subgrupo_revenda  int                  not null,
+   id_subgrupo          int                  not null,
+   id_revenda           int                  not null,
+   id_audit_usuario     int                  not null,
+   dt_audit_create      datetime             not null constraint DF__tb_subgru__dt_au__3B75D760 default getdate(),
+   dt_audit_alter       datetime             not null,
+   status_ativo         bit                  not null constraint DF_tb_subgrupo_revenda_status_ativo default (0),
+   constraint PK_tb_subgrupo_revenda primary key (id_subgrupo_revenda)
+         on "PRIMARY"
 )
-go
-
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a transacao estiver ativa, preencher como 1, senao 0',
-   'user', @CURRENTUSER, 'table', 'LOG_TRANSACAO_NO_MATCH', 'column', 'FLAG_ATIVO'
-go
-
-ALTER TABLE LOG_TRANSACAO_NO_MATCH
-   ADD CONSTRAINT CKC_TRANSACAO_DESC_LOG_TRAN CHECK (TRANSACAO_DESC = UPPER(TRANSACAO_DESC))
+on "PRIMARY"
 go
 
 /*==============================================================*/
-/* Table: TB_CATEG_SUBCATEG                                     */
+/* Table: tb_usr                                                */
 /*==============================================================*/
-CREATE TABLE TB_CATEG_SUBCATEG (
-   CATEGORIA_COD        INTEGER              IDENTITY(1,1),
-   CATEGORIA_DESC       VARCHAR(50)          NOT NULL,
-   CATEGORIA_NIVEL      SMALLINT             NULL DEFAULT -1,
-   CATEGORIA_PAI_COD    SMALLINT             NULL DEFAULT -1,
-   FLAG_ATIVO           BIT                  NOT NULL DEFAULT 1,
-   DATA_CARGA           DATETIME             NOT NULL DEFAULT CURRENT_TIMESTAMP
+create table dbo.tb_usr (
+   id_usr               int                  identity(1, 1),
+   nm_usr               varchar(255)         collate Latin1_General_CI_AI not null,
+   status_usuario       int                  not null constraint DF_tb_usr_status_usuario default (0),
+   id_audit_usuario     int                  not null constraint DF_tb_usr_id_audit_usuario default (0),
+   dt_audit_create      datetime             not null constraint DF_tb_usr_dt_audit_create default getdate(),
+   dt_audit_alter       datetime             not null constraint DF_tb_usr_dt_audit_alter default getdate(),
+   constraint PK_tb_usr primary key (id_usr)
+         on "PRIMARY"
 )
-go
-
-ALTER TABLE TB_CATEG_SUBCATEG
-   ADD CONSTRAINT CKC_CATEGORIA_DESC_TB_CATEG CHECK (CATEGORIA_DESC = UPPER(CATEGORIA_DESC))
-go
-
-ALTER TABLE TB_CATEG_SUBCATEG
-   ADD CONSTRAINT PK_TB_CATEG_SUBCATEG PRIMARY KEY (CATEGORIA_COD)
+on "PRIMARY"
 go
 
 /*==============================================================*/
-/* Table: TB_CONTA                                              */
+/* Table: tb_vincSeguranca                                      */
 /*==============================================================*/
-CREATE TABLE TB_CONTA (
-   CONTA_COD            INTEGER              IDENTITY(1,1),
-   CONTA_DESC           VARCHAR(50)          NOT NULL,
-   FLAG_ATIVO           BIT                  NOT NULL DEFAULT 1,
-   DATA_CARGA           DATETIME             NOT NULL DEFAULT GETDATE()
+create table dbo.tb_vincSeguranca (
+   id_vincSeguraca      int                  identity(1, 1),
+   id_usuario           int                  not null,
+   id_revenda           int                  not null,
+   id_audit_usuario     int                  not null,
+   dt_audit_create      datetime             not null,
+   dt_audit_alter       datetime             not null,
+   status_ativo         bit                  not null,
+   constraint PK_tb_vincSeguranca primary key (id_vincSeguraca)
+         on "PRIMARY"
 )
+on "PRIMARY"
 go
 
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a Conta estiver ativa, preencher como 1; senao 0',
-   'user', @CURRENTUSER, 'table', 'TB_CONTA', 'column', 'FLAG_ATIVO'
+alter table dbo.tb_cc_revenda
+   add constraint FK_tb_cc_revenda_tb_cc foreign key (id_cc)
+      references dbo.tb_cc (id_cc)
 go
 
-ALTER TABLE TB_CONTA
-   ADD CONSTRAINT CKC_CONTA_DESC_TB_CONTA CHECK (CONTA_DESC = UPPER(CONTA_DESC))
+alter table dbo.tb_cc_revenda
+   add constraint FK_tb_cc_revenda_tb_revenda foreign key (id_revenda)
+      references dbo.tb_revenda (id_revenda)
 go
 
-ALTER TABLE TB_CONTA
-   ADD CONSTRAINT PK_TB_CONTA PRIMARY KEY (CONTA_COD)
+alter table dbo.tb_cc_revenda
+   add constraint FK_tb_cc_revenda_tb_vincSeguranca foreign key (id_revenda)
+      references dbo.tb_vincSeguranca (id_vincSeguraca)
 go
 
-/*==============================================================*/
-/* Table: TB_TRANSACAO                                          */
-/*==============================================================*/
-CREATE TABLE TB_TRANSACAO (
-   TRANSACAO_COD        INTEGER              IDENTITY(1,1),
-   TRANSACAO_DESC       VARCHAR(50)          NOT NULL,
-   FLAG_ATIVO           BIT                  NOT NULL DEFAULT 1,
-   DATA_CARGA           DATETIME             NOT NULL DEFAULT GETDATE()
-)
+alter table dbo.tb_projeto_revenda
+   add constraint FK_tb_projeto_revenda_tb_projeto foreign key (id_projeto)
+      references dbo.tb_projeto (id_projeto)
 go
 
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a transacao estiver ativa, preencher como 1, senao 0',
-   'user', @CURRENTUSER, 'table', 'TB_TRANSACAO', 'column', 'FLAG_ATIVO'
+alter table dbo.tb_projeto_revenda
+   add constraint FK_tb_projeto_revenda_tb_revenda foreign key (id_revenda)
+      references dbo.tb_revenda (id_revenda)
 go
 
-ALTER TABLE TB_TRANSACAO
-   ADD CONSTRAINT CKC_TRANSACAO_DESC_TB_TRANS CHECK (TRANSACAO_DESC = UPPER(TRANSACAO_DESC))
+alter table dbo.tb_projeto_revenda
+   add constraint FK_tb_projeto_revenda_tb_vincSeguranca foreign key (id_revenda)
+      references dbo.tb_vincSeguranca (id_vincSeguraca)
 go
 
-ALTER TABLE TB_TRANSACAO
-   ADD CONSTRAINT PK_TB_TRANSACAO PRIMARY KEY (TRANSACAO_COD)
+alter table dbo.tb_subgrupo
+   add constraint FK_tb_subgrupo_tb_cc foreign key (id_cc)
+      references dbo.tb_cc (id_cc)
 go
 
-/*==============================================================*/
-/* Table: TMP_CATEGORIA                                         */
-/*==============================================================*/
-CREATE TABLE TMP_CATEGORIA (
-   CATEGORIA_COD        INTEGER              NOT NULL DEFAULT -1,
-   CATEGORIA_DESC       VARCHAR(50)          NOT NULL DEFAULT 'N/D',
-   FLAG_ATIVO           BIT                  NOT NULL DEFAULT 1,
-   DATA_CARGA           DATETIME             NOT NULL DEFAULT GETDATE()
-)
+alter table dbo.tb_subgrupo_revenda
+   add constraint FK_tb_subgrupo_revenda_tb_revenda foreign key (id_revenda)
+      references dbo.tb_revenda (id_revenda)
 go
 
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a categoria estiver ativa, preencher como 1; senao 0',
-   'user', @CURRENTUSER, 'table', 'TMP_CATEGORIA', 'column', 'FLAG_ATIVO'
-go
-
-ALTER TABLE TMP_CATEGORIA
-   ADD CONSTRAINT CKC_CATEGORIA_DESC_TMP_CATE CHECK (CATEGORIA_DESC = UPPER(CATEGORIA_DESC))
-go
-
-/*==============================================================*/
-/* Table: TMP_CONTA                                             */
-/*==============================================================*/
-CREATE TABLE TMP_CONTA (
-   CONTA_COD            INTEGER              NOT NULL DEFAULT -1,
-   CONTA_DESC           VARCHAR(50)          NOT NULL DEFAULT 'N/D',
-   FLAG_ATIVO           BIT                  NOT NULL DEFAULT 1,
-   DATA_CARGA           DATETIME             NOT NULL DEFAULT GETDATE()
-)
-go
-
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a Conta estiver ativa, preencher como 1; senao 0',
-   'user', @CURRENTUSER, 'table', 'TMP_CONTA', 'column', 'FLAG_ATIVO'
-go
-
-ALTER TABLE TMP_CONTA
-   ADD CONSTRAINT CKC_CONTA_DESC_TMP_CONT CHECK (CONTA_DESC = UPPER(CONTA_DESC))
-go
-
-/*==============================================================*/
-/* Table: TMP_FT_LANCAMENTOS                                    */
-/*==============================================================*/
-CREATE TABLE TMP_FT_LANCAMENTOS (
-   CONTA_ORIGEM_COD     INTEGER              NOT NULL DEFAULT -1,
-   CONTA_DESTINO_COD    INTEGER              NOT NULL DEFAULT -1,
-   CATEGORIA_COD        INTEGER              NOT NULL DEFAULT -1,
-   SUB_CATEGORIA_COD    INTEGER              NOT NULL DEFAULT -1,
-   TRANSACAO_COD        INTEGER              NOT NULL DEFAULT -1,
-   DATA_OCORRENCIA      DATETIME             NOT NULL DEFAULT '1900-01-01',
-   LANCAMENTO_DESC      VARCHAR(255)         NOT NULL DEFAULT 'N/D',
-   PARCELA_ATUAL        SMALLINT             NOT NULL DEFAULT 1,
-   PARCELA_TOTAL        SMALLINT             NOT NULL DEFAULT 1,
-   VLR_PARCELA          DECIMAL(7,2)         NOT NULL DEFAULT 0,
-   FLAG_CONSOLIDADO     BIT                  NOT NULL DEFAULT 0,
-   CATEGORIA_NIVEL      SMALLINT             NOT NULL DEFAULT -1,
-   DATA_CARGA           DATETIME             NOT NULL DEFAULT GETDATE()
-)
-go
-
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a data de ocorrencia for menor que hoje recebe 1, se nao recebe 0. Essa flag sera para analisar o que de fato esta previsto para pagamento e o que ja foi efetivado',
-   'user', @CURRENTUSER, 'table', 'TMP_FT_LANCAMENTOS', 'column', 'FLAG_CONSOLIDADO'
-go
-
-ALTER TABLE TMP_FT_LANCAMENTOS
-   ADD CONSTRAINT CKC_LANCAMENTO_DESC_TMP_FT_L CHECK (LANCAMENTO_DESC = UPPER(LANCAMENTO_DESC))
-go
-
-/*==============================================================*/
-/* Table: TMP_SUB_CATEGORIA                                     */
-/*==============================================================*/
-CREATE TABLE TMP_SUB_CATEGORIA (
-   SUB_CATEGORIA_COD    INTEGER              NOT NULL DEFAULT -1,
-   SUB_CATEGORIA_DESC   VARCHAR(50)          NOT NULL DEFAULT 'N/D',
-   FLAG_ATIVO           BIT                  NOT NULL DEFAULT 1,
-   DATA_CARGA           DATETIME             NOT NULL DEFAULT GETDATE()
-)
-go
-
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a categoria estiver ativa, preencher como 1; senao 0',
-   'user', @CURRENTUSER, 'table', 'TMP_SUB_CATEGORIA', 'column', 'FLAG_ATIVO'
-go
-
-ALTER TABLE TMP_SUB_CATEGORIA
-   ADD CONSTRAINT CKC_SUB_CATEGORIA_DES_TMP_SUB_ CHECK (SUB_CATEGORIA_DESC = UPPER(SUB_CATEGORIA_DESC))
-go
-
-/*==============================================================*/
-/* Table: TMP_TRANSACAO                                         */
-/*==============================================================*/
-CREATE TABLE TMP_TRANSACAO (
-   TRANSACAO_COD        INTEGER              NOT NULL DEFAULT -1,
-   TRANSACAO_DESC       VARCHAR(50)          NOT NULL DEFAULT 'N/D',
-   FLAG_ATIVO           BIT                  NOT NULL DEFAULT 1,
-   DATA_CARGA           DATETIME             NOT NULL DEFAULT GETDATE()
-)
-go
-
-DECLARE @CURRENTUSER SYSNAME
-SELECT @CURRENTUSER = USER_NAME()
-EXECUTE SP_ADDEXTENDEDPROPERTY 'MS_Description', 
-   'Se a transacao estiver ativa, preencher como 1, senao 0',
-   'user', @CURRENTUSER, 'table', 'TMP_TRANSACAO', 'column', 'FLAG_ATIVO'
-go
-
-ALTER TABLE TMP_TRANSACAO
-   ADD CONSTRAINT CKC_TRANSACAO_DESC_TMP_TRAN CHECK (TRANSACAO_DESC = UPPER(TRANSACAO_DESC))
-go
-
-/*==============================================================*/
-/* View: VW_CATEG_NAO_MAPEADO                                   */
-/*==============================================================*/
-CREATE VIEW VW_CATEG_NAO_MAPEADO AS
-SELECT
-   CATEGORIA_COD,
-   CATEGORIA_DESC,
-   CATEGORIA_NIVEL,
-   CATEGORIA_PAI_COD,
-   FLAG_ATIVO,
-   DATA_CARGA
-FROM
-   TB_CATEG_SUBCATEG
-WHERE
-   CATEGORIA_NIVEL = '-1'
+alter table dbo.tb_subgrupo_revenda
+   add constraint FK_tb_subgrupo_revenda_tb_subgrupo foreign key (id_subgrupo)
+      references dbo.tb_subgrupo (id_subgrupo)
 go
 
